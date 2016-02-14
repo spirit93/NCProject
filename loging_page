@@ -9,11 +9,14 @@
 <body>
 	<form method="POST" action="profile">
 		<h2>Login on servlet profile page</h2>
-		Login*:
+		Login:
 			<input type="text" name="userName" size="20"><br>
-		Password*:
+		Password:
 			<input type="password" name="password" size="20"><br>
-		<p><input type="submit">				
+		<p><input type="submit"> 
+			<button formaction=http://localhost:8080/webapp/registration.jsp>
+				Registration
+			</button>			
 	</form>
 </body>
 </html>
