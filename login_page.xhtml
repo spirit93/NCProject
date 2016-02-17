@@ -5,15 +5,40 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <form method="POST" action="profile">
-        <h2>Login on servlet profile page</h2>
-        <h:outputLabel class="" value="Login:"/>
-        <h:inputText value="" /><br/>
-        <h:outputLabel class="" value="Password"/>
-        <h:inputSecret value="" /><br/>
-        <h:commandButton value="Log in" type="submit" />
-        <h:button value="Register" outcome="registration.jsf" />
-    </form>
-</f:view>
+
+<h:head>
+    <meta charset="utf-8" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Fiddle log in</title>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+
+<h:body>
+    <script src="resources/js/bootstrap.min.js" type="JavaScript"></script>
+
+        <div>
+            <h1><span class="label label-default">Login</span></h1>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <h:form>
+                        <h:outputLabel class="" value="Login:"/>
+                        <h:inputText style="width:200px" styleClass="form-control" value=""/><br/>
+                        <h:outputLabel class="" value="Password"/>
+                        <h:inputSecret style="width:200px" styleClass="form-control" value=""/><br/>
+                        <h:commandButton class="btn btn-primary" style="width:150px" value="Log in" type="submit"/><br/><br/>
+                        <h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Register" data-target="#reg"
+                                  outcome="registration.jsf"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</h:body>
 </html>
