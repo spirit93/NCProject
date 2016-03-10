@@ -9,7 +9,9 @@ import java.util.List;
  */
 @Entity(name = "users")
 @NamedQueries({
-        @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u")}
+        @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
+        @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
+    }
 )
 
 public class User implements Serializable {
@@ -24,9 +26,12 @@ public class User implements Serializable {
     @Column
     String email;
 
-    @OneToOne(targetEntity = UserType.class)
-    @JoinColumn
-    UserType id1;
+//    @OneToOne(targetEntity = UserType.class)
+//    @JoinColumn
+//    UserType id1;
+
+//    @OneToOne @MapsId
+//    UserType userType;
 
     public User() {
     }

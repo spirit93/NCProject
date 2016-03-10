@@ -1,10 +1,14 @@
 package ru.ncedu.bean;
 
+import ru.ncedu.ejb.regCheckEjb;
 import ru.ncedu.entity.User;
 import ru.ncedu.service.UserService;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +16,23 @@ import java.util.List;
 /**
  * Created by Gamzat on 03.12.2015.
  */
-@ManagedBean
-@ApplicationScoped
+//@ManagedBean
+//@ApplicationScoped
+    @Stateless
 public class UserManager implements Serializable {
 
+    @Inject
+    regCheckEjb reg;
+
     public UserManager() {
+    }
+
+    public ru.ncedu.bean.User getUserByUserName( String userName){
+        User us = UserService.getUserByName(userName);
+        if (us != null){
+            return new ru.ncedu.bean.User(us);
+        }
+        return null;
     }
 
     public List<ru.ncedu.bean.User> getAllUsers(){
@@ -42,11 +58,18 @@ public class UserManager implements Serializable {
     }
 
     public void addUser(ru.ncedu.bean.User user) {
-        if (user == null) {
-            return;
-        }
+
         UserService.addUser(new User(user.getUserName(),user.getPassword(),user.getEmail()));
-        UserService.addUserType(new ru.ncedu.entity.UserType(0));
+
+//    if (reg.regUser(reg.getUser())){
+//
+////        UserService.addUserType(new ru.ncedu.entity.UserType(0));
+//        }
     }
+
+    public void addTestUser() {
+        UserService.addUser(new User("name","itIsPas","itIsMail"));
+    }
+
 
 }

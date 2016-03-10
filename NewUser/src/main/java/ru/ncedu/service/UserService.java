@@ -3,16 +3,21 @@ package ru.ncedu.service;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.ejb.Stateless;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Gamzat on 03.12.2015.
  */
+
+@Stateless
 public class UserService {
+//    @PersistenceContext
+
+    @PersistenceUnit(unitName="NCEDU")
     public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
+
 
     public static List<User> getAllUsers() {
         return em.createNamedQuery("User.getAllUsers", User.class).getResultList();
@@ -20,6 +25,12 @@ public class UserService {
 
     public static List<UserType> getAllTypes(){
         return em.createNamedQuery("UserType.getTypes", UserType.class).getResultList();
+    }
+
+    public static User getUserByName(String userName) {
+        TypedQuery<User> query = em.createNamedQuery("User.getUserByLogin", User.class);
+        query.setParameter("userName", userName);
+        return query.getSingleResult();
     }
 
     public static User addUser(User user){

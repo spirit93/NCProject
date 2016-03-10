@@ -15,6 +15,7 @@ public class User {
 
     String userName;
     String password;
+    String repassword;
     String email;
 
     public User() {
@@ -30,6 +31,13 @@ public class User {
     public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
+        this.email = email;
+    }
+
+    public User(String userName, String password,String repassword, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.repassword = repassword;
         this.email = email;
     }
 
@@ -62,6 +70,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 
     public String getEmail() {

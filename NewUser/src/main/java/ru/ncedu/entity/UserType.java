@@ -14,7 +14,8 @@ import java.io.Serializable;
 })
 public class UserType implements Serializable {
     @Id
-    @Column(name = "id1")
+    @Column
+//            (name = "id1")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
