@@ -15,7 +15,6 @@ public class regCheckEjb {
 
     @Inject
     UserManager userManager;
-//error
     public ru.ncedu.bean.User getUserByUserName( String userName){
 
         ru.ncedu.entity.User us = UserService.getUserByName(userName);
@@ -69,30 +68,27 @@ public class regCheckEjb {
 
 
 //     ------------     for tests    -------------
-    public String regUser(String uN,String p1,String p2,String email){
-        User user = new User(uN,p1,p2,email);
-
-        if(!notNull(user)){
-            return "nullField";
-        }else  if(!sameUser(user.getUserName())){
-            return "same user exist";
-        }else  if (!samePass(user)) {
-            return "notSamePass";
-        }
-        userManager.addUser(user);
-        return "success";
-    }
+//    public String regUser(String uN,String p1,String p2,String email){
+//        User user = new User(uN,p1,p2,email);
+//
+//        if(!notNull(user)){
+//            return "nullField";
+//        }else  if(!sameUser(user.getUserName())){
+//            return "same user exist";
+//        }else  if (!samePass(user)) {
+//            return "notSamePass";
+//        }
+//        userManager.addUser(user);
+//        return "success";
+//    }
 
     public String regTestUser(String uN,String ps1,String ps2,String email){
 
         User user = new User(uN,ps1,ps2,email);
-
-        if(!notNull(user)){
-            return "nullField";
+        if(!sameUser(user.getUserName())){
+            return "same user exist";
         }else  if (!samePass(user)){
             return "notSamePass";
-//        }else  if(){
-//            return
         }
         userManager.addUser(user);
         return "success";

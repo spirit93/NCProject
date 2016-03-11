@@ -38,12 +38,12 @@
             <to-view-id>/clear_page.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{regCh.regUser('good user','pas1','pas1','maail')}</from-action>
+            <from-action>#{regCh.regTestUser('good user','pas1','pas1','maail')}</from-action>
             <from-outcome>same user exist</from-outcome>
             <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{regCh.regUser('good user','pas1','pas1','maail')}</from-action>
+            <from-action>#{regCh.regTestUser('good user','pas1','pas1','maail')}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/clear_page.xhtml</to-view-id>
         </navigation-case>
