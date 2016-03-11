@@ -11,6 +11,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
         @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
+//        @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName LIKE :userName")
     }
 )
 

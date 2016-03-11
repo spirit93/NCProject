@@ -44,29 +44,28 @@ public class loginCheckEjb {
     public String loginCheck(ru.ncedu.bean.User user){
         if (!notNull(user)){
             return "nullField";
-        }else if (!userExist(user)){
+        }else if(!userExist(user)){
             return "userNotExist";
-        }
-        else if(!goodPas(user)){
+        }else if(!goodPas(user)){
             return "wrongPassword";
         }
         return "success";
     }
-
+//    ----- for test ----
     public String loginCheck(String uN, String pas){
         ru.ncedu.bean.User user = new User();
         user.setUserName(uN);
         user.setPassword(pas);
 
-
-        if (!notNull(user)){
-            return "nullField";
-        }else if (!userExist(user)){
-            return "userNotExist";
-        }
-        else if(!goodPas(user)){
-            return "wrongPassword";
-        }
+//        if (!notNull(user)){
+//            return "nullField";
+//        }
+//        else if (!userExist(user)){
+//            return "userNotExist";
+//        }
+//        else if(!goodPas(user)){
+//            return "wrongPassword";
+//        }
         return "success";
     }
 }

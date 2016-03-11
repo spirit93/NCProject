@@ -57,25 +57,27 @@ public class regCheckEjb {
         if(!notNull(user)){
             return "nullField";
         }
-//        else  if(!sameUser(user.getUserName())){
-//            return "same user exist";
-//        }
+        else  if(!sameUser(user.getUserName())){
+            return "same user exist";
+        }
         else  if (!samePass(user)){
             return "notSamePass";
         }
         userManager.addUser(user);
         return "success";
     }
+
+
 //     ------------     for tests    -------------
     public String regUser(String uN,String p1,String p2,String email){
         User user = new User(uN,p1,p2,email);
 
         if(!notNull(user)){
             return "nullField";
-        }else  if (!samePass(user)){
+        }else  if(!sameUser(user.getUserName())){
+            return "same user exist";
+        }else  if (!samePass(user)) {
             return "notSamePass";
-//        }else  if(){
-//            return
         }
         userManager.addUser(user);
         return "success";

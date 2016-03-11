@@ -24,11 +24,60 @@
         </navigation-case>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
+            <from-outcome>same user exist</from-outcome>
+            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.regUser(user)}</from-action>
             <from-outcome>notSamePass</from-outcome>
             <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.regUser('good user','pas1','pas1','maail')}</from-action>
+            <from-outcome>same user exist</from-outcome>
+            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.regUser('good user','pas1','pas1','maail')}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/TestPages/loginTest.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck(user)}</from-action>
+            <from-outcome>nullField</from-outcome>
+            <to-view-id>/ErrorPages/NullField.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck(user)}</from-action>
+            <from-outcome>userNotExist</from-outcome>
+            <to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck(user)}</from-action>
+            <from-outcome>wrongPassword</from-outcome>
+            <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck(user)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck('good user','pas1')}</from-action>
+            <from-outcome>wrongPassword</from-outcome>
+            <to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.loginCheck('good user','pas1')}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/clear_page.xhtml</to-view-id>
         </navigation-case>
@@ -52,29 +101,5 @@
             <to-view-id>/clear_page.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-    <!--<navigation-rule>-->
-        <!--<from-view-id>/TestPages/loginTest.xhtml</from-view-id>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>nullField</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/NullField.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>userNotExist</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>wrongPassword</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>success</from-outcome>-->
-            <!--<to-view-id>/clear_page.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-    <!--</navigation-rule>-->
 
 </faces-config>

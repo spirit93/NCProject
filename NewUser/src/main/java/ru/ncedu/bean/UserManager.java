@@ -18,7 +18,7 @@ import java.util.List;
  */
 //@ManagedBean
 //@ApplicationScoped
-    @Stateless
+@Stateless
 public class UserManager implements Serializable {
 
     @Inject

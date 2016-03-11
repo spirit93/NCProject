@@ -1,5 +1,6 @@
 package ru.ncedu.service;
 
+import com.sun.istack.internal.Nullable;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
 
@@ -13,11 +14,8 @@ import java.util.List;
 
 @Stateless
 public class UserService {
-//    @PersistenceContext
-
     @PersistenceUnit(unitName="NCEDU")
     public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
-
 
     public static List<User> getAllUsers() {
         return em.createNamedQuery("User.getAllUsers", User.class).getResultList();
@@ -27,10 +25,21 @@ public class UserService {
         return em.createNamedQuery("UserType.getTypes", UserType.class).getResultList();
     }
 
+    @Nullable
     public static User getUserByName(String userName) {
         TypedQuery<User> query = em.createNamedQuery("User.getUserByLogin", User.class);
         query.setParameter("userName", userName);
-        return query.getSingleResult();
+
+        User user = null;
+        try{
+            user = query.getSingleResult();
+        }catch (NoResultException ex){
+        }
+
+        if (user!= null){
+            return user;
+        }
+        return null;
     }
 
     public static User addUser(User user){
