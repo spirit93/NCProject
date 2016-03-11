@@ -19,27 +19,29 @@
 	<div>
 	<h1><span class="label label-default">Registration</span></h1><br/>
 	    <div class="container">
-	    	<div>
-		        <h:outputLabel class="" value="Login:"/>
-		        <h:inputText style="width:200px" styleClass="form-control" value="#{user.userName}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Password:"/>
-		        <h:inputSecret style="width:200px" styleClass="form-control" value="#{user.password}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Password again:"/>
-		        <h:inputSecret style="width:200px" styleClass="form-control" value="#{user.repassword}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Email:"/>
-		        <h:inputText style="width:200px" styleClass="form-control" value="#{user.email}" /><br/><br/>
+			<h:form>
+				<div>
+					<h:outputLabel class="" value="Login:"/>
+					<h:inputText style="width:200px" styleClass="form-control" value="#{user.userName}" /><br/><br/>
+
+					<h:outputLabel class="" value="Password:"/>
+					<h:inputSecret style="width:200px" styleClass="form-control" value="#{user.password}" /><br/><br/>
+
+					<h:outputLabel class="" value="Password again:"/>
+					<h:inputSecret style="width:200px" styleClass="form-control" value="#{user.repassword}" /><br/><br/>
+
+					<h:outputLabel class="" value="Email:"/>
+					<h:inputText style="width:200px" styleClass="form-control" value="#{user.email}" /><br/><br/>
 
 
-				<h:commandButton class="btn btn-primary" style="width:150px" type="submit"
-								 value="OK" action="#{regCh.regUser(user)}"/><br/><br/>
-		
-		        <h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Home"
-		                  outcome="login_page.jsf"/><br/><br/>
-			</div>
-	    </div>
+					<h:commandButton class="btn btn-primary" style="width:150px" type="submit"
+									 value="OK" action="#{regCh.regUser(user)}"/><br/><br/>
+
+					<h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Home"
+							  outcome="login_page.jsf"/><br/><br/>
+				</div>
+			</h:form>
+		</div>
     </div>
 </h:body>
 </html>

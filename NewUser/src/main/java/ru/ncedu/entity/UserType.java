@@ -15,15 +15,16 @@ import java.io.Serializable;
 public class UserType implements Serializable {
     @Id
     @Column
-//            (name = "id1")
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @Column
     int type = 0;               // 0 - user, 1 - admin ;
 
-//    @OneToOne(targetEntity = User.class,mappedBy = "users")
-//    User user;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id")
+    private User users;
 
     public UserType(){
     }

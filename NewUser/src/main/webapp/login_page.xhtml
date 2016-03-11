@@ -30,9 +30,9 @@
                         <h:inputText style="width:200px" styleClass="form-control" value=""/><br/>
                         <h:outputLabel class="" value="Password"/>
                         <h:inputSecret style="width:200px" styleClass="form-control" value=""/><br/>
-                        <h:commandButton class="btn btn-primary" style="width:150px" value="Log in" type="submit"/><br/><br/>
-                        <h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Register" data-target="#reg"
-                                  outcome="login_page"/>
+                        <h:commandButton action = "#{loginCh.loginCheck(user)}" class="btn btn-primary" style="width:150px" value="Log in" type="submit"/><br/><br/>
+                        <h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Register"
+                                  outcome="registration"/>
                         </h:form>
                     </div>
                 </div>

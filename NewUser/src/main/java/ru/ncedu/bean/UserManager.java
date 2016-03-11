@@ -60,10 +60,10 @@ public class UserManager implements Serializable {
     public void addUser(ru.ncedu.bean.User user) {
 
         UserService.addUser(new User(user.getUserName(),user.getPassword(),user.getEmail()));
+        UserService.addUserType(new ru.ncedu.entity.UserType(0));
 
 //    if (reg.regUser(reg.getUser())){
 //
-////        UserService.addUserType(new ru.ncedu.entity.UserType(0));
 //        }
     }
 

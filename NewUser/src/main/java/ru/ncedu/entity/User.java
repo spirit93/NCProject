@@ -27,12 +27,8 @@ public class User implements Serializable {
     @Column
     String email;
 
-//    @OneToOne(targetEntity = UserType.class)
-//    @JoinColumn
-//    UserType id1;
-
-//    @OneToOne @MapsId
-//    UserType userType;
+    @OneToOne(mappedBy="users")
+    private UserType userType;
 
     public User() {
     }
