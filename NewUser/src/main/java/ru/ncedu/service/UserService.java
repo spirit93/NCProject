@@ -31,15 +31,15 @@ public class UserService {
         query.setParameter("userName", userName);
 
         User user = null;
-        try{
-            user = query.getSingleResult();
-        }catch (NoResultException ex){
-        }
+            try{
+                user = query.getSingleResult();
+            }catch (NoResultException ignore){
+            }
 
-        if (user!= null){
-            return user;
+        if (user == null){
+            return null;
         }
-        return null;
+        return user;
     }
 
     public static User addUser(User user){

@@ -2,8 +2,6 @@ package ru.ncedu.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.Column;
-import java.util.Objects;
 
 /**
  * Created by Gamzat on 03.12.2015.

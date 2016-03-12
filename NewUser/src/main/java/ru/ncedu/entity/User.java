@@ -2,7 +2,6 @@ package ru.ncedu.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Gamzat on 03.12.2015.
@@ -11,7 +10,6 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
         @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
-//        @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName LIKE :userName")
     }
 )
 

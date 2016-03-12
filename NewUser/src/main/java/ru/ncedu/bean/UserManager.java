@@ -5,9 +5,6 @@ import ru.ncedu.entity.User;
 import ru.ncedu.service.UserService;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,8 +13,6 @@ import java.util.List;
 /**
  * Created by Gamzat on 03.12.2015.
  */
-//@ManagedBean
-//@ApplicationScoped
 @Stateless
 public class UserManager implements Serializable {
 
@@ -60,16 +55,9 @@ public class UserManager implements Serializable {
     public void addUser(ru.ncedu.bean.User user) {
 
         UserService.addUser(new User(user.getUserName(),user.getPassword(),user.getEmail()));
-        UserService.addUserType(new ru.ncedu.entity.UserType(0));
-
-//    if (reg.regUser(reg.getUser())){
-//
-//        }
     }
 
     public void addTestUser() {
         UserService.addUser(new User("name","itIsPas","itIsMail"));
     }
-
-
 }
