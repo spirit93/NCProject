@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <meta charset="utf-8" content=""/>
+    <!--<meta charset="utf-8" content=""/>-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content=""/>
@@ -15,29 +15,33 @@
     <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
 </h:head>
 <h:body>
+
 	<div>
 	<h1><span class="label label-default">Registration</span></h1><br/>
 	    <div class="container">
-	    	<div>
-		        <h:outputLabel class="" value="Login:"/>
-		        <h:inputText style="width:200px" styleClass="form-control" value="#{userBean.login}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Password:"/>
-		        <h:inputSecret style="width:200px" styleClass="form-control" value="#{userBean.password}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Password again:"/>
-		        <h:inputSecret style="width:200px" styleClass="form-control" value="#{userBean.repassword}" /><br/><br/>
-		
-		        <h:outputLabel class="" value="Email:"/>
-		        <h:inputText style="width:200px" styleClass="form-control" value="#{userBean.email}" /><br/><br/>
-		
-		
-		        <h:commandButton class="btn btn-primary" style="width:150px" type="submit" value="OK" action="#{serverManager.addUser(userBean)}"/><br/><br/>
-		
-		        <h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Home"
-		                  outcome="login_page.jsf"/><br/>
-	        </div>
-	    </div>
+			<h:form>
+				<div>
+					<h:outputLabel class="" value="Login:"/>
+					<h:inputText style="width:200px" styleClass="form-control" value="#{user.userName}" /><br/><br/>
+
+					<h:outputLabel class="" value="Password:"/>
+					<h:inputSecret style="width:200px" styleClass="form-control" value="#{user.password}" /><br/><br/>
+
+					<h:outputLabel class="" value="Password again:"/>
+					<h:inputSecret style="width:200px" styleClass="form-control" value="#{user.repassword}" /><br/><br/>
+
+					<h:outputLabel class="" value="Email:"/>
+					<h:inputText style="width:200px" styleClass="form-control" value="#{user.email}" /><br/><br/>
+
+
+					<h:commandButton class="btn btn-primary" style="width:150px" type="submit"
+									 value="OK" action="#{regCh.regUser(user)}"/><br/><br/>
+
+					<h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Home"
+							  outcome="login_page.jsf"/><br/><br/>
+				</div>
+			</h:form>
+		</div>
     </div>
 </h:body>
 </html>
