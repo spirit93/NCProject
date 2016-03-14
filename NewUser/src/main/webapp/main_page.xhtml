@@ -5,148 +5,38 @@
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
-	<meta charset="utf-8" content=""/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="description" content=""/>
-	<meta name="author" content=""/>
-	<title>Main page</title>
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="application/javascript"></script>
-	<script src="resources/js/bootstrap.js" type="JavaScript"> </script>
-	<script src="resources/js/modalwindow.js" type="JavaScript"> </script>
-</head>
-<body>
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div class="container">
-	<div class="row">
-		<h:form>
-			<div class="col-md-6"><img src="resources/img/logo.jpg" width="200px"  class="img-thumbnail" alt="logo"/></div>
-			<div class="col-md-6" align="right">
-				<a class="btn btn-primary" href="login_page.jsf">Log in</a>
-				<a class="btn btn-primary" href= "registration.jsf">Register</a>
-			</div>
+			<title>Main page</title>
+		</f:facet>
 
-		</h:form>
-	</div>
-	<hr/>
-	<div class="catalog">
-		<ul id="tab" class="nav nav-tabs">
-			<li class="active">
-				<a href="#phones" id="phones-tab" data-toggle="tab">Phones</a>
-			</li>
-			<li class="">
-				<a href="#tv" id="tv-tab" data-toggle="tab">TV</a>
-			</li>
-			<li class="">
-				<a href="#refrigerators" id="refrigerator-tab" data-toggle="tab">Refrigerators</a>
-			</li>
-			<li class="">
-				<a href="#computers" id="computers-tab" data-toggle="tab">Computers</a>
-			</li>
-		</ul>
-		<div class="tab-pane fade active in" id="phones"><br/>
-			<div class="row">
-				<div class = "col-md-2">
-					<div class="panel panel-info">
-						<div class="panel-heading">iphone6</div>
-						<div class="panel-body">
-							<img src="resources/img/iphone6.jpg" width="150px"  class="img-thumbnail" alt="iphone6"/><br/>
-							<p class="text-primary">Price:1000$</p>
-							<a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
-						</div>
-					</div>
-				</div>
-				<div class = "col-md-2">
-					<div class="panel panel-info">
-						<div class="panel-heading">Samsung Galaxy s7</div>
-						<div class="panel-body">
-							<img src="resources/img/SamsungGalaxyS7.jpg" width="150px"  class="img-thumbnail" alt="samsung galaxy s7"/><br/>
-							<p class="text-primary">Price:800$</p>
-							<a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
-						</div>
-					</div>
-				</div>
+		<f:facet name="middle">
+			<h:outputStylesheet name="css/bootstrap.min.css" />
+			<h:outputStylesheet name="css/dashboard.css" />
+			<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+			<h:outputScript name="js/bootstrap.js" />
+			<h:outputScript name="js/modalwindow.js"/>
+		</f:facet>
 
-				<div class = "col-md-2">
+		<f:facet name="last">
+			<h:outputStylesheet name="css/font-awesome.css" />
+		</f:facet>
 
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane fade" id="tv">
-			<p>Телевизоры</p>
-		</div>
-		<div class="tab-pane fade" id="refrigerators">
-			<p>Холодильники</p>
-		</div>
-		<div class="tab-pane fade" id="computers">
-			<p>Компьютеры</p>
-		</div>
+	</h:head>
 
-	</div>
-
-	<div class="row">
-		<div class="col-lg-5">
-			<p class="text-primary" align="right"> Email: something@gmail.com</p>
-		</div>
-		<div class="col-lg-2">
-			<a class="btn btn-link" href="authors.jsf">Authors <br/></a>
-		</div>
-		<div class="col-lg-5">
-			<p class="text-primary" align="left">Phone: 89752541625 <br/></p>
-		</div>
-	</div>
-</div>
-
-
-<div id="modal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h2 class="modal-title">Making an order</h2>
-			</div>
-			<div class="modal-body">
-				<p class="text-info">Name:</p>
-				<input class="form-control" style="width:200px" placeholder="Введите имя"/><br/>
-				<p class="text-info">Phone:</p>
-				<input class="form-control" style="width:200px" placeholder="Введите телефон"/><br/>
-				<p class="text-info">Email:</p>
-				<input class="form-control" style="width:200px" placeholder="Введите email"/><br/>
-			</div>
-			<div class="modal-footer">
-				<a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>
-				<!--<button class="btn btn-success" type="submit">OK</button>-->
-				<button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="thanks" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h2 class="modal-title" align="center">Thanks for order!!!</h2>
-			</div>
-			<div class="modal-body">
-				<h3 class="text-info">Our operator will call you soon.</h3>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-success" type="button" data-dismiss="modal">OK</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-</body>
+	<h:body>
+		<ui:include src="header_page_main.xhtml" />
+		<ui:include src="content_main.xhtml" />
+	</h:body>
+</f:view>
 </html>
-<!--  страница с добавлением товара админом
-	всплывающие окна с оформлением покупки (+кнопка купить)                 ГОТОВО))))))))))))))
-	видео с java ee + db (отображение товара из бд на странице)
-	контакты вниз, кнопки вправо в 1 строчку                                ГОТОВО
-	about us																ГОТОВО
-		
-		 -->
+
+<!--
+	JPA в книге
+	JAXB
+-->
