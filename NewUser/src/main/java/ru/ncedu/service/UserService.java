@@ -1,16 +1,12 @@
 package ru.ncedu.service;
 
-import com.sun.istack.internal.Nullable;
+//import com.sun.istack.internal.Nullable;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
-
-/**
- * Created by Gamzat on 03.12.2015.
- */
 
 @Stateless
 public class UserService {
@@ -25,7 +21,7 @@ public class UserService {
         return em.createNamedQuery("UserType.getTypes", UserType.class).getResultList();
     }
 
-    @Nullable
+   // @Nullable
     public static User getUserByName(String userName) {
         TypedQuery<User> query = em.createNamedQuery("User.getUserByLogin", User.class);
         query.setParameter("userName", userName);
@@ -44,6 +40,8 @@ public class UserService {
 
     public static User addUser(User user){
         em.getTransaction().begin();
+        UserType userType = em.merge(new UserType());
+        user.setUserType(userType);
         User result = em.merge(user);
         em.getTransaction().commit();
         return result;
