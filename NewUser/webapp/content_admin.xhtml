@@ -1,0 +1,189 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ui:include src="leftMenu_admin.xhtml" />
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <ui:insert name="content_admin" />
+                <h:form>
+                    <div class="catalog">
+                        <div class="tab-pane fade active in" id="phones"><br/>
+                            <div class="row">
+                                <div class = "col-md-2">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">iphone6</div>
+                                        <div class="panel-body">
+                                            <img src="resources/img/iphone6.jpg" width="150px" class="img-thumbnail" alt="iphone6"/><br/>
+                                            <p class="text-primary">Price:1000$</p>
+                                            <a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "col-md-2">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">Samsung Galaxy s7</div>
+                                        <div class="panel-body">
+                                            <img src="resources/img/SamsungGalaxyS7.jpg" width="150px" class="img-thumbnail" alt="samsung galaxy s7"/><br/>
+                                            <p class="text-primary">Price:800$</p>
+                                            <a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = "col-md-2">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tv">
+                            <p>Телевизоры</p>
+                        </div>
+                        <div class="tab-pane fade" id="refrigerators">
+                            <p>Холодильники</p>
+                        </div>
+                        <div class="tab-pane fade" id="computers">
+                            <p>Компьютеры</p>
+                        </div>
+                        <div class="tab-pane fade" id="map-case">
+                            <p>Планшеты</p>
+                        </div>
+                        <div class="tab-pane fade" id="players">
+                            <p>Плееры</p>
+                        </div>
+                        <div class="tab-pane fade" id="mouses">
+                            <p>Компьютерные мыши</p>
+                        </div>
+
+                    </div>
+                </h:form>
+
+                <div id="modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">Making an order</h2>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-info">Name:</p>
+                                <input class="form-control" style="width:200px" placeholder="Введите имя"/><br/>
+                                <p class="text-info">Phone:</p>
+                                <input class="form-control" style="width:200px" placeholder="Введите телефон"/><br/>
+                                <p class="text-info">Email:</p>
+                                <input class="form-control" style="width:200px" placeholder="Введите email"/><br/>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>
+                                <!--<button class="btn btn-success" type="submit">OK</button>-->
+                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="thanks" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title" align="center">Thanks for order!!!</h2>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-info">Our operator will call you soon.</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" type="button" data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="addproduct" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h1 class="modal-title" align="center">Addition of product</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-info">Product name:</p>
+                                <input class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
+                                <p class="text-info">Company name:</p>
+                                <input class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
+                                <p class="text-info">Category:</p>
+                                <div class="dropdown">
+                                    <a class="btn btn-toolbar" type="button" href="#" data-toggle="dropdown">
+                                        Выберите категорию
+                                        <i class="caret"></i> <br/>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="text-info" href="#" align="center">Phones</a></li>
+                                        <li><a class="text-info" href="#" align="center">TV</a></li>
+                                        <li><a class="text-info" href="#" align="center">Refrigerators</a></li>
+                                        <li><a class="text-info" href="#" align="center">Computers</a></li>
+                                    </ul>
+                                </div> <br/>
+
+                                <p class="text-info">Brand:</p>
+                                <div class="dropdown">
+                                    <a class="btn btn-toolbar" type="button" href="#" data-toggle="dropdown">
+                                        Выберите бренд
+                                        <i class="caret"></i> <br/>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="text-info" href="#" align="center">Asus</a></li>
+                                        <li><a class="text-info" href="#" align="center">Samsung</a></li>
+                                        <li><a class="text-info" href="#" align="center">Lenovo</a></li>
+                                        <li><a class="text-info" href="#" align="center">MSI</a></li>
+                                        <li><a class="text-info" href="#" align="center">Apple</a></li>
+                                        <li><a class="text-info" href="#" align="center">Sony</a></li>
+                                        <li><a class="text-info" href="#" align="center">Philips</a></li>
+                                        <li><a class="text-info" href="#" align="center">LG</a></li>
+                                    </ul>
+                                </div> <br/>
+
+                                <p class="text-info">Price:</p>
+                                <input class="form-control" style="width:250px" placeholder="Введите цену"/><br/>
+                                <p class="text-info">Quantity:</p>
+                                <input class="form-control" style="width:250px" placeholder="Введите количество"/><br/>
+
+                                <script type="application/javascript">
+                                    $(".dropdown-menu li a").click(function(){
+                                        $(this).parents(".dropdown").find('a:first').html($(this).text());
+                                    });
+                                </script>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" type="submit">OK</button>
+                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addbrand" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h1 class="modal-title" align="center">Addition of brand</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-info">Brand name:</p>
+                                <input class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" type="submit">OK</button>
+                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ui:composition>

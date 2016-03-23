@@ -10,10 +10,10 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
         @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
-    }
+}
 )
 
-public class User implements Serializable {
+public class cUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;

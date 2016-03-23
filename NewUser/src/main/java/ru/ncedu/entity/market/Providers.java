@@ -1,16 +1,15 @@
 package ru.ncedu.entity.market;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Алёна
  */
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name = "ProvidersTable")
 public class Providers {
-    private List<Goods> goods = new ArrayList();
+    private List<Products> products;
     private long providerId;
     private String companyName;
     private String phoneNumber;
@@ -18,13 +17,13 @@ public class Providers {
     private String adressOfCompany;
     private String websiteOfCompany;
 
-    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY)
-    public List<Goods> getGoods(){
-        return goods;
+    @OneToMany(mappedBy = "providers", fetch = FetchType.LAZY)
+    public List<Products> getProducts(){
+        return products;
     }
 
-    public void setGoods(List<Goods> goods) {
-        this.goods = goods;
+    public void setProducts(List<Products> products) {
+        this.products = products;
     }
 
     public Providers(){}

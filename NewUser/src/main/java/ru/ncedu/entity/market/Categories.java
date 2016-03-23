@@ -1,27 +1,27 @@
 package ru.ncedu.entity.market;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Алёна
  */
+
 @Entity
 @Table(name = "CategoriesTable")
 public class Categories {
-    private List<Goods> goods = new ArrayList(); //private List<Goods> goods = new ArrayList<>();
+    private List<Products> products; //private List<Goods> goods = new ArrayList<>();
     private long categoryId;
     private String nameOfCategory;
-    private String descriptionOfCategorye;
+    private String descriptionOfCategory;
 
-    @OneToMany(mappedBy = "goods",fetch = FetchType.LAZY)
-    public List<Goods> getGoods(){
-        return goods;
+    @OneToMany(mappedBy = "categories",fetch = FetchType.LAZY)
+    public List<Products> getProducts(){
+        return products;
     }
 
-    public void setGoods(List<Goods> goods) {
-        this.goods = goods;
+    public void setProducts(List<Products> products) {
+        this.products = products;
     }
 
     public Categories(){}
@@ -30,9 +30,9 @@ public class Categories {
         this.nameOfCategory = nameOfCategory;
     }
 
-    public Categories(String nameOfCategory, String descriptionOfCategorye){
+    public Categories(String nameOfCategory, String descriptionOfCategory){
         this.nameOfCategory = nameOfCategory;
-        this.descriptionOfCategorye = descriptionOfCategorye;
+        this.descriptionOfCategory = descriptionOfCategory;
     }
 
     @Id
@@ -56,12 +56,12 @@ public class Categories {
     }
 
     @Column
-    public String getDescriptionOfCategorye() {
-        return descriptionOfCategorye;
+    public String getDescriptionOfCategory() {
+        return descriptionOfCategory;
     }
 
-    public void setDescriptionOfCategorye(String descriptionOfCategorye) {
-        this.descriptionOfCategorye = descriptionOfCategorye;
+    public void setDescriptionOfCategory(String descriptionOfCategory) {
+        this.descriptionOfCategory = descriptionOfCategory;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Categories {
         return "Categories{" +
                 "categoryId=" + categoryId +
                 ", nameOfCategory='" + nameOfCategory + '\'' +
-                ", descriptionOfCategorye='" + descriptionOfCategorye + '\'' +
+                ", descriptionOfCategory='" + descriptionOfCategory + '\'' +
                 '}';
     }
 }

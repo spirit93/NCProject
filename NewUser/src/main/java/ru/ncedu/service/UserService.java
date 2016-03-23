@@ -3,9 +3,13 @@ package ru.ncedu.service;
 import com.sun.istack.internal.Nullable;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
+import ru.ncedu.entity.market.Categories;
+import ru.ncedu.entity.market.Orders;
+import ru.ncedu.entity.market.Providers;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,11 +18,13 @@ import java.util.List;
 
 @Stateless
 public class UserService {
-    @PersistenceUnit(unitName="NCEDU")
-    public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
+    public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("NCEDU");
+    public static EntityManager em = emf.createEntityManager();
+//    @PersistenceUnit(unitName="NCEDU")
+//    public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
 
     public static List<User> getAllUsers() {
-        return em.createNamedQuery("User.getAllUsers", User.class).getResultList();
+        return em.createNamedQuery("User.java.getAllUsers", User.class).getResultList();
     }
 
     public static List<UserType> getAllTypes(){
@@ -27,7 +33,7 @@ public class UserService {
 
     @Nullable
     public static User getUserByName(String userName) {
-        TypedQuery<User> query = em.createNamedQuery("User.getUserByLogin", User.class);
+        TypedQuery<User> query = em.createNamedQuery("User.java.getUserByLogin", User.class);
         query.setParameter("userName", userName);
 
         User user = null;
@@ -55,4 +61,46 @@ public class UserService {
         em.getTransaction().commit();
         return result;
     }
+
+    public Categories addCategories(Categories categories) {
+        em.getTransaction().begin();
+        Categories result = em.merge(categories);
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public Providers addProviders(Providers providers) {
+        em.getTransaction().begin();
+        Providers result = em.merge(providers);
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public Orders addOrders(Orders orders){
+        em.getTransaction().begin();
+        Date date = new Date();
+        Orders result = em.merge(orders);
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public static void main(String [] args){
+
+        Categories categories = new Categories("Mobile phones", "Some description");
+        em.getTransaction().begin();
+        em.persist(categories);
+        em.getTransaction().commit();
+
+        Providers providers = new Providers("Philips", "84959963256", "philips@philips.com", "Moscow", "philips.com");
+        em.getTransaction().begin();
+        em.persist(providers);
+        em.getTransaction().commit();
+
+        Date date = new Date();
+        Orders orders = new Orders(5,10, date);
+        em.getTransaction().begin();
+        em.persist(orders);
+        em.getTransaction().commit();
+    }
 }
+

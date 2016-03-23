@@ -1,18 +1,17 @@
 package ru.ncedu.entity.market;
 
-import javax.persistence.*;
-import java.util.Date;
-
 /**
  * Created by Алёна
  */
+
+import javax.persistence.*;
+import java.util.Date;
+
 @Entity
 @Table(name = "OrdersTable")
 public class Orders {
 
     private long orderId;
-    private long goodsId;
-    private long recipientId;
     private int numberOfOrders;
     private int discount;
     private Date date;
@@ -46,30 +45,12 @@ public class Orders {
     }
 
     @Column
-    public long getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(long goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    @Column
     public int getDiscount() {
         return discount;
     }
 
     public void setDiscount(int discount) {
         this.discount = discount;
-    }
-
-    @Column
-    public long getRecipientId() {
-        return recipientId;
-    }
-
-    public void setRecipientId(long recipientId) {
-        this.recipientId = recipientId;
     }
 
     @Column
@@ -85,10 +66,8 @@ public class Orders {
     public String toString() {
         return "Orders{" +
                 "orderId=" + orderId +
-                ", goodsId=" + goodsId +
                 ", numberOfOrders=" + numberOfOrders +
                 ", discount=" + discount +
-                ", recipientId=" + recipientId +
                 ", date='" + date + '\'' +
                 '}';
     }

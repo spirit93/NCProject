@@ -5,16 +5,17 @@ import javax.persistence.*;
 /**
  * Created by Алёна
  */
+
 @Entity
 @Table(name = "ProductDetailsTable")
 public class ProductDetails {
-    private long goodsId;
+    private long productsId;
     private int amountOfProducts;
     private int pricePerUnit;
     private int amountOfOrders;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "productDetails")
-    private Goods goods;
+    private Products products;
 
     public ProductDetails(){
     }
@@ -24,15 +25,16 @@ public class ProductDetails {
         this.amountOfOrders = amountOfOrders;
         this.pricePerUnit= pricePerUnit;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    public long getGoodsId() {
-        return goodsId;
+    public long getProductsId() {
+        return productsId;
     }
 
-    public void setGoodsId(long goodsId) {
-        this.goodsId = goodsId;
+    public void setProductsId(long productsId) {
+        this.productsId = productsId;
     }
 
     @Column
@@ -65,7 +67,7 @@ public class ProductDetails {
     @Override
     public String toString() {
         return "ProductDetails{" +
-                "goodsId=" + goodsId +
+                "productsId=" + productsId +
                 ", amountOfProducts=" + amountOfProducts +
                 ", pricePerUnit=" + pricePerUnit +
                 ", amountOfOrders=" + amountOfOrders +
