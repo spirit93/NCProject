@@ -5,83 +5,20 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
     <managed-bean>
-    <managed-bean-name>regCh</managed-bean-name>
-    <managed-bean-class>ru.ncedu.ejb.regCheckEjb</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-name>regCh</managed-bean-name>
+        <managed-bean-class>ru.ncedu.ejb.regCheckEjb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>loginCh</managed-bean-name>
         <managed-bean-class>ru.ncedu.ejb.loginCheckEjb</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-
-    <navigation-rule>
-        <from-view-id>/TestPages/regTest.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>nullField</from-outcome>
-            <to-view-id>/ErrorPages/NullField.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>same user exist</from-outcome>
-            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>notSamePass</from-outcome>
-            <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regTestUser('good user','pas1','pas1','maail')}</from-action>
-            <from-outcome>same user exist</from-outcome>
-            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regTestUser('good user','pas1','pas1','maail')}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>/TestPages/loginTest.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>nullField</from-outcome>
-            <to-view-id>/ErrorPages/NullField.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>userNotExist</from-outcome>
-            <to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>wrongPassword</from-outcome>
-            <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck('good user','pas1')}</from-action>
-            <from-outcome>wrongPassword</from-outcome>
-            <to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck('good user','pas1')}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>brendCh</managed-bean-name>
+        <managed-bean-class>ru.ncedu.ejb.providerCheckEjb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/registration.xhtml</from-view-id>
@@ -92,8 +29,18 @@
         </navigation-case>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
+            <from-outcome>sameUserExist</from-outcome>
+            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.regUser(user)}</from-action>
             <from-outcome>notSamePass</from-outcome>
             <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.regUser(user)}</from-action>
+            <from-outcome>wrongEmail</from-outcome>
+            <to-view-id>/ErrorPages/EmailEr.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
@@ -101,7 +48,6 @@
             <to-view-id>/clear_page.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
 
     <navigation-rule>
         <from-view-id>/login_page.xhtml</from-view-id>

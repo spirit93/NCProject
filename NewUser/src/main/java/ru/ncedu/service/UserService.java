@@ -1,6 +1,9 @@
 package ru.ncedu.service;
 
-import com.sun.istack.internal.Nullable;
+//import com.sun.istack.internal.Nullable;
+import org.apache.commons.codec.digest.DigestUtils;
+import ru.ncedu.entity.Products;
+import ru.ncedu.entity.Providers;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
 
@@ -8,14 +11,8 @@ import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by Gamzat on 03.12.2015.
- */
-
 @Stateless
-public class UserService {
-    @PersistenceUnit(unitName="NCEDU")
-    public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
+public class UserService  extends Service{
 
     public static List<User> getAllUsers() {
         return em.createNamedQuery("User.getAllUsers", User.class).getResultList();
@@ -25,7 +22,7 @@ public class UserService {
         return em.createNamedQuery("UserType.getTypes", UserType.class).getResultList();
     }
 
-    @Nullable
+   // @Nullable
     public static User getUserByName(String userName) {
         TypedQuery<User> query = em.createNamedQuery("User.getUserByLogin", User.class);
         query.setParameter("userName", userName);
@@ -43,7 +40,12 @@ public class UserService {
     }
 
     public static User addUser(User user){
+        String pasMD5 = DigestUtils.md5Hex(user.getPassword());
+        user.setPassword(pasMD5);
+
         em.getTransaction().begin();
+        UserType userType = em.merge(new UserType());
+        user.setUserType(userType);
         User result = em.merge(user);
         em.getTransaction().commit();
         return result;
@@ -55,4 +57,27 @@ public class UserService {
         em.getTransaction().commit();
         return result;
     }
+
+//    //-------------provider
+//    public static Providers addProvider(Providers provider){
+//        em.getTransaction().begin();
+//        Providers result = em.merge(provider);
+//        em.getTransaction().commit();
+//        return result;
+//    }
+//
+//    public static Products getProductByName(String prdName){
+//        TypedQuery<Products> query = em.createNamedQuery("Product.getProductByName",Products.class);
+//        query.setParameter("nameOfProduct",prdName);
+//
+//        Products result= null;
+//        try{
+//            result = query.getSingleResult();
+//        }catch (NoResultException ignore){
+//        }
+//
+//        if(result == null){return null;}
+//
+//        return result;
+//    }
 }
