@@ -15,12 +15,13 @@ public class addCategories {
     MarketManager marketManager;
 
     public String addCategories(){
-        marketManager.addCategory(new CategoriesB("Phones","description"));
-        marketManager.addCategory(new CategoriesB("TV","description"));
-        marketManager.addCategory(new CategoriesB("Phones","description"));
-        marketManager.addCategory(new CategoriesB("Phones","description"));
-        marketManager.addCategory(new CategoriesB("Phones","description"));
-        marketManager.addCategory(new CategoriesB("Phones","description"));
+        marketManager.addCategory(new CategoriesB("Phones","description of Phones"));
+        marketManager.addCategory(new CategoriesB("TV","description of TV"));
+        marketManager.addCategory(new CategoriesB("Refrigerators","description of Refrigerators"));
+        marketManager.addCategory(new CategoriesB("Computers","description of Computers"));
+        marketManager.addCategory(new CategoriesB("Map-cases","description of Map-cases"));
+        marketManager.addCategory(new CategoriesB("Players","description of Players"));
+        marketManager.addCategory(new CategoriesB("Mouses","description of Mouses"));
         return null;
     }
 }
