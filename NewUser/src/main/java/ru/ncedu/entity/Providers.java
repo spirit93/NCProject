@@ -1,14 +1,20 @@
-package ru.ncedu.entity.market;
+package ru.ncedu.entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Алёна
  */
-import javax.persistence.*;
-import java.util.List;
-
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Providers.getAllProviders", query = "SELECT p from providerstable p"),
+        @NamedQuery(name = "Providers.getProvidersByCompanyName", query = "SELECT p from providerstable p WHERE p.companyName = :companyName")
+}
+)
 @Table(name = "ProvidersTable")
-public class Providers {
+public class Providers implements Serializable {
     private List<Products> products;
     private long providerId;
     private String companyName;
@@ -17,7 +23,7 @@ public class Providers {
     private String adressOfCompany;
     private String websiteOfCompany;
 
-    @OneToMany(mappedBy = "providers", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "providers", targetEntity = Products.class)
     public List<Products> getProducts(){
         return products;
     }
@@ -92,6 +98,7 @@ public class Providers {
         this.websiteOfCompany = websiteOfCompany;
     }
 
+
     @Override
     public String toString() {
         return "Providers{" +
@@ -103,4 +110,5 @@ public class Providers {
                 ", websiteOfCompany='" + websiteOfCompany + '\'' +
                 '}';
     }
+
 }

@@ -3,19 +3,17 @@ package ru.ncedu.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by Gamzat on 03.12.2015.
- */
 @Entity(name = "users")
 @NamedQueries({
         @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
         @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
-}
+    }
 )
 
-public class cUser implements Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     Integer id;
 
     @Column
@@ -25,7 +23,9 @@ public class cUser implements Serializable {
     @Column
     String email;
 
-    @OneToOne(mappedBy="users")
+
+    @OneToOne
+    @JoinColumn(name = "user_type_id")
     private UserType userType;
 
     public User() {
@@ -39,6 +39,14 @@ public class cUser implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public void setEmail(String email) {

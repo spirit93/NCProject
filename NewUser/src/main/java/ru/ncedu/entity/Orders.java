@@ -1,15 +1,21 @@
-package ru.ncedu.entity.market;
+package ru.ncedu.entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Алёна
  */
-
-import javax.persistence.*;
-import java.util.Date;
-
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Orders.getAllOrders", query = "SELECT or from orderstable or"),
+        @NamedQuery(name = "Orders.getOrdersById", query = "SELECT or from orderstable or WHERE or.orderId = :orderId")
+}
+)
+
 @Table(name = "OrdersTable")
-public class Orders {
+public class Orders implements Serializable {
 
     private long orderId;
     private int numberOfOrders;

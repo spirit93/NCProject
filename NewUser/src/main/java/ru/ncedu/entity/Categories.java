@@ -1,16 +1,21 @@
-package ru.ncedu.entity.market;
+package ru.ncedu.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Алёна
  */
-
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Categories.getAllCategories", query = "SELECT c from categoriestable c"),
+        @NamedQuery(name = "Categories.getCategoryByName", query = "SELECT c from categoriestable c WHERE c.nameOfCategory = :nameOfCategory")
+}
+)
 @Table(name = "CategoriesTable")
-public class Categories {
-    private List<Products> products; //private List<Goods> goods = new ArrayList<>();
+public class Categories implements Serializable {
+    private List<Products> products;
     private long categoryId;
     private String nameOfCategory;
     private String descriptionOfCategory;

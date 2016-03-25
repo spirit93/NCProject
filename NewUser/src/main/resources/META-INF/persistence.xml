@@ -9,6 +9,11 @@
                 <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
                         <class>ru.ncedu.entity.User</class>
                         <class>ru.ncedu.entity.UserType</class>
+                        <class>ru.ncedu.entity.Categories</class>
+                        <class>ru.ncedu.entity.Orders</class>
+                        <class>ru.ncedu.entity.ProductDetails</class>
+                        <class>ru.ncedu.entity.Products</class>
+                        <class>ru.ncedu.entity.Providers</class>
                 <properties>
                         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
                         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/library"/>

@@ -1,20 +1,26 @@
-package ru.ncedu.entity.market;
+package ru.ncedu.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Алёна
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "ProductDetails.getAllProductDetails", query = "SELECT pd from productdetailstable pd"),
+        @NamedQuery(name = "ProductDetails.getProductDetailsById", query = "SELECT pd from productdetailstable pd WHERE pd.productsId = :productsId")
+}
+)
 @Table(name = "ProductDetailsTable")
-public class ProductDetails {
+public class ProductDetails implements Serializable {
     private long productsId;
     private int amountOfProducts;
     private int pricePerUnit;
     private int amountOfOrders;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "productDetails")
+    @OneToOne(mappedBy = "productDetails")
     private Products products;
 
     public ProductDetails(){
@@ -27,8 +33,7 @@ public class ProductDetails {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "productdetailsid")
     public long getProductsId() {
         return productsId;
     }

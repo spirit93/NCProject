@@ -3,7 +3,7 @@ console.log('Initialising of websocket');
 wsocket = new WebSocket("ws://localhost:8080/JavaFiddle-war/endpoint");
 wsocket.onopen = function() {
     console.log('Connection established');
-    console.log('User.java ID: '+userId);
+    console.log('User ID: '+userId);
     var message = {
         type: "init",
         data: userId
