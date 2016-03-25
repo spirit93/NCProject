@@ -19,6 +19,11 @@
         <managed-bean-class>ru.ncedu.ejb.providerCheckEjb</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>addCategories</managed-bean-name>
+        <managed-bean-class>ru.ncedu.ejb.addCategories</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/registration.xhtml</from-view-id>
