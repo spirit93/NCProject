@@ -5,8 +5,9 @@ import ru.ncedu.entity.Products;
 import ru.ncedu.entity.Providers;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.*;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * Created by Павел on 19.03.2016.
@@ -19,6 +20,25 @@ public class MarketService extends  Service{
         Providers result = em.merge(provider);
         em.getTransaction().commit();
         return result;
+    }
+    public static Providers getProviderById(int id) {
+        TypedQuery<Providers> query = em.createNamedQuery("Providers.getProviderById", Providers.class);
+        query.setParameter("providerId", id);
+
+        Providers provider = null;
+        try{
+            provider = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (provider == null){
+            return null;
+        }
+        return provider;
+    }
+
+    public static List<Providers> getAllProviders() {
+        return em.createNamedQuery("Providers.getAllProviders",Providers.class).getResultList();
     }
 
     public static Products getProductByName(String prdName){
@@ -35,11 +55,31 @@ public class MarketService extends  Service{
 
         return result;
     }
-
+    //--------------- categories -------------------
     public static Categories addCategory(Categories cat) {
         em.getTransaction().begin();
         Categories result = em.merge(cat);
         em.getTransaction().commit();
         return result;
+    }
+
+    public static List<Categories> getAllCategories() {
+        return em.createNamedQuery("Categories.getAllCategories",Categories.class).getResultList();
+    }
+
+    public static Categories getCategoryById(int id) {
+        TypedQuery<Categories> query = em.createNamedQuery("Categories.getCategoryById", Categories.class);
+        query.setParameter("categoryId", id);
+
+        Categories category = null;
+        try{
+            category = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (category == null){
+            return null;
+        }
+        return category;
     }
 }

@@ -191,11 +191,21 @@
                                 <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit">OK</h:commandButton>
+                                <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
                                 <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
                             </div>
                             </h:form>
 
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addcategories" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <h:form>
+                                <h:commandButton action="#{addCategories.addCategories}" class="btn btn-success" type="submit" value="Add Categories"/>
+                            </h:form>
                         </div>
                     </div>
                 </div>

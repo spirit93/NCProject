@@ -1,6 +1,7 @@
 package ru.ncedu.bean;
 
 import ru.ncedu.entity.Products;
+import ru.ncedu.entity.Providers;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -23,6 +24,15 @@ public class ProvidersB {
 
     public ProvidersB() {
     }
+
+    public ProvidersB(Providers provider) {
+        this.companyName = provider.getCompanyName();
+        this.phoneNumber = provider.getPhoneNumber();
+        this.emailOfCompany = provider.getEmailOfCompany();
+        this.adressOfCompany = provider.getAdressOfCompany();
+        this.websiteOfCompany = provider.getWebsiteOfCompany();
+    }
+
 
     public ProvidersB(String companyName, String phoneNumber, String emailOfCompany,
                       String adressOfCompany, String websiteOfCompany) {

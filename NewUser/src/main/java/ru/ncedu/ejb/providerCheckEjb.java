@@ -38,4 +38,16 @@ public class providerCheckEjb {
         marketManager.addProvider(provider);
         return "ProviderAdded";
     }
+
+
+    public String addProvider(ProvidersB provider){
+        if (!validator.isEmailValid(provider.getEmailOfCompany())){
+            return "wrongEmail";
+        }else if(!validator.isPhoneValid(provider.getPhoneNumber())){
+            return "wrongPhone";
+        }
+
+        marketManager.addProvider(provider);
+        return "ProviderAdded";
+    }
 }

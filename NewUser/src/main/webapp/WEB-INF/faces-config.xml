@@ -24,7 +24,16 @@
         <managed-bean-class>ru.ncedu.ejb.addCategories</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-
+    <managed-bean>
+        <managed-bean-name>addProduct</managed-bean-name>
+        <managed-bean-class>ru.ncedu.ejb.addProduct</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>marketManager</managed-bean-name>
+        <managed-bean-class>ru.ncedu.bean.MarketManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     <navigation-rule>
         <from-view-id>/registration.xhtml</from-view-id>
         <navigation-case>

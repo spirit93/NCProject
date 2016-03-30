@@ -1,5 +1,6 @@
 package ru.ncedu.bean;
 
+import ru.ncedu.entity.Categories;
 import ru.ncedu.entity.Products;
 
 import java.util.List;
@@ -14,6 +15,11 @@ public class CategoriesB {
     private String descriptionOfCategory;
 
     public CategoriesB() {
+    }
+
+    public CategoriesB(Categories category) {
+        this.nameOfCategory = category.getNameOfCategory();
+        this.descriptionOfCategory = category.getDescriptionOfCategory();
     }
 
     public CategoriesB(String nameOfCategory, String descriptionOfCategory) {

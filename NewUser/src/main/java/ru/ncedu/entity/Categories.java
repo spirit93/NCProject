@@ -6,8 +6,12 @@ import java.util.List;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity
-@Table(name = "CategoriesTable")
+@Entity(name = "categoriestable")
+@NamedQueries({
+        @NamedQuery(name = "Categories.getAllCategories",query = "select c from categoriestable c"),
+        @NamedQuery(name = "Categories.getCategoryById" ,query = "SELECT c from categoriestable c WHERE c.categoryId = :categoryId"),
+})
+//@Table(name = "categoriestable")
 public class Categories {
     private List<Products> products; //private List<Goods> goods = new ArrayList<>();
     private long categoryId;

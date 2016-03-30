@@ -8,8 +8,12 @@ import java.util.List;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity
-@Table(name = "ProvidersTable")
+@Entity(name = "ProvidersTable")
+//@Table(name = "ProvidersTable")
+@NamedQueries({
+        @NamedQuery(name = "Providers.getProviderById" ,query = "SELECT p from ProvidersTable p WHERE p.providerId = :providerId"),
+        @NamedQuery(name = "Providers.getAllProviders",query = "SELECT p from ProvidersTable p")
+})
 public class Providers {
     private List<Products> products;
     private long providerId;

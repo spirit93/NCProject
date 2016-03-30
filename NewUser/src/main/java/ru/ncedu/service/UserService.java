@@ -58,26 +58,4 @@ public class UserService  extends Service{
         return result;
     }
 
-//    //-------------provider
-//    public static Providers addProvider(Providers provider){
-//        em.getTransaction().begin();
-//        Providers result = em.merge(provider);
-//        em.getTransaction().commit();
-//        return result;
-//    }
-//
-//    public static Products getProductByName(String prdName){
-//        TypedQuery<Products> query = em.createNamedQuery("Product.getProductByName",Products.class);
-//        query.setParameter("nameOfProduct",prdName);
-//
-//        Products result= null;
-//        try{
-//            result = query.getSingleResult();
-//        }catch (NoResultException ignore){
-//        }
-//
-//        if(result == null){return null;}
-//
-//        return result;
-//    }
 }
