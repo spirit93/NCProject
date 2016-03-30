@@ -10,13 +10,52 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class ProductsB {
-    public String nameOfPr;
+    private long productsId;
+    private String nameOfProduct;
+    private int categoryId;
+    private int providerId;
+    private int detaildsId;
 
     public ProductsB(){
     }
 
-    public void setNameOfPr(String name){
-        nameOfPr = name;
+    public long getProductsId() {
+        return productsId;
     }
 
+    public void setProductsId(long productsId) {
+        this.productsId = productsId;
+    }
+
+    public String getNameOfProduct() {
+        return nameOfProduct;
+    }
+
+    public void setNameOfProduct(String nameOfProduct) {
+        this.nameOfProduct = nameOfProduct;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
+    }
+
+    public int getDetaildsId() {
+        return detaildsId;
+    }
+
+    public void setDetaildsId(int detaildsId) {
+        this.detaildsId = detaildsId;
+    }
 }

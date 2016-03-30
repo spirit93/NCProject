@@ -2,6 +2,8 @@ package ru.ncedu.bean;
 
 import ru.ncedu.ejb.addProduct;
 import ru.ncedu.entity.Categories;
+import ru.ncedu.entity.ProductDetails;
+import ru.ncedu.entity.Products;
 import ru.ncedu.entity.Providers;
 import ru.ncedu.service.MarketService;
 import ru.ncedu.service.UserService;
@@ -18,8 +20,6 @@ import java.util.List;
  */
 @Stateless
 public class MarketManager {
-//    @Inject
-//    addProduct addProductE;
 
     public MarketManager() {
     }
@@ -65,4 +65,12 @@ public class MarketManager {
         return resultList;
     }
 
+    public void addProduct(ProductsB product,ProdDetailsB detailsB){
+        Products products = new Products(product.getNameOfProduct());
+        ProductDetails details = new ProductDetails(detailsB);
+//        MarketService.addProductDetails(details);
+
+
+        MarketService.addProduct(products,details);
+    }
 }

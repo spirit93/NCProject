@@ -1,6 +1,8 @@
 package ru.ncedu.service;
 
+import ru.ncedu.bean.ProdDetailsB;
 import ru.ncedu.entity.Categories;
+import ru.ncedu.entity.ProductDetails;
 import ru.ncedu.entity.Products;
 import ru.ncedu.entity.Providers;
 
@@ -41,6 +43,7 @@ public class MarketService extends  Service{
         return em.createNamedQuery("Providers.getAllProviders",Providers.class).getResultList();
     }
 
+    //-------------products
     public static Products getProductByName(String prdName){
         TypedQuery<Products> query = em.createNamedQuery("Product.getProductByName",Products.class);
         query.setParameter("nameOfProduct",prdName);
@@ -55,6 +58,24 @@ public class MarketService extends  Service{
 
         return result;
     }
+
+    public static Products addProduct(Products products,ProductDetails details){
+        em.getTransaction().begin();
+        ProductDetails details1 = em.merge(details);
+        products.setProductDetails(details1);
+
+        Products result = em.merge(products);
+        em.getTransaction().commit();
+        return result;
+    }
+
+//
+//    public static ProductDetails addProductDetails(ProductDetails detailsB) {
+//        em.getTransaction().begin();
+//        ProductDetails result = em.merge(detailsB);
+//        em.getTransaction().commit();
+//        return result;
+//    }
     //--------------- categories -------------------
     public static Categories addCategory(Categories cat) {
         em.getTransaction().begin();
@@ -82,4 +103,5 @@ public class MarketService extends  Service{
         }
         return category;
     }
+
 }

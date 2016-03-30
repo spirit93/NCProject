@@ -1,0 +1,51 @@
+package ru.ncedu.bean;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ * Created by Павел on 30.03.2016.
+ */
+@ManagedBean
+@RequestScoped
+public class ProdDetailsB {
+    private long productsId;
+    private int amountOfProducts;
+    private int pricePerUnit;
+    private int amountOfOrders;
+
+    public ProdDetailsB() {
+    }
+
+    public long getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(long productsId) {
+        this.productsId = productsId;
+    }
+
+    public int getAmountOfProducts() {
+        return amountOfProducts;
+    }
+
+    public void setAmountOfProducts(int amountOfProducts) {
+        this.amountOfProducts = amountOfProducts;
+    }
+
+    public int getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public void setPricePerUnit(int pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
+    }
+
+    public int getAmountOfOrders() {
+        return amountOfOrders;
+    }
+
+    public void setAmountOfOrders(int amountOfOrders) {
+        this.amountOfOrders = amountOfOrders;
+    }
+}
