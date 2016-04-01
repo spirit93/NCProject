@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class UserType implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column(name = "user_type_id")
     int id;
 

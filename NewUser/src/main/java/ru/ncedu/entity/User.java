@@ -19,6 +19,7 @@ public class User implements Serializable {
     @Column
     String userName;
     @Column
+    @Transient
     String password;
     @Column
     String email;

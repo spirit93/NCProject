@@ -1,13 +1,19 @@
 package ru.ncedu.entity;
 
+import ru.ncedu.bean.ProvidersB;
+
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity
-@Table(name = "ProvidersTable")
+@Entity(name = "ProvidersTable")
+//@Table(name = "ProvidersTable")
+@NamedQueries({
+        @NamedQuery(name = "Providers.getProviderById" ,query = "SELECT p from ProvidersTable p WHERE p.providerId = :providerId"),
+        @NamedQuery(name = "Providers.getAllProviders",query = "SELECT p from ProvidersTable p")
+})
 public class Providers {
     private List<Products> products;
     private long providerId;
@@ -27,6 +33,15 @@ public class Providers {
     }
 
     public Providers(){}
+
+    public Providers(ProvidersB providersB){
+        this.companyName = providersB.getCompanyName();
+        this.phoneNumber = providersB.getPhoneNumber();
+        this.emailOfCompany = providersB.getEmailOfCompany();
+        this.adressOfCompany = providersB.getAdressOfCompany();
+        this.websiteOfCompany = providersB.getWebsiteOfCompany();
+//        for (products p :products)
+    }
 
     public Providers(String companyName, String phoneNumber, String emailOfCompany, String adressOfCompany, String websiteOfCompany){
         this.companyName = companyName;

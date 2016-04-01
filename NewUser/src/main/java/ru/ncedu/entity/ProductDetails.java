@@ -1,5 +1,7 @@
 package ru.ncedu.entity;
 
+import ru.ncedu.bean.ProdDetailsB;
+
 import javax.persistence.*;
 
 /**
@@ -8,15 +10,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ProductDetailsTable")
 public class ProductDetails {
-    private long productsId;
+    private long productsDetailsId;
     private int amountOfProducts;
     private int pricePerUnit;
     private int amountOfOrders;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "productDetails")
-    private Products products;
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "productDetails")
+    @OneToOne(mappedBy = "productDetails")
+    private Products ProductsTable;
 
     public ProductDetails(){
+    }
+
+    public ProductDetails(ProdDetailsB detailsB){
+        this.amountOfProducts = detailsB.getAmountOfProducts();
+        this.amountOfOrders = detailsB.getAmountOfOrders();
+        this.pricePerUnit= detailsB.getPricePerUnit();
     }
 
     public ProductDetails(int amountOfProducts, int amountOfOrders, int pricePerUnit){
@@ -28,12 +37,12 @@ public class ProductDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    public long getProductsId() {
-        return productsId;
+    public long getProductsDetailsId() {
+        return productsDetailsId;
     }
 
-    public void setProductsId(long productsId) {
-        this.productsId = productsId;
+    public void setProductsDetailsId(long productsId) {
+        this.productsDetailsId = productsId;
     }
 
     @Column
@@ -66,7 +75,7 @@ public class ProductDetails {
     @Override
     public String toString() {
         return "ProductDetails{" +
-                "productsId=" + productsId +
+                "productsId=" + productsDetailsId +
                 ", amountOfProducts=" + amountOfProducts +
                 ", pricePerUnit=" + pricePerUnit +
                 ", amountOfOrders=" + amountOfOrders +
