@@ -7,8 +7,8 @@ import javax.persistence.*;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity
-@Table(name = "ProductDetailsTable")
+@Entity(name = "ProductDetailsTable")
+//@Table
 public class ProductDetails {
     private long productsDetailsId;
     private int amountOfProducts;
