@@ -18,6 +18,7 @@ public class CategoriesB {
     }
 
     public CategoriesB(Categories category) {
+        this.categoryId = category.getCategoryId();
         this.nameOfCategory = category.getNameOfCategory();
         this.descriptionOfCategory = category.getDescriptionOfCategory();
     }

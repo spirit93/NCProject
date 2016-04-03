@@ -66,7 +66,13 @@ public class MarketManager {
     }
 
     public void addProduct(ProductsB product,ProdDetailsB detailsB){
-        Products products = new Products(product.getNameOfProduct());
+
+        ru.ncedu.entity.Categories category = (product.getCategory() == null) ? null
+                :MarketService.getCategoryById((int)product.getCategory().getCategoryId());
+//        LibraryService.getAuthorById(book.getAuthor().getId()
+
+
+        Products products = new Products(product.getNameOfProduct(),category);
         ProductDetails details = new ProductDetails(detailsB);
 //        MarketService.addProductDetails(details);
 

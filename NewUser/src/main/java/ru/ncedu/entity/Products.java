@@ -37,8 +37,9 @@ public class Products {
 
     public Products(){}
 
-    public Products(String nameOfProduct){
+    public Products(String nameOfProduct,Categories categories){
         this.nameOfProduct = nameOfProduct;
+        this.categories = categories;
     }
 
     public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders, String image){

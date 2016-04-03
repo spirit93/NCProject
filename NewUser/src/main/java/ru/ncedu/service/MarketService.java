@@ -90,7 +90,7 @@ public class MarketService extends  Service{
 
     public static Categories getCategoryById(int id) {
         TypedQuery<Categories> query = em.createNamedQuery("Categories.getCategoryById", Categories.class);
-        query.setParameter("categoryId", id);
+        query.setParameter("categoryId", (long)id);
 
         Categories category = null;
         try{

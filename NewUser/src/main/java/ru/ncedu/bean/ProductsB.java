@@ -12,7 +12,7 @@ import javax.faces.bean.RequestScoped;
 public class ProductsB {
     private long productsId;
     private String nameOfProduct;
-    private int categoryId;
+    private CategoriesB category;
     private int providerId;
     private int detaildsId;
 
@@ -35,12 +35,12 @@ public class ProductsB {
         this.nameOfProduct = nameOfProduct;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public CategoriesB getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(CategoriesB category) {
+        this.category = category;
     }
 
     public int getProviderId() {
