@@ -6,8 +6,8 @@ import java.util.Date;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity(name = "OrdersTable")
-//@Table
+@Entity
+@Table(name = "OrdersTable")
 public class Orders {
 
     private long orderId;

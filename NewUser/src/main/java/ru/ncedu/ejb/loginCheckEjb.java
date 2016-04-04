@@ -1,5 +1,6 @@
 package ru.ncedu.ejb;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import ru.ncedu.bean.User;
 import ru.ncedu.bean.UserManager;
 
@@ -11,7 +12,7 @@ import javax.inject.Inject;
  */
 
 @Stateless
-public class loginCheckEjb {
+public class LoginCheckEjb {
     @Inject
     UserManager um ;
 
@@ -32,8 +33,9 @@ public class loginCheckEjb {
 
 
     public boolean isGoodPas(ru.ncedu.bean.User user){
+        String pasToCheck = DigestUtils.md5Hex(user.getPassword());
         String pasInDB = um.getUserByUserName(user.getUserName()).getPassword();
-        return pasInDB.equals(user.getPassword());
+        return pasInDB.equals(pasToCheck);
     }
 
     public String loginCheck(ru.ncedu.bean.User user){

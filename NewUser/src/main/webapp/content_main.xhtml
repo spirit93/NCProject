@@ -41,31 +41,6 @@
                         </div>
                         <div class="tab-pane fade" id="tv">
                             <p>Телевизоры</p>
-
-                            <script type="application/javascript">
-                                   // $('#btn').click(function(){
-                                    //   alert("1");
-                                   // });
-
-                                    addEventListener("click", function() {
-
-                                        $.ajax({
-                                            type:"GET",
-                                            url:"http://localhost:8080/User/RestService.java",  //???????
-                                            contentType:'application/json', dataType:'String', //???????
-                                            success:function(data){
-                                                alert(data);
-                                                $('#d1').html(data);
-                                            }
-                                        });
-                                    });
-
-
-                            </script>
-                            <div id="d1">
-
-                            </div>
-                            <h:commandButton class="btn btn-primary" style="width:150px" value="Alert1" id="btn"/>
                         </div>
                         <div class="tab-pane fade" id="refrigerators">
                             <p>Холодильники</p>

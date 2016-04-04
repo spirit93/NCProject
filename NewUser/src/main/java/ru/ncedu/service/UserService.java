@@ -1,6 +1,9 @@
 package ru.ncedu.service;
 
 //import com.sun.istack.internal.Nullable;
+import org.apache.commons.codec.digest.DigestUtils;
+import ru.ncedu.entity.Products;
+import ru.ncedu.entity.Providers;
 import ru.ncedu.entity.User;
 import ru.ncedu.entity.UserType;
 
@@ -9,9 +12,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Stateless
-public class UserService {
-    @PersistenceUnit(unitName="NCEDU")
-    public static EntityManager em = Persistence.createEntityManagerFactory("NCEDU").createEntityManager();
+public class UserService  extends Service{
 
     public static List<User> getAllUsers() {
         return em.createNamedQuery("User.getAllUsers", User.class).getResultList();
@@ -39,6 +40,9 @@ public class UserService {
     }
 
     public static User addUser(User user){
+        String pasMD5 = DigestUtils.md5Hex(user.getPassword());
+        user.setPassword(pasMD5);
+
         em.getTransaction().begin();
         UserType userType = em.merge(new UserType());
         user.setUserType(userType);
@@ -53,4 +57,5 @@ public class UserService {
         em.getTransaction().commit();
         return result;
     }
+
 }

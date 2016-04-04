@@ -9,9 +9,9 @@ import java.util.List;
  * Created by Алёна on 17.03.2016.
  */
 @Entity(name = "ProvidersTable")
-//@Table(name = "ProvidersTable")
 @NamedQueries({
         @NamedQuery(name = "Providers.getProviderById" ,query = "SELECT p from ProvidersTable p WHERE p.providerId = :providerId"),
+        @NamedQuery(name = "Providers.getProviderByName" ,query = "SELECT p from ProvidersTable p WHERE p.companyName = :companyName"),
         @NamedQuery(name = "Providers.getAllProviders",query = "SELECT p from ProvidersTable p")
 })
 public class Providers {

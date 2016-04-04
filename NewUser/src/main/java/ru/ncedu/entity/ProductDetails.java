@@ -7,13 +7,14 @@ import javax.persistence.*;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity(name = "ProductDetailsTable")
-//@Table
+@Entity
+@Table(name = "ProductDetailsTable")
 public class ProductDetails {
     private long productsDetailsId;
     private int amountOfProducts;
     private int pricePerUnit;
     private int amountOfOrders;
+    private String pathToImg;
 
 //    @OneToOne(cascade = CascadeType.ALL, mappedBy = "productDetails")
     @OneToOne(mappedBy = "productDetails")
@@ -26,6 +27,7 @@ public class ProductDetails {
         this.amountOfProducts = detailsB.getAmountOfProducts();
         this.amountOfOrders = detailsB.getAmountOfOrders();
         this.pricePerUnit= detailsB.getPricePerUnit();
+        this.pathToImg = detailsB.getPathToImg();
     }
 
     public ProductDetails(int amountOfProducts, int amountOfOrders, int pricePerUnit){
@@ -43,6 +45,15 @@ public class ProductDetails {
 
     public void setProductsDetailsId(long productsId) {
         this.productsDetailsId = productsId;
+    }
+
+    @Column
+    public String getPathToImg() {
+        return pathToImg;
+    }
+
+    public void setPathToImg(String pathToImg) {
+        this.pathToImg = pathToImg;
     }
 
     @Column

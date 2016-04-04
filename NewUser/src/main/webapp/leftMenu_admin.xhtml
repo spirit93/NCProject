@@ -28,9 +28,11 @@
         </ul>
         <hr/>
         <ul class="nav nav-sidebar">
-            <li> <a href="#addproduct" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a product</span></a> </li>
+            <li> <a href="#addproduct"  class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a product</span></a> </li>
             <li> <a href="#addbrand" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a brand</span></a> </li>
-        </ul>
+            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{addCategories.addCategories}" value="Init categories" /></h:form></li>
+            <li> <a href="#addcategories" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add categories</span></a> </li>
+          </ul>
         <ul class="nav nav-sidebar">
             <li> <a class="btn btn-default" type="button"><span class="text-info">Export</span></a> </li>
             <li> <a class="btn btn-default" type="button"><span class="text-info">Import</span></a> </li>

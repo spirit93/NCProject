@@ -6,56 +6,59 @@ import javax.persistence.*;
  * Created by Алёна on 17.03.2016.
  */
 @Entity(name = "ProductsTable")
-//@Table(name = "ProductsTable")
 @NamedQueries({
 //        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
 })
 public class Products {
-    private Categories categories;
-    private Providers providers;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long productsId;
+
+    @Column
     private String nameOfProduct;
-    private String image;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @OneToOne
-//    @JoinColumn(name = "productsDetailsId")
-//    private ProductDetails productDetails;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productdetailsid")
-    private ProductDetails productDetails;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId")
+    private Categories categories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "providerId")
+    private Providers providers;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "productsDetailsId")
+    private ProductDetails productDetails;
+
+
     public Providers getProviders(){
             return providers;
         }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryId")
+
     public Categories getCategories(){
             return categories;
         }
 
     public Products(){}
 
-    public Products(String nameOfProduct){
+    public Products(String nameOfProduct,Categories categories,Providers providers){
+        this.providers = providers;
         this.nameOfProduct = nameOfProduct;
+        this.categories = categories;
     }
 
-    public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders, String image){
+    public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders){
         this.nameOfProduct = nameOfProduct;
-        this.image = image;
     }
 
     public void setProductDetails(ProductDetails productDetails) {
         this.productDetails = productDetails;
     }
 
-//    public ProductDetails getProductDetails() {
-//        return productDetails;
-//    }
+    public ProductDetails getProductDetails() {
+        return productDetails;
+    }
 
     public void setProviders(Providers providers){
         this.providers = providers;
@@ -73,24 +76,12 @@ public class Products {
             this.nameOfProduct = nameOfProduct;
         }
 
-    public void setImage(String image) {
-            this.image = image;
-        }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getProductsId() {
         return productsId;
     }
 
-    @Column
     public String getNameOfProduct() {
             return nameOfProduct;
-        }
-
-    @Column
-    public String getImage() {
-            return image;
         }
 
     @Override
@@ -98,7 +89,6 @@ public class Products {
         return "Products{" +
                 "productsId=" + productsId +
                 ", nameOfProduct='" + nameOfProduct + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
 }

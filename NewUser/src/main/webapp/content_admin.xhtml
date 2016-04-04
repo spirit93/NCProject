@@ -105,63 +105,41 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h1 class="modal-title" align="center">Addition of product</h1>
                             </div>
+                            <h:form>
                             <div class="modal-body">
-                                <p class="text-info">Product name:</p>
-                                <input class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
-                                <p class="text-info">Company name:</p>
-                                <input class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
-                                <p class="text-info">Category:</p>
-                                <div class="dropdown">
-                                    <a class="btn btn-toolbar" type="button" href="#" data-toggle="dropdown">
-                                        Выберите категорию
-                                        <i class="caret"></i> <br/>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="text-info" href="#" align="center">Phones</a></li>
-                                        <li><a class="text-info" href="#" align="center">TV</a></li>
-                                        <li><a class="text-info" href="#" align="center">Refrigerators</a></li>
-                                        <li><a class="text-info" href="#" align="center">Computers</a></li>
-                                    </ul>
-                                </div> <br/>
+                                    <h:outputLabel class="" value="Product name:"/>
+                                    <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
 
-                                <p class="text-info">Brand:</p>
-                                <div class="dropdown">
-                                    <a class="btn btn-toolbar" type="button" href="#" data-toggle="dropdown">
-                                        Выберите бренд
-                                        <i class="caret"></i> <br/>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="text-info" href="#" align="center">Asus</a></li>
-                                        <li><a class="text-info" href="#" align="center">Samsung</a></li>
-                                        <li><a class="text-info" href="#" align="center">Lenovo</a></li>
-                                        <li><a class="text-info" href="#" align="center">MSI</a></li>
-                                        <li><a class="text-info" href="#" align="center">Apple</a></li>
-                                        <li><a class="text-info" href="#" align="center">Sony</a></li>
-                                        <li><a class="text-info" href="#" align="center">Philips</a></li>
-                                        <li><a class="text-info" href="#" align="center">LG</a></li>
-                                    </ul>
-                                </div> <br/>
+                                    <h:outputLabel class="" value="Company name:"/>
+                                    <h:inputText value="#{productsB.providerName}" class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
 
-                                <p class="text-info">Price:</p>
-                                <input class="form-control" style="width:250px" placeholder="Введите цену"/><br/>
-                                <p class="text-info">Quantity:</p>
-                                <input class="form-control" style="width:250px" placeholder="Введите количество"/><br/>
+                                    <h:outputLabel class="" value="Category:"/>
+                                    <h:inputText value="#{productsB.categoryName}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                    <h:outputLabel class="" value="Price:"/>
+                                    <h:inputText value="#{prodDetailsB.pricePerUnit}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                    <h:outputLabel class="" value="Quantity:"/>
+                                    <h:inputText value="#{prodDetailsB.amountOfProducts}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                    <h:outputLabel class="" value="Image:"/>
+                                    <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
 
                                 <script type="application/javascript">
                                     $(".dropdown-menu li a").click(function(){
                                         $(this).parents(".dropdown").find('a:first').html($(this).text());
                                     });
                                 </script>
-
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success" type="submit">OK</button>
+                                <h:commandButton value="Ok" action="#{addProduct.addProd(productsB,prodDetailsB)}" class="btn btn-success" type="submit"/>
                                 <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
                             </div>
-                        </div>
+                        </h:form>
+                    </div>
                     </div>
                 </div>
 
@@ -169,17 +147,43 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button  type="button" class="close"
+                                          data-dismiss="modal" aria-hidden="true">×</button>
                                 <h1 class="modal-title" align="center">Addition of brand</h1>
                             </div>
+                            <h:form>
                             <div class="modal-body">
-                                <p class="text-info">Brand name:</p>
-                                <input class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+                                <h:outputLabel class="" value="Введите имя:"/>
+                                <h:inputText value="#{providersB.companyName}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                <h:outputLabel class="" value="телефон:"/>
+                                <h:inputText value="#{providersB.phoneNumber}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                <h:outputLabel class="" value="email:"/>
+                                <h:inputText value="#{providersB.emailOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                <h:outputLabel class="" value="adress:"/>
+                                <h:inputText value="#{providersB.adressOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                <h:outputLabel class="" value="site:"/>
+                                <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-success" type="submit">OK</button>
-                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                                <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
+                                <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
                             </div>
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addcategories" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <h:form>
+                                <h:commandButton action="#{addCategories.addCategories}" class="btn btn-success" type="submit" value="Add Categories"/>
+                            </h:form>
                         </div>
                     </div>
                 </div>
