@@ -85,13 +85,6 @@ public class MarketService extends  Service{
         return result;
     }
 
-//
-//    public static ProductDetails addProductDetails(ProductDetails detailsB) {
-//        em.getTransaction().begin();
-//        ProductDetails result = em.merge(detailsB);
-//        em.getTransaction().commit();
-//        return result;
-//    }
     //--------------- categories -------------------
     public static Categories addCategory(Categories cat) {
         em.getTransaction().begin();

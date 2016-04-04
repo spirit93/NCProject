@@ -70,16 +70,11 @@ public class MarketManager {
         ru.ncedu.entity.Categories category = (product.getCategoryName() == null) ? null
                 :MarketService.getCategoryByName(product.getCategoryName());
 
-
         ru.ncedu.entity.Providers provider = (product.getProviderName() == null) ? null
                 :MarketService.getProviderByName(product.getProviderName());
 
-
-
         Products products = new Products(product.getNameOfProduct(),category,provider);
         ProductDetails details = new ProductDetails(detailsB);
-//        MarketService.addProductDetails(details);
-
 
         MarketService.addProduct(products,details);
     }

@@ -6,16 +6,27 @@ import javax.persistence.*;
  * Created by Алёна on 17.03.2016.
  */
 @Entity(name = "ProductsTable")
-//@Table(name = "ProductsTable")
 @NamedQueries({
 //        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
 })
 public class Products {
-    private Categories categories;
-    private Providers providers;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long productsId;
+
+    @Column
     private String nameOfProduct;
+
+    @Column
     private String image;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId")
+    private Categories categories;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "providerId")
+    private Providers providers;
 
 //    @OneToOne(cascade = CascadeType.ALL)
     @OneToOne
@@ -23,14 +34,12 @@ public class Products {
     private ProductDetails productDetails;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "providerId")
+
     public Providers getProviders(){
             return providers;
         }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryId")
+
     public Categories getCategories(){
             return categories;
         }
@@ -52,9 +61,9 @@ public class Products {
         this.productDetails = productDetails;
     }
 
-//    public ProductDetails getProductDetails() {
-//        return productDetails;
-//    }
+    public ProductDetails getProductDetails() {
+        return productDetails;
+    }
 
     public void setProviders(Providers providers){
         this.providers = providers;
@@ -76,18 +85,15 @@ public class Products {
             this.image = image;
         }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public long getProductsId() {
         return productsId;
     }
 
-    @Column
     public String getNameOfProduct() {
             return nameOfProduct;
         }
 
-    @Column
     public String getImage() {
             return image;
         }
