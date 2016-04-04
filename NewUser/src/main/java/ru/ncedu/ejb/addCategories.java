@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Павел on 23.03.2016.
  */
 @Stateless
-public class addCategories {
+public class AddCategories {
     @Inject
     MarketManager marketManager;
 

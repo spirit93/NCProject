@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * Created by Pavel on 29.02.2016.
  */
 @Stateless
-public class regCheckEjb {
+public class RegCheckEjb {
     @Inject
     UserManager userManager;
     @Inject

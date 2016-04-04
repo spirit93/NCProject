@@ -1,6 +1,6 @@
 package ru.ncedu.bean;
 
-import ru.ncedu.ejb.regCheckEjb;
+import ru.ncedu.ejb.RegCheckEjb;
 import ru.ncedu.entity.User;
 import ru.ncedu.service.UserService;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class UserManager implements Serializable {
 
     @Inject
-    regCheckEjb reg;
+    RegCheckEjb reg;
 
     public UserManager() {
     }

@@ -13,8 +13,17 @@ public class ProdDetailsB {
     private int amountOfProducts;
     private int pricePerUnit;
     private int amountOfOrders;
+    private String pathToImg;
 
     public ProdDetailsB() {
+    }
+
+    public String getPathToImg() {
+        return pathToImg;
+    }
+
+    public void setPathToImg(String pathToImg) {
+        this.pathToImg = pathToImg;
     }
 
     public long getProductsId() {

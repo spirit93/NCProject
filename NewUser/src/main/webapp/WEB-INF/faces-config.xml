@@ -6,27 +6,27 @@
 
     <managed-bean>
         <managed-bean-name>regCh</managed-bean-name>
-        <managed-bean-class>ru.ncedu.ejb.regCheckEjb</managed-bean-class>
+        <managed-bean-class>ru.ncedu.ejb.RegCheckEjb</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>loginCh</managed-bean-name>
-        <managed-bean-class>ru.ncedu.ejb.loginCheckEjb</managed-bean-class>
+        <managed-bean-class>ru.ncedu.ejb.LoginCheckEjb</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>brendCh</managed-bean-name>
-        <managed-bean-class>ru.ncedu.ejb.providerCheckEjb</managed-bean-class>
+        <managed-bean-class>ru.ncedu.ejb.ProviderCheckEjb</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>addCategories</managed-bean-name>
-        <managed-bean-class>ru.ncedu.ejb.addCategories</managed-bean-class>
+        <managed-bean-class>ru.ncedu.ejb.AddCategories</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>addProduct</managed-bean-name>
-        <managed-bean-class>ru.ncedu.ejb.addProduct</managed-bean-class>
+        <managed-bean-class>ru.ncedu.ejb.AddProduct</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>

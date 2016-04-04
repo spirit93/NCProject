@@ -17,9 +17,6 @@ public class Products {
     @Column
     private String nameOfProduct;
 
-    @Column
-    private String image;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId")
     private Categories categories;
@@ -32,7 +29,6 @@ public class Products {
     @OneToOne
     @JoinColumn(name = "productsDetailsId")
     private ProductDetails productDetails;
-
 
 
     public Providers getProviders(){
@@ -52,9 +48,8 @@ public class Products {
         this.categories = categories;
     }
 
-    public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders, String image){
+    public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders){
         this.nameOfProduct = nameOfProduct;
-        this.image = image;
     }
 
     public void setProductDetails(ProductDetails productDetails) {
@@ -81,11 +76,6 @@ public class Products {
             this.nameOfProduct = nameOfProduct;
         }
 
-    public void setImage(String image) {
-            this.image = image;
-        }
-
-
     public long getProductsId() {
         return productsId;
     }
@@ -94,16 +84,11 @@ public class Products {
             return nameOfProduct;
         }
 
-    public String getImage() {
-            return image;
-        }
-
     @Override
     public String toString() {
         return "Products{" +
                 "productsId=" + productsId +
                 ", nameOfProduct='" + nameOfProduct + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
 }

@@ -12,7 +12,7 @@ import javax.inject.Inject;
  */
 
 @Stateless
-public class loginCheckEjb {
+public class LoginCheckEjb {
     @Inject
     UserManager um ;
 

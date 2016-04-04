@@ -1,17 +1,12 @@
 package ru.ncedu.bean;
 
-import ru.ncedu.ejb.addProduct;
 import ru.ncedu.entity.Categories;
 import ru.ncedu.entity.ProductDetails;
 import ru.ncedu.entity.Products;
 import ru.ncedu.entity.Providers;
 import ru.ncedu.service.MarketService;
-import ru.ncedu.service.UserService;
 
 import javax.ejb.Stateless;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 

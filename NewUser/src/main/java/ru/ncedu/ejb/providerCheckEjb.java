@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Created by Павел on 19.03.2016.
  */
 @Stateless
-public class providerCheckEjb {
+public class ProviderCheckEjb {
     @Inject
     MarketManager marketManager;
     @Inject

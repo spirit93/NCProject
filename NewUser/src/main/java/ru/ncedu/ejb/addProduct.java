@@ -11,7 +11,7 @@ import javax.inject.Inject;
  * Created by Павел on 30.03.2016.
  */
 @Stateless
-public class addProduct {
+public class AddProduct {
     @Inject
     MarketManager marketManager;
 
