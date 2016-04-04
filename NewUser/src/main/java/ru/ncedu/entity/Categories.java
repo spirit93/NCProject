@@ -10,6 +10,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Categories.getAllCategories",query = "select c from categoriestable c"),
         @NamedQuery(name = "Categories.getCategoryById" ,query = "SELECT c from categoriestable c WHERE c.categoryId = :categoryId"),
+        @NamedQuery(name = "Categories.getCategoryByName" ,query = "SELECT c from categoriestable c WHERE c.nameOfCategory = :nameOfCategory"),
 })
 //@Table(name = "categoriestable")
 public class Categories {

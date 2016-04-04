@@ -37,7 +37,8 @@ public class Products {
 
     public Products(){}
 
-    public Products(String nameOfProduct,Categories categories){
+    public Products(String nameOfProduct,Categories categories,Providers providers){
+        this.providers = providers;
         this.nameOfProduct = nameOfProduct;
         this.categories = categories;
     }

@@ -67,12 +67,16 @@ public class MarketManager {
 
     public void addProduct(ProductsB product,ProdDetailsB detailsB){
 
-        ru.ncedu.entity.Categories category = (product.getCategory() == null) ? null
-                :MarketService.getCategoryById((int)product.getCategory().getCategoryId());
-//        LibraryService.getAuthorById(book.getAuthor().getId()
+        ru.ncedu.entity.Categories category = (product.getCategoryName() == null) ? null
+                :MarketService.getCategoryByName(product.getCategoryName());
 
 
-        Products products = new Products(product.getNameOfProduct(),category);
+        ru.ncedu.entity.Providers provider = (product.getProviderName() == null) ? null
+                :MarketService.getProviderByName(product.getProviderName());
+
+
+
+        Products products = new Products(product.getNameOfProduct(),category,provider);
         ProductDetails details = new ProductDetails(detailsB);
 //        MarketService.addProductDetails(details);
 

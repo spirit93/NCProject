@@ -15,6 +15,8 @@ public class ProductsB {
     private CategoriesB category;
     private int providerId;
     private int detaildsId;
+    private String categoryName;
+    private String providerName;
 
     public ProductsB(){
     }
@@ -57,5 +59,21 @@ public class ProductsB {
 
     public void setDetaildsId(int detaildsId) {
         this.detaildsId = detaildsId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
     }
 }

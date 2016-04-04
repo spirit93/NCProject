@@ -39,6 +39,22 @@ public class MarketService extends  Service{
         return provider;
     }
 
+    public static Providers getProviderByName(String name) {
+        TypedQuery<Providers> query = em.createNamedQuery("Providers.getProviderByName", Providers.class);
+        query.setParameter("companyName", name);
+
+        Providers provider = null;
+        try{
+            provider = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (provider == null){
+            return null;
+        }
+        return provider;
+    }
+
     public static List<Providers> getAllProviders() {
         return em.createNamedQuery("Providers.getAllProviders",Providers.class).getResultList();
     }
@@ -104,4 +120,19 @@ public class MarketService extends  Service{
         return category;
     }
 
+    public static Categories getCategoryByName(String name) {
+        TypedQuery<Categories> query = em.createNamedQuery("Categories.getCategoryByName", Categories.class);
+        query.setParameter("nameOfCategory", name);
+
+        Categories category = null;
+        try{
+            category = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (category == null){
+            return null;
+        }
+        return category;
+    }
 }
