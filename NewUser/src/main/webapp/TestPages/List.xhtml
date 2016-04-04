@@ -12,12 +12,11 @@
         Name of category: <h:inputText value="#{productsB.categoryName}"/>
         Name of provider: <h:inputText value="#{productsB.providerName}"/>
 
-
+        <h:commandButton action="#{brendCh.initProviders}"  value="add Providers"/>
+        <h:commandButton action="#{addCategories.addCategories}"  value="add Categories"/>
         <h:commandButton action="#{addProduct.addProd(productsB,prodDetailsB)}" value="add product"/><br/>
-        <h:commandButton action="#{addCategories.addCategories}" value="add Categories"/><br/>
-        <h:commandButton action="#{brendCh.addProvider('samsung','8-800','123@mail.ru','Koreya','www.leningrad')}" value="add samsung"/>
-
-
+<br/>
+        <h:commandButton action="#{}" value="add product"/><br/>
 
     </h:form>
 </f:view>

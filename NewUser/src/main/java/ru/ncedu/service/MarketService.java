@@ -128,4 +128,20 @@ public class MarketService extends  Service{
         }
         return category;
     }
+
+    public static List<Products> getAllCategoryProducts(String nameOfCategory){
+        TypedQuery<Categories> query = em.createNamedQuery("Categories.getCategoryByName", Categories.class);
+        query.setParameter("nameOfCategory", nameOfCategory);
+
+        Categories category = null;
+        try{
+            category = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (category == null){
+            return null;
+        }
+        return category.getProducts();
+    }
 }

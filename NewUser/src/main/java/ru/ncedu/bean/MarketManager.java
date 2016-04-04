@@ -65,6 +65,18 @@ public class MarketManager {
         return resultList;
     }
 
+    public List<ProductsB> getAllProductsBOfCategory(String nameOfCategory){
+        List<Products> queryList = MarketService.getAllCategoryProducts(nameOfCategory);
+
+        List<ProductsB> res = new ArrayList<>(queryList.size());
+        for (Products p:queryList){
+            res.add(new ProductsB(p));
+        }
+
+        System.out.println(res);
+        return res;
+    }
+
     public void addProduct(ProductsB product,ProdDetailsB detailsB){
 
         ru.ncedu.entity.Categories category = (product.getCategoryName() == null) ? null

@@ -1,5 +1,7 @@
 package ru.ncedu.bean;
 
+import ru.ncedu.entity.Products;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -19,6 +21,14 @@ public class ProductsB {
     private String providerName;
 
     public ProductsB(){
+    }
+
+    public ProductsB(Products product){
+        this.nameOfProduct = product.getNameOfProduct();
+        this.category = new CategoriesB(product.getCategories());
+        this.categoryName = product.getCategories().getNameOfCategory();
+        this.providerName = product.getProviders().getCompanyName();
+        this.productsId = product.getProductsId();
     }
 
     public long getProductsId() {

@@ -2,9 +2,11 @@ package ru.ncedu.ejb;
 
 import ru.ncedu.bean.CategoriesB;
 import ru.ncedu.bean.MarketManager;
+import ru.ncedu.bean.ProductsB;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Павел on 23.03.2016.
@@ -23,5 +25,9 @@ public class addCategories {
         marketManager.addCategory(new CategoriesB("Players","description of Players"));
         marketManager.addCategory(new CategoriesB("Mouses","description of Mouses"));
         return null;
+    }
+
+    public List<ProductsB> getCategoryProd(String nameOfCateg){
+        return marketManager.getAllProductsBOfCategory(nameOfCateg);
     }
 }
