@@ -5,6 +5,8 @@ import ru.ncedu.bean.User;
 import ru.ncedu.bean.UserManager;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -13,6 +15,32 @@ import javax.inject.Inject;
 
 @Stateless
 public class LoginCheckEjb {
+    public String msg;
+
+    public String check(String mas){
+        mas ="";
+        if (msg.equals("aaa")){
+            FacesMessage fm = new FacesMessage("Field is good");
+            FacesContext.getCurrentInstance().addMessage("Field is good",fm);
+            mas = "good";
+        }else {
+            FacesMessage fm = new FacesMessage("Field not aaa");
+            FacesContext.getCurrentInstance().addMessage("Field is bad",fm);
+            mas = "bad";
+        }
+
+        return mas;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+
     @Inject
     UserManager um ;
 
@@ -39,13 +67,24 @@ public class LoginCheckEjb {
     }
 
     public String loginCheck(ru.ncedu.bean.User user){
-        if(isNull(user)){
-            return "nullField";
-        }else if(!isSameUserExist(user)){
-            return "userNotExist";
-        }else if(!isGoodPas(user)){
-            return "wrongPassword";
+        msg ="";
+        if (msg.equals("aaa")){
+            FacesMessage fm = new FacesMessage("Field is good");
+            FacesContext.getCurrentInstance().addMessage("Field is good",fm);
+            msg = "good";
+        }else {
+            FacesMessage fm = new FacesMessage("Field not aaa");
+            FacesContext.getCurrentInstance().addMessage("Field is bad",fm);
+            msg = "bad";
         }
-        return "success";
+
+//        if(isNull(user)){
+//            return "nullField";
+//        }else if(!isSameUserExist(user)){
+//            return "userNotExist";
+//        }else if(!isGoodPas(user)){
+//            return "wrongPassword";
+//        }
+        return msg;
     }
 }

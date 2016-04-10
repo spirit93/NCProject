@@ -4,6 +4,13 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
+    <application>
+        <resource-bundle>
+            <base-name>ru.ncedu.application</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+
     <managed-bean>
         <managed-bean-name>regCh</managed-bean-name>
         <managed-bean-class>ru.ncedu.ejb.RegCheckEjb</managed-bean-class>
@@ -34,6 +41,7 @@
         <managed-bean-class>ru.ncedu.bean.MarketManager</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+
     <navigation-rule>
         <from-view-id>/registration.xhtml</from-view-id>
         <navigation-case>
@@ -63,27 +71,41 @@
         </navigation-case>
     </navigation-rule>
 
+    <!--<navigation-rule>-->
+        <!--<from-view-id>/login_page.xhtml</from-view-id>-->
+        <!--<navigation-case>-->
+            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
+            <!--<from-outcome>nullField</from-outcome>-->
+            <!--<to-view-id>/ErrorPages/NullField.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+        <!--<navigation-case>-->
+            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
+            <!--<from-outcome>userNotExist</from-outcome>-->
+            <!--<to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+        <!--<navigation-case>-->
+            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
+            <!--<from-outcome>wrongPassword</from-outcome>-->
+            <!--<to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+        <!--<navigation-case>-->
+            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
+            <!--<from-outcome>success</from-outcome>-->
+            <!--<to-view-id>/clear_page.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+    <!--</navigation-rule>-->
+
     <navigation-rule>
-        <from-view-id>/login_page.xhtml</from-view-id>
+        <from-view-id>/fortest.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>nullField</from-outcome>
-            <to-view-id>/ErrorPages/NullField.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>userNotExist</from-outcome>
-            <to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>wrongPassword</from-outcome>
-            <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.loginCheck(user)}</from-action>
-            <from-outcome>success</from-outcome>
+            <from-action>#{loginCh.check(loginCh.msg)}</from-action>
+            <from-outcome>good</from-outcome>
             <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{loginCh.check(loginCh.msg)}</from-action>
+            <from-outcome>bad</from-outcome>
+            <to-view-id>/fortest.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
