@@ -3,6 +3,7 @@ package ru.ncedu.ejb;
 import ru.ncedu.bean.CategoriesB;
 import ru.ncedu.bean.MarketManager;
 import ru.ncedu.bean.ProductsB;
+import ru.ncedu.entity.Products;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,6 +29,10 @@ public class AddCategories {
     }
 
     public List<ProductsB> getCategoryProd(String nameOfCateg){
-        return marketManager.getAllProductsBOfCategory(nameOfCateg);
+        return marketManager.getAllProductsBeansOfCategory(nameOfCateg);
+    }
+
+    public List<Products> getCategoryProdEntyties(String nameOfCateg){
+        return marketManager.getAllProductsEntOfCategory(nameOfCateg);
     }
 }
