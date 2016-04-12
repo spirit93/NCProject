@@ -77,10 +77,18 @@ public class MarketService extends  Service{
 
     public static Products addProduct(Products products,ProductDetails details){
         em.getTransaction().begin();
+        Categories categories = products.getCategories();
+        List<Products> prList = categories.getProducts();
+
         ProductDetails details1 = em.merge(details);
         products.setProductDetails(details1);
 
         Products result = em.merge(products);
+
+        prList.add(result);
+        categories.setProducts(prList);
+        em.merge(categories);
+
         em.getTransaction().commit();
         return result;
     }
@@ -142,6 +150,7 @@ public class MarketService extends  Service{
         if (category == null){
             return null;
         }
+
         return category.getProducts();
     }
 }

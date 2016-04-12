@@ -17,7 +17,7 @@
                 <a href="#computers" id="computers-tab" data-toggle="tab">Computers</a>
             </li>
             <li class="">
-                <a href="#map-case" id="map-case-tab" data-toggle="tab">Map-cases</a>
+                <a href="#laptops" id="laptops-tab" data-toggle="tab">Laptops</a>
             </li>
             <li class="">
                 <a href="#players" id="players-tab" data-toggle="tab">Players</a>
@@ -34,7 +34,9 @@
             <li> <a href="#addcategories" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add categories</span></a> </li>
           </ul>
         <ul class="nav nav-sidebar">
-            <li> <a class="btn btn-default" type="button"><span class="text-info">Export</span></a> </li>
+           <!-- <li> <a class="btn btn-default" type="button"><span class="text-info">Export</span></a> </li>-->
+            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{parserXML.export}" value="Export" /></h:form></li>
+
             <li> <a class="btn btn-default" type="button"><span class="text-info">Import</span></a> </li>
         </ul>
     </h:form>
