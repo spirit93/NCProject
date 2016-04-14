@@ -7,6 +7,8 @@ import ru.ncedu.service.MarketService;
 import ru.ncedu.service.Validator;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -50,9 +52,11 @@ public class ProviderCheckEjb {
 
     public String addProvider(ProvidersB provider){
         if (!validator.isEmailValid(provider.getEmailOfCompany())){
-            return "wrongEmail";
+            FacesContext.getCurrentInstance().addMessage("brand:email", new FacesMessage(null, "Email is wrong"));
+            return "Err";
         }else if(!validator.isPhoneValid(provider.getPhoneNumber())){
-            return "wrongPhone";
+            FacesContext.getCurrentInstance().addMessage("brand:phone", new FacesMessage(null, "Phone is wrong"));
+            return "Err";
         }
 
         marketManager.addProvider(provider);

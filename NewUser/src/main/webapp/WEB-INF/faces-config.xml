@@ -4,9 +4,16 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
+    <!--<application>-->
+        <!--<resource-bundle>-->
+            <!--<base-name>ru.ncedu.application.messages</base-name>-->
+            <!--<var>msg</var>-->
+        <!--</resource-bundle>-->
+    <!--</application>-->
+
     <application>
         <resource-bundle>
-            <base-name>ru.ncedu.application</base-name>
+            <base-name>ru.ncedu.application.messages.properties</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>
@@ -46,66 +53,23 @@
         <from-view-id>/registration.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>nullField</from-outcome>
-            <to-view-id>/ErrorPages/NullField.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>sameUserExist</from-outcome>
-            <to-view-id>/ErrorPages/SameUserExist.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>notSamePass</from-outcome>
-            <to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{regCh.regUser(user)}</from-action>
-            <from-outcome>wrongEmail</from-outcome>
-            <to-view-id>/ErrorPages/EmailEr.xhtml</to-view-id>
+            <from-outcome>Err</from-outcome>
+            <to-view-id>/registration.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{regCh.regUser(user)}</from-action>
             <from-outcome>success</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
+            <to-view-id>/login_page.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-    <!--<navigation-rule>-->
-        <!--<from-view-id>/login_page.xhtml</from-view-id>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>nullField</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/NullField.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>userNotExist</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/UserNotExist.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>wrongPassword</from-outcome>-->
-            <!--<to-view-id>/ErrorPages/PasswordEr.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-action>#{loginCh.loginCheck(user)}</from-action>-->
-            <!--<from-outcome>success</from-outcome>-->
-            <!--<to-view-id>/clear_page.xhtml</to-view-id>-->
-        <!--</navigation-case>-->
-    <!--</navigation-rule>-->
 
     <navigation-rule>
-        <from-view-id>/fortest.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{loginCh.check(loginCh.msg)}</from-action>
-            <from-outcome>good</from-outcome>
-            <to-view-id>/clear_page.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{loginCh.check(loginCh.msg)}</from-action>
-            <from-outcome>bad</from-outcome>
-            <to-view-id>/fortest.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+    <from-view-id>/login_page.xhtml</from-view-id>
+    <navigation-case>
+        <from-action>#{loginCh.loginCheck(user)}</from-action>
+        <from-outcome>success</from-outcome>
+        <to-view-id>/main_page.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
 </faces-config>

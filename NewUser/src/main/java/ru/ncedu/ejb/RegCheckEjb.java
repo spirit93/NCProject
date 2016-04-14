@@ -5,6 +5,8 @@ import ru.ncedu.bean.UserManager;
 import ru.ncedu.service.Validator;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 //import javax.validation.constraints.Pattern;
 
@@ -39,18 +41,31 @@ public class RegCheckEjb {
     }
 
     public String regUser(User user){
-        if(!isNotNull(user)){
-            return "nullField";
+        if (!isNotNull(user)){
+            FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage(null, "Null fields"));
+            return "Err";
+        }else if(!isSameUser(user.getUserName())){
+            FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage("", "User not found"));
+            return "Err";
+        }else if(!isSamePass(user)){
+            FacesContext.getCurrentInstance().addMessage("reg:pas", new FacesMessage("", "Password error"));
+            return "Err";
+        }else if(!validator.isEmailValid(user.getEmail())){
+            FacesContext.getCurrentInstance().addMessage("reg:email", new FacesMessage("", "Wrong email"));
+            return "Err";
         }
-        else  if(!isSameUser(user.getUserName())){
-            return "sameUserExist";
-        }
-        else  if (!isSamePass(user)){
-            return "notSamePass";
-        }
-        else if (!validator.isEmailValid(user.getEmail())){
-            return "wrongEmail";
-        }
+//        if(!isNotNull(user)){
+//            return "nullField";
+//        }
+//        else  if(!isSameUser(user.getUserName())){
+//            return "sameUserExist";
+//        }
+//        else  if (!isSamePass(user)){
+//            return "notSamePass";
+//        }
+//        else if (!validator.isEmailValid(user.getEmail())){
+//            return "wrongEmail";
+//        }
         userManager.addUser(user);
         return "success";
     }
