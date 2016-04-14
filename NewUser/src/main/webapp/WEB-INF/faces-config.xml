@@ -32,6 +32,11 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>parserXML</managed-bean-name>
+        <managed-bean-class>ru.ncedu.jaxbclasses.parser.ParserXML</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>addProduct</managed-bean-name>
         <managed-bean-class>ru.ncedu.ejb.AddProduct</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
@@ -95,7 +100,7 @@
         <!--</navigation-case>-->
     <!--</navigation-rule>-->
 
-    <navigation-rule>
+    <!--<navigation-rule>
         <from-view-id>/fortest.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{loginCh.check(loginCh.msg)}</from-action>
@@ -107,5 +112,5 @@
             <from-outcome>bad</from-outcome>
             <to-view-id>/fortest.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule>-->
 </faces-config>

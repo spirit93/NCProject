@@ -7,8 +7,11 @@ import javax.persistence.*;
 /**
  * Created by Алёна on 17.03.2016.
  */
-@Entity
-@Table(name = "ProductDetailsTable")
+@Entity(name = "ProductDetailsTable")
+//@Table(name = "ProductDetailsTable")
+@NamedQueries({
+        @NamedQuery(name = "ProductDetails.getAllProductDetails", query = "SELECT pd FROM ProductDetailsTable pd")
+})
 public class ProductDetails {
     private long productsDetailsId;
     private int amountOfProducts;
