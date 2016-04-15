@@ -22,7 +22,7 @@ public class AddCategories {
         marketManager.addCategory(new CategoriesB("TV","description of TV"));
         marketManager.addCategory(new CategoriesB("Refrigerators","description of Refrigerators"));
         marketManager.addCategory(new CategoriesB("Computers","description of Computers"));
-        marketManager.addCategory(new CategoriesB("Map-cases","description of Map-cases"));
+        marketManager.addCategory(new CategoriesB("Laptops","description of Laptops"));
         marketManager.addCategory(new CategoriesB("Players","description of Players"));
         marketManager.addCategory(new CategoriesB("Mouses","description of Mouses"));
         return null;

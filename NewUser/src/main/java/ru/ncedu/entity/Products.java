@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity(name = "ProductsTable")
 @NamedQueries({
+        @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr")
 //        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
 })
 public class Products {

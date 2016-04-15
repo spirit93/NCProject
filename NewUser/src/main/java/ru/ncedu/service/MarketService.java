@@ -60,6 +60,10 @@ public class MarketService extends  Service{
     }
 
     //-------------products
+    public static List<Products> getAllProducts() {
+        return em.createNamedQuery("Products.getAllProducts", Products.class).getResultList();
+    }
+
     public static Products getProductByName(String prdName){
         TypedQuery<Products> query = em.createNamedQuery("Product.getProductByName",Products.class);
         query.setParameter("nameOfProduct",prdName);
@@ -91,6 +95,11 @@ public class MarketService extends  Service{
 
         em.getTransaction().commit();
         return result;
+    }
+
+    //-------------productDetails---------------------
+    public static List<ProductDetails> getAllProductDetails(){
+        return em.createNamedQuery("ProductDetails.getAllProductDetails", ProductDetails.class).getResultList();
     }
 
     //--------------- categories -------------------

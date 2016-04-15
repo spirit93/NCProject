@@ -54,18 +54,6 @@ public class RegCheckEjb {
             FacesContext.getCurrentInstance().addMessage("reg:email", new FacesMessage("", "Wrong email"));
             return "Err";
         }
-//        if(!isNotNull(user)){
-//            return "nullField";
-//        }
-//        else  if(!isSameUser(user.getUserName())){
-//            return "sameUserExist";
-//        }
-//        else  if (!isSamePass(user)){
-//            return "notSamePass";
-//        }
-//        else if (!validator.isEmailValid(user.getEmail())){
-//            return "wrongEmail";
-//        }
         userManager.addUser(user);
         return "success";
     }
