@@ -60,16 +60,20 @@ public class MarketManager {
         return resultList;
     }
 
-    public List<ProductsB> getAllProductsBOfCategory(String nameOfCategory){
+    public List<ProductsB> getAllProductsBeansOfCategory(String nameOfCategory){
         List<Products> queryList = MarketService.getAllCategoryProducts(nameOfCategory);
 
         List<ProductsB> res = new ArrayList<>(queryList.size());
         for (Products p:queryList){
-            res.add(new ProductsB(p));
+            res.add(new ProductsB(p));//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
-        System.out.println(res);
         return res;
+    }
+
+    public List<Products> getAllProductsEntOfCategory(String nameOfCategory){
+        List<Products> queryList = MarketService.getAllCategoryProducts(nameOfCategory);
+        return queryList;
     }
 
     public void addProduct(ProductsB product,ProdDetailsB detailsB){

@@ -1,6 +1,7 @@
 package ru.ncedu.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 //        SELECT p.nameOfProduct FROM categoriestable c, productstable p where p.categoryId = c.categoryId and c.categoryId = 1;
  })
 public class Categories {
-    private List<Products> products; //private List<Goods> goods = new ArrayList<>();
+    private List<Products> products = new ArrayList<>(); //private List<Goods> goods = new ArrayList<>();
     private long categoryId;
     private String nameOfCategory;
     private String descriptionOfCategory;
@@ -67,6 +68,8 @@ public class Categories {
     public void setDescriptionOfCategory(String descriptionOfCategory) {
         this.descriptionOfCategory = descriptionOfCategory;
     }
+
+
 
     @Override
     public String toString() {

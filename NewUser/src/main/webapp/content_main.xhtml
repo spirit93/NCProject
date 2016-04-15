@@ -10,53 +10,55 @@
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">                    
                 <ui:insert name="content_main" />
                 <h:form>
-                    <div class="catalog">
+                    <div class="tab-content">
                        <div class="tab-pane fade active in" id="phones"><br/>
-                            <div class="row">
-                                <div class = "col-md-2">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">iphone6</div>
-                                        <div class="panel-body">
-                                            <img src="resources/img/iphone6.jpg" width="150px"  class="img-thumbnail" alt="iphone6"/><br/>
-                                            <p class="text-primary">Price:1000$</p>
-                                            <a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class = "col-md-2">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">Samsung Galaxy s7</div>
-                                        <div class="panel-body">
-                                            <img src="resources/img/SamsungGalaxyS7.jpg" width="150px"  class="img-thumbnail" alt="samsung galaxy s7"/><br/>
-                                            <p class="text-primary">Price:800$</p>
-                                            <a href="#modal" role="button" class="btn btn-primary btn-xs" data-toggle="modal">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class = "col-md-2">
-
-                                </div>
-                            </div>
+                            <div class="row" id="d7"/>
                         </div>
                         <div class="tab-pane fade" id="tv">
-                            <p>Телевизоры</p>
+                            <div id="d1"/>
                         </div>
                         <div class="tab-pane fade" id="refrigerators">
-                            <p>Холодильники</p>
+                            <div class="row" id="d2"/>
                         </div>
                         <div class="tab-pane fade" id="computers">
-                            <p>Компьютеры</p>
+                            <div class="row" id="d3"/>
                         </div>
-                        <div class="tab-pane fade" id="map-case">
-                            <p>Планшеты</p>
+                        <div class="tab-pane fade" id="laptops">
+                            <div class="row" id="d4"/>
                         </div>
                         <div class="tab-pane fade" id="players">
-                            <p>Плееры</p>
+                            <div class="row" id="d5"/>
                         </div>
                         <div class="tab-pane fade" id="mouses">
-                            <p>Компьютерные мыши</p>
+                            <div class="row" id="d6"/>
                         </div>
+
+                        <script type="application/javascript">
+                            addEventListener("load",  function() {
+                                $.get("servlet",{type:"tv"}, function(responseText) {
+                                    $("#d1").html(responseText);
+                                });
+                                $.get("servlet",{type:"refrigerators"}, function(responseText) {
+                                    $("#d2").html(responseText);
+                                });
+                                $.get("servlet",{type:"phones"}, function(responseText) {
+                                    $("#d7").html(responseText);
+                                });
+                                $.get("servlet",{type:"mouses"}, function(responseText) {
+                                    $("#d6").html(responseText);
+                                });
+                                $.get("servlet",{type:"players"}, function(responseText) {
+                                    $("#d5").html(responseText);
+                                });
+                                $.get("servlet",{type:"laptops"}, function(responseText) {
+                                    $("#d4").html(responseText);
+                                });
+                                $.get("servlet", { type: "computers" })
+                                        .done(function( responseText ) {
+                                            $("#d3").text(responseText);
+                                        });
+                            });
+                        </script>
 
                     </div>
                 </h:form>

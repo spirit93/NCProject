@@ -40,7 +40,6 @@ public class Providers {
         this.emailOfCompany = providersB.getEmailOfCompany();
         this.adressOfCompany = providersB.getAdressOfCompany();
         this.websiteOfCompany = providersB.getWebsiteOfCompany();
-//        for (products p :products)
     }
 
     public Providers(String companyName, String phoneNumber, String emailOfCompany, String adressOfCompany, String websiteOfCompany){

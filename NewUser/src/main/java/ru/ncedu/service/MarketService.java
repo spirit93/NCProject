@@ -60,6 +60,10 @@ public class MarketService extends  Service{
     }
 
     //-------------products
+    public static List<Products> getAllProducts() {
+        return em.createNamedQuery("Products.getAllProducts", Products.class).getResultList();
+    }
+
     public static Products getProductByName(String prdName){
         TypedQuery<Products> query = em.createNamedQuery("Product.getProductByName",Products.class);
         query.setParameter("nameOfProduct",prdName);
@@ -77,12 +81,25 @@ public class MarketService extends  Service{
 
     public static Products addProduct(Products products,ProductDetails details){
         em.getTransaction().begin();
+        Categories categories = products.getCategories();
+        List<Products> prList = categories.getProducts();
+
         ProductDetails details1 = em.merge(details);
         products.setProductDetails(details1);
 
         Products result = em.merge(products);
+
+        prList.add(result);
+        categories.setProducts(prList);
+        em.merge(categories);
+
         em.getTransaction().commit();
         return result;
+    }
+
+    //-------------productDetails---------------------
+    public static List<ProductDetails> getAllProductDetails(){
+        return em.createNamedQuery("ProductDetails.getAllProductDetails", ProductDetails.class).getResultList();
     }
 
     //--------------- categories -------------------
@@ -142,6 +159,7 @@ public class MarketService extends  Service{
         if (category == null){
             return null;
         }
+
         return category.getProducts();
     }
 }

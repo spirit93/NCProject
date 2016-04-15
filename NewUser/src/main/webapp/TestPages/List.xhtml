@@ -6,18 +6,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:form>
-        Name of prod: <h:inputText value="#{productsB.nameOfProduct}"/>
-        Price: <h:inputText value="#{prodDetailsB.pricePerUnit}"/>
-        Quantity: <h:inputText value="#{prodDetailsB.amountOfProducts}"/>
-        Name of category: <h:inputText value="#{productsB.categoryName}"/>
-        Name of provider: <h:inputText value="#{productsB.providerName}"/>
+        Name of prod: <h:inputText value="#{productsB.nameOfProduct}"/><br/>
+        Price: <h:inputText value="#{prodDetailsB.pricePerUnit}"/><br/>
+        Quantity: <h:inputText value="#{prodDetailsB.amountOfProducts}"/><br/>
+        Name of category: <h:inputText value="#{productsB.categoryName}"/><br/>
+        Name of provider: <h:inputText value="#{productsB.providerName}"/><br/>
 
-        <h:commandButton action="#{brendCh.initProviders}"  value="add Providers"/>
-        <h:commandButton action="#{addCategories.addCategories}"  value="add Categories"/>
+
         <h:commandButton action="#{addProduct.addProd(productsB,prodDetailsB)}" value="add product"/><br/>
 <br/>
-        <h:commandButton action="#{}" value="add product"/><br/>
-
+        <h:commandButton action="#{brendCh.initProviders}"  value="add Providers"/><br/>
+        <h:commandButton action="#{addCategories.addCategories}"  value="add Categories"/><br/><br/>
+        <h:commandButton action="#{addCategories.getCategoryProd(productsB.categoryName)}" value="get products of category"/>
     </h:form>
 </f:view>
 </html>

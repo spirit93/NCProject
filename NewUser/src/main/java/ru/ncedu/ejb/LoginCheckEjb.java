@@ -5,6 +5,8 @@ import ru.ncedu.bean.User;
 import ru.ncedu.bean.UserManager;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -13,6 +15,7 @@ import javax.inject.Inject;
 
 @Stateless
 public class LoginCheckEjb {
+
     @Inject
     UserManager um ;
 
@@ -39,13 +42,21 @@ public class LoginCheckEjb {
     }
 
     public String loginCheck(ru.ncedu.bean.User user){
-        if(isNull(user)){
-            return "nullField";
+        String res ="";
+        if (isNull(user)){
+            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("bad name", "Null fields"));
+            res = "nullField";
+            return res;
         }else if(!isSameUserExist(user)){
-            return "userNotExist";
+            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "User not exist"));
+            res = "nameErr";
+            return res;
         }else if(!isGoodPas(user)){
-            return "wrongPassword";
+            FacesContext.getCurrentInstance().addMessage("login:pas", new FacesMessage("password error", "Password error"));
+            res = "pasErr";
+            return res;
         }
-        return "success";
+        res = "success";
+        return res;
     }
 }
