@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form>
+        <ul id="tab" class="nav nav-sidebar">
+            <li class="active">
+                <a href="#phones" id="phones-tab" data-toggle="tab">Phones</a>
+            </li>
+            <li class="">
+                <a href="#tv" id="tv-tab" data-toggle="tab">TV</a>
+            </li>
+            <li class="">
+                <a href="#refrigerators" id="refrigerator-tab" data-toggle="tab">Refrigerators</a>
+            </li>
+            <li class="">
+                <a href="#computers" id="computers-tab" data-toggle="tab">Computers</a>
+            </li>
+            <li class="">
+                <a href="#laptops" id="laptops-tab" data-toggle="tab">Laptops</a>
+            </li>
+            <li class="">
+                <a href="#players" id="players-tab" data-toggle="tab">Players</a>
+            </li>
+            <li class="">
+                <a href="#mouses" id="mouses-tab" data-toggle="tab">Mouses</a>
+            </li>
+        </ul>
+        <hr/>
+        <ul class="nav nav-sidebar">
+            <li> <a href="#addproduct"  class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a product</span></a> </li>
+            <li> <a href="#addbrand" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a brand</span></a> </li>
+            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{parserXML.export}" value="Init categories" /></h:form></li>
+            <li> <a href="#addcategories" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add categories</span></a> </li>
+            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{parserXML.export}" value="Export" /></h:form></li>
+
+            <li> <a class="btn btn-default" type="button"><span class="text-info">Import</span></a> </li>
+        </ul>
+    </h:form>
+
+</ui:composition>

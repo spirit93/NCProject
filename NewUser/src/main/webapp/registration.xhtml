@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <!--<meta charset="utf-8" content=""/>-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Fiddle log in</title>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+
+	<div>
+	<h1><span class="label label-default">Registration</span></h1><br/>
+	    <div class="container">
+			<h:form id="reg">
+				<div>
+
+					<h:message style="color:red " id="nameError"  for="name"/><br/>
+					<h:outputLabel class="" value="Login:"/>
+					<h:inputText id="name" style="width:200px" styleClass="form-control" value="#{user.userName}"/><br/><br/>
+
+					<h:message style="color:red " id="pasError"  for="pas"/><br/>
+					<h:outputLabel class="" value="Password:"/>
+					<h:inputSecret id="pas" style="width:200px" styleClass="form-control" value="#{user.password}" /><br/><br/>
+
+					<h:outputLabel class="" value="Password again:"/>
+					<h:inputSecret style="width:200px" styleClass="form-control" value="#{user.repassword}" /><br/><br/>
+
+					<h:message style="color:red " id="emailError"  for="email"/><br/>
+					<h:outputLabel class="" value="Email:"/>
+					<h:inputText id="email" style="width:200px" styleClass="form-control" value="#{user.email}" /><br/><br/>
+
+					<h:commandButton class="btn btn-primary" style="width:150px" type="submit"
+									 value="OK" action="#{regCh.regUser(user)}"/><br/><br/>
+
+					<h:button class="btn btn-primary" style="width:150px" data-toggle="modal" value="Home"
+							  outcome="login_page.jsf"/><br/><br/>
+				</div>
+			</h:form>
+		</div>
+    </div>
+</h:body>
+</html>

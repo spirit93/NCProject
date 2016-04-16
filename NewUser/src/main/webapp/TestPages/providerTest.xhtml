@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:form>
+
+        companyName: <h:inputText value="#{providersB.companyName}"/>
+        emailOfCompany: <h:inputText value="#{providersB.emailOfCompany}"/>
+        adressOfCompany: <h:inputText value="#{providersB.adressOfCompany}"/>
+        <br/>
+        websiteOfCompany: <h:inputText value="#{providersB.websiteOfCompany}"/>
+        phoneNumber: <h:inputText value="#{providersB.phoneNumber}"/>
+        <br/>
+        <br/>
+        <h:commandButton value="Add Brend" action="#{brendCh.addProvider(providersB)}"/>
+        <h:commandButton value="Add Test Brend" action="#{brendCh.addProvider('Sumsung','8-800','Sum@Mail.ru','корея','www.leningrad)')}"/>
+
+
+    </h:form>
+
+
+</f:view>
+</html>

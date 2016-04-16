@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:form>
+        Login: <h:inputText value="#{user.userName}"/>
+        Password: <h:inputText value="#{user.password}"/>
+        Repassword: <h:inputText value="#{user.repassword}"/>
+        Email: <h:inputText value="#{user.email}"/>
+        <h:commandButton value="Add User" action="#{regCh.regUser(user)}"/>
+
+        <h:commandButton  value="Not Same Pass" action="#{regCh.regTestUser('not same pass','pas1','pas2','maail')}"/>
+        <h:commandButton  value="Null field" action="#{regCh.regTestUser('null field','pas1','pas1','')}"/>
+
+    </h:form>
+    <h:form>
+        <h:commandButton  value="Add test user" action="#{regCh.regTestUser('good user','pas1','pas1','maail')}"/>
+        <h:button value="to loginTest page" outcome="/TestPages/loginTest"/>
+    </h:form>
+
+</f:view>
+</html>
