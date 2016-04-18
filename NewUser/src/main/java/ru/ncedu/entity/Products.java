@@ -1,5 +1,8 @@
 package ru.ncedu.entity;
 
+import ru.ncedu.jaxbclasses.ProductsJAXB;
+import ru.ncedu.service.MarketService;
+
 import javax.persistence.*;
 
 /**
@@ -47,6 +50,17 @@ public class Products {
         this.providers = providers;
         this.nameOfProduct = nameOfProduct;
         this.categories = categories;
+    }
+
+    public Products(ProductsJAXB productsJAXB){
+        Categories category = (productsJAXB.getCategoryName() == null) ? null
+                : MarketService.getCategoryByName(productsJAXB.getCategoryName());
+        Providers provider = (productsJAXB.getProviderName() == null) ? null
+                :MarketService.getProviderByName(productsJAXB.getProviderName());
+        this.productsId = productsJAXB.getProductsId();
+        this.nameOfProduct = productsJAXB.getNameOfProduct();
+        this.providers = provider;
+        this.categories = category;
     }
 
     public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders){

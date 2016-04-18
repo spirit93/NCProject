@@ -1,6 +1,7 @@
 package ru.ncedu.entity;
 
 import ru.ncedu.bean.ProdDetailsB;
+import ru.ncedu.jaxbclasses.ProductDetailsJAXB;
 
 import javax.persistence.*;
 
@@ -24,6 +25,14 @@ public class ProductDetails {
     private Products ProductsTable;
 
     public ProductDetails(){
+    }
+
+    public ProductDetails(ProductDetailsJAXB productDetailsJAXB){
+        this.productsDetailsId = productDetailsJAXB.getProductsDetailsId();
+        this.amountOfProducts = productDetailsJAXB.getAmountOfProducts();
+        this.amountOfOrders = productDetailsJAXB.getAmountOfOrders();
+        this.pricePerUnit= productDetailsJAXB.getPricePerUnit();
+        this.pathToImg = productDetailsJAXB.getPathToImg();
     }
 
     public ProductDetails(ProdDetailsB detailsB){

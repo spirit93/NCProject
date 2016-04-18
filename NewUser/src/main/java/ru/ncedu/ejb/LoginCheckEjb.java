@@ -15,31 +15,6 @@ import javax.inject.Inject;
 
 @Stateless
 public class LoginCheckEjb {
-    public String msg;
-
-    public String check(String mas){
-        mas ="";
-        if (msg.equals("aaa")){
-            FacesMessage fm = new FacesMessage("Field is good");
-            FacesContext.getCurrentInstance().addMessage("Field is good",fm);
-            mas = "good";
-        }else {
-            FacesMessage fm = new FacesMessage("Field not aaa");
-            FacesContext.getCurrentInstance().addMessage("Field is bad",fm);
-            mas = "bad";
-        }
-
-        return mas;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
 
     @Inject
     UserManager um ;
@@ -67,24 +42,21 @@ public class LoginCheckEjb {
     }
 
     public String loginCheck(ru.ncedu.bean.User user){
-        msg ="";
-        if (msg.equals("aaa")){
-            FacesMessage fm = new FacesMessage("Field is good");
-            FacesContext.getCurrentInstance().addMessage("Field is good",fm);
-            msg = "good";
-        }else {
-            FacesMessage fm = new FacesMessage("Field not aaa");
-            FacesContext.getCurrentInstance().addMessage("Field is bad",fm);
-            msg = "bad";
+        String res ="";
+        if (isNull(user)){
+            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("bad name", "Null fields"));
+            res = "nullField";
+            return res;
+        }else if(!isSameUserExist(user)){
+            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "User not exist"));
+            res = "nameErr";
+            return res;
+        }else if(!isGoodPas(user)){
+            FacesContext.getCurrentInstance().addMessage("login:pas", new FacesMessage("password error", "Password error"));
+            res = "pasErr";
+            return res;
         }
-
-//        if(isNull(user)){
-//            return "nullField";
-//        }else if(!isSameUserExist(user)){
-//            return "userNotExist";
-//        }else if(!isGoodPas(user)){
-//            return "wrongPassword";
-//        }
-        return msg;
+        res = "success";
+        return res;
     }
 }

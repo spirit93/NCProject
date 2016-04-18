@@ -104,95 +104,99 @@
                         </div>
                     </div>
                 </div>
-                <div id="addproduct" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h1 class="modal-title" align="center">Addition of product</h1>
+                    <div id="addproduct" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1 class="modal-title" align="center">Addition of product</h1>
+                                </div>
+                                <h:form id="product">
+                                    <div class="modal-body">
+                                        <h:outputLabel class="" value="Product name:"/>
+                                        <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
+
+                                        <h:message style="color:red " id="brandError"  for="brandP"/><br/>
+                                        <h:outputLabel class="" value="Company name:"/>
+                                        <h:inputText id="brandP" value="#{productsB.providerName}" class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
+
+                                        <h:message style="color:red " id="categoryError"  for="categoryP"/><br/>
+                                        <h:outputLabel class="" value="Category:"/>
+                                        <h:inputText id="categoryP" value="#{productsB.categoryName}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Price:"/>
+                                        <h:inputText value="#{prodDetailsB.pricePerUnit}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Quantity:"/>
+                                        <h:inputText value="#{prodDetailsB.amountOfProducts}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Image:"/>
+                                        <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
+
+                                        <script type="application/javascript">
+                                            $(".dropdown-menu li a").click(function(){
+                                                $(this).parents(".dropdown").find('a:first').html($(this).text());
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandButton value="Ok" action="#{addProduct.addProd(productsB,prodDetailsB)}" class="btn btn-success" type="submit"/>
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                                    </div>
+                                </h:form>
                             </div>
-                            <h:form>
-                            <div class="modal-body">
-                                    <h:outputLabel class="" value="Product name:"/>
-                                    <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
-
-                                    <h:outputLabel class="" value="Company name:"/>
-                                    <h:inputText value="#{productsB.providerName}" class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
-
-                                    <h:outputLabel class="" value="Category:"/>
-                                    <h:inputText value="#{productsB.categoryName}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
-
-                                    <h:outputLabel class="" value="Price:"/>
-                                    <h:inputText value="#{prodDetailsB.pricePerUnit}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
-
-                                    <h:outputLabel class="" value="Quantity:"/>
-                                    <h:inputText value="#{prodDetailsB.amountOfProducts}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
-
-                                    <h:outputLabel class="" value="Image:"/>
-                                    <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
-
-                                <script type="application/javascript">
-                                    $(".dropdown-menu li a").click(function(){
-                                        $(this).parents(".dropdown").find('a:first').html($(this).text());
-                                    });
-                                </script>
-                            </div>
-                            <div class="modal-footer">
-                                <h:commandButton value="Ok" action="#{addProduct.addProd(productsB,prodDetailsB)}" class="btn btn-success" type="submit"/>
-                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
-                            </div>
-                        </h:form>
-                    </div>
-                    </div>
-                </div>
-
-                <div id="addbrand" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button  type="button" class="close"
-                                          data-dismiss="modal" aria-hidden="true">×</button>
-                                <h1 class="modal-title" align="center">Addition of brand</h1>
-                            </div>
-                            <h:form>
-                            <div class="modal-body">
-                                <h:outputLabel class="" value="Введите имя:"/>
-                                <h:inputText value="#{providersB.companyName}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
-
-                                <h:outputLabel class="" value="телефон:"/>
-                                <h:inputText value="#{providersB.phoneNumber}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
-
-                                <h:outputLabel class="" value="email:"/>
-                                <h:inputText value="#{providersB.emailOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
-
-                                <h:outputLabel class="" value="adress:"/>
-                                <h:inputText value="#{providersB.adressOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
-
-                                <h:outputLabel class="" value="site:"/>
-                                <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
-                            </div>
-                            <div class="modal-footer">
-                                <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
-                                <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
-                            </div>
-                            </h:form>
-
                         </div>
                     </div>
-                </div>
 
+                    <div id="addbrand" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button  type="button" class="close"
+                                             data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1 class="modal-title" align="center">Addition of brand</h1>
+                                </div>
+                                <h:form id="brand">
+                                    <div class="modal-body">
 
+                                        <h:outputLabel class="" value="Name of brand:"/>
+                                        <h:inputText value="#{providersB.companyName}" class="form-control" style="width:250px" placeholder=""/><br/>
 
-                <div id="addcategories" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <h:form>
-                                <h:commandButton action="#{addCategories.addCategories}" class="btn btn-success" type="submit" value="Add Categories"/>
-                            </h:form>
+                                        <h:message style="color:red " id="phoneError"  for="phone"/><br/>
+                                        <h:outputLabel class="" value="Phone:"/>
+                                        <h:inputText id="phone" value="#{providersB.phoneNumber}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:message style="color:red " id="emailError"  for="email"/><br/>
+                                        <h:outputLabel class="" value="Email:"/>
+                                        <h:inputText id="email" value="#{providersB.emailOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:outputLabel class="" value="Adress:"/>
+                                        <h:inputText value="#{providersB.adressOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:outputLabel class="" value="Site:"/>
+                                        <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
+                                        <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                                    </div>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="addcategories" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <h:form>
+                                    <h:commandButton action="#{addCategories.addCategories}" class="btn btn-success" type="submit" value="Add Categories"/>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </ui:composition>

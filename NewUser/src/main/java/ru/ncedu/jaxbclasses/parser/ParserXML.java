@@ -7,19 +7,31 @@ import ru.ncedu.entity.Providers;
 import ru.ncedu.jaxbclasses.*;
 import ru.ncedu.service.MarketService;
 
+import javax.servlet.http.Part;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Dan Smirnov on 08.04.2016.
  */
 public class ParserXML {
+    private Part file1;
     private File file = new File("databaseMarket.xml");
+
+    public Part getFile1() {
+        return file1;
+    }
+    public void setFile1(Part file) {
+        this.file1 = file;
+    }
+
     private Object getObject(File file, Class c) throws JAXBException
     {
         JAXBContext context = JAXBContext.newInstance(c);
@@ -62,5 +74,27 @@ public class ParserXML {
 
     public void importDb() throws JAXBException {
         MarketJAXBLists marketLists = (MarketJAXBLists) getObject(file, MarketJAXBLists.class);
+
+        for (CategoriesJAXB categoryEntity : marketLists.getCategoryList()) {
+            MarketService.addCategory(new Categories(categoryEntity));
+        }
+        for(int i=0; i<marketLists.getProductDetailsList().size(); i++){
+            MarketService.addProduct(new Products(marketLists.getProductsList().get(i)), new ProductDetails(marketLists.getProductDetailsList().get(i)));
+        }
+        for (ProvidersJAXB providersEntity : marketLists.getProvidersList()) {
+            MarketService.addProvider(new Providers(providersEntity));
+        }
     }
+
+    public void upload() {
+        try {
+            String fileContent = new Scanner(this.file1.getInputStream())
+                    .useDelimiter("\\A").next();
+
+
+        } catch (IOException e) {
+            // Error handling
+        }
+    }
+
 }

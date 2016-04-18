@@ -1,5 +1,7 @@
 package ru.ncedu.entity;
 
+import ru.ncedu.jaxbclasses.CategoriesJAXB;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,12 @@ public class Categories {
     public Categories(String nameOfCategory, String descriptionOfCategory){
         this.nameOfCategory = nameOfCategory;
         this.descriptionOfCategory = descriptionOfCategory;
+    }
+
+    public Categories(CategoriesJAXB categoriesJAXB){
+        this.categoryId = categoriesJAXB.getCategoryId();
+        this.nameOfCategory = categoriesJAXB.getNameOfCategory();
+        this.descriptionOfCategory = categoriesJAXB.getDescriptionOfCategory();
     }
 
     @Id

@@ -8,13 +8,15 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Created by D.Smirnov on 08.04.2016.
  */
-@XmlType(propOrder = {"productsId","nameOfProduct","categoryId", "productsDetailsId", "providerId"})
+@XmlType(propOrder = {"productsId","nameOfProduct","categoryId", "productsDetailsId", "providerId", "categoryName", "providerName"})
 public class ProductsJAXB {
     private long productsId;
     private String nameOfProduct;
     private long categoryId;
     private long productsDetailsId;
     private long providerId;
+    private String categoryName;
+    private String providerName;
 
     public ProductsJAXB() {}
 
@@ -24,6 +26,8 @@ public class ProductsJAXB {
         this.categoryId = products.getCategories().getCategoryId();
         this.productsDetailsId = products.getProductDetails().getProductsDetailsId();
         this.providerId = products.getProviders().getProviderId();
+        this.categoryName = products.getCategories().getNameOfCategory();
+        this.providerName = products.getProviders().getCompanyName();
     }
 
     @XmlElement
@@ -68,4 +72,15 @@ public class ProductsJAXB {
     }
 
     public long getProviderId() { return providerId; }
+
+    @XmlElement
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+
+    public String getCategoryName() { return categoryName; }
+
+    @XmlElement
+    public void setProviderName(String providerName) { this.providerName = providerName; }
+
+    public String getProviderName() { return providerName; }
+
 }
