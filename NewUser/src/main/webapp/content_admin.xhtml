@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div class="container-fluid">
         <div class="row">
@@ -73,6 +74,10 @@
                                 <h2 class="modal-title">Making an order</h2>
                             </div>
                             <div class="modal-body">
+                                <h:form id="formHid">
+                                    <h:inputHidden id="hiddenV" value="#{providersB.idOfBt}"/>
+                                    <h:commandButton action = "#{marketManager.addProvider(providersB)}"/>
+                                </h:form>
                                 <p class="text-info">Name:</p>
                                 <input class="form-control" style="width:200px" placeholder="Введите имя"/><br/>
                                 <p class="text-info">Phone:</p>
@@ -177,7 +182,8 @@
                                         <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
                                     </div>
                                     <div class="modal-footer">
-                                        <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
+
+                                        <h:commandLink actionListener="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
                                         <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
                                     </div>
                                 </h:form>

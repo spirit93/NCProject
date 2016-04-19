@@ -23,10 +23,21 @@ public class Servlet extends HttpServlet {
         newDiv.append(" <img src=\""+ product.getProductDetails().getPathToImg() + "\"");
         newDiv.append(" width=\"150px\"  class=\"img-thumbnail\" alt=\"" + product.getNameOfProduct() + "\"/><br/>\n");
         newDiv.append(" <p class=\"text-primary\">Price: " + product.getProductDetails().getPricePerUnit() + "$</p>\n");
-        newDiv.append(" <a href=\"#modal\" role=\"button\" class=\"btn btn-primary btn-xs\" data-toggle=\"modal\">Buy</a>\n");
+        newDiv.append(" <a href=\"#modal\" role=\"button\" class=\"btn btn-primary btn-xs\" id = \"prodId-" +
+                product.getProductsId()+"\"data-toggle=\"modal\">Buy</a>\n");
         newDiv.append(" </div>\n </div>\n </div>\n");
+
+        String idProd = "prodId-" + product.getProductsId();
+
+        String a = "<script>\n" +
+                "$('#"+idProd+"').click(function() {" +
+                "document.getElementById('formHid:hiddenV').value = (this.id)});" +
+                "</script>";
+        newDiv.append(a);
+
         return newDiv.toString();
     }
+
 
     private String getHTMLAllTypeProducts(String typeProd) {
         StringBuilder result = new StringBuilder("");
@@ -46,8 +57,6 @@ public class Servlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(result);
     }
-
-
 }
 
 
