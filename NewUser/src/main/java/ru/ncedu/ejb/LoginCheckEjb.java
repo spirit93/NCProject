@@ -47,15 +47,17 @@ public class LoginCheckEjb {
             FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("bad name", "Null fields"));
             res = "nullField";
             return res;
-        }else if(!isSameUserExist(user)){
-            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "User not exist"));
-            res = "nameErr";
-            return res;
-        }else if(!isGoodPas(user)){
-            FacesContext.getCurrentInstance().addMessage("login:pas", new FacesMessage("password error", "Password error"));
-            res = "pasErr";
+        }else if(!isSameUserExist(user) || !isGoodPas(user)){
+            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "Login or password error"));
+//            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "User not exist"));
+            res = "Err";
             return res;
         }
+//        else if(!isGoodPas(user)){
+//            FacesContext.getCurrentInstance().addMessage("login:pas", new FacesMessage("password error", "Password error"));
+//            res = "pasErr";
+//            return res;
+//        }
         res = "success";
         return res;
     }
