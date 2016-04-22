@@ -1,10 +1,7 @@
 package ru.ncedu.service;
 
 import ru.ncedu.bean.ProdDetailsB;
-import ru.ncedu.entity.Categories;
-import ru.ncedu.entity.ProductDetails;
-import ru.ncedu.entity.Products;
-import ru.ncedu.entity.Providers;
+import ru.ncedu.entity.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -161,5 +158,16 @@ public class MarketService extends  Service{
         }
 
         return category.getProducts();
+    }
+
+    //---------------orders
+    public static Order addOrder(Order order){
+        em.getTransaction().begin();
+//        user = em.merge(user);
+//        order.setUser(user);
+
+        Order result = em.merge(order);
+        em.getTransaction().commit();
+        return result;
     }
 }

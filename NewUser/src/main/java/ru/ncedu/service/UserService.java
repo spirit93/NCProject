@@ -39,6 +39,23 @@ public class UserService  extends Service{
         return user;
     }
 
+    public static User getUserByEmail(String email) {
+        TypedQuery<User> query = em.createNamedQuery("User.getUserByEmail", User.class);
+        query.setParameter("email", email);
+
+        User user = null;
+        try{
+            user = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (user == null){
+            return null;
+        }
+        return user;
+    }
+
+
     public static User addUser(User user){
         String pasMD5 = DigestUtils.md5Hex(user.getPassword());
         user.setPassword(pasMD5);

@@ -10,7 +10,7 @@
                         <class>ru.ncedu.entity.User</class>
                         <class>ru.ncedu.entity.UserType</class>
                         <class>ru.ncedu.entity.Categories</class>
-                        <class>ru.ncedu.entity.Orders</class>
+                        <class>ru.ncedu.entity.Order</class>
                         <class>ru.ncedu.entity.ProductDetails</class>
                         <class>ru.ncedu.entity.Products</class>
                         <class>ru.ncedu.entity.Providers</class>

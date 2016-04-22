@@ -15,18 +15,6 @@ import java.util.List;
 @RequestScoped
 public class ProvidersB {
 
-    String idOfBt;
-
-    public String getIdOfBt() {
-        return idOfBt;
-    }
-
-    public void setIdOfBt(String idOfBt) {
-        this.idOfBt = idOfBt;
-    }
-
-
-
     private List<ProductsB> products;
     private long providerId;
     private String companyName;

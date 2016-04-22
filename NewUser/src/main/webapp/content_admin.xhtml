@@ -73,22 +73,23 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h2 class="modal-title">Making an order</h2>
                             </div>
-                            <div class="modal-body">
-                                <h:form id="formHid">
-                                    <h:inputHidden id="hiddenV" value="#{providersB.idOfBt}"/>
-                                    <h:commandButton action = "#{marketManager.addProvider(providersB)}"/>
-                                </h:form>
-                                <p class="text-info">Name:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите имя"/><br/>
-                                <p class="text-info">Phone:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите телефон"/><br/>
-                                <p class="text-info">Email:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите email"/><br/>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>
-                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
-                            </div>
+
+                            <h:form id="formHid">
+                                <div class="modal-body">
+                                        <h:inputHidden id="hiddenV" value="#{orderBean.idOfBt}"/>
+                                        <h:outputText value="Name:"/>
+                                        <h:inputText value="#{orderBean.userNameOrder}"/><br/><br/>
+                                        <h:outputText value="Phone:"/>
+                                        <h:inputText value="#{orderBean.phone}"/><br/><br/>
+                                        <h:outputText value="Email"/>
+                                        <h:inputText value="#{user.email}"/><br/><br/>
+                                      </div>
+                                <div class="modal-footer">
+                                    <h:commandLink action="#{marketManager.addOrder(orderBean,user)}" value="OK"/>
+                                    <!--<a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>-->
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -146,7 +147,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton value="Ok" action="#{addProduct.addProd(productsB,prodDetailsB)}" class="btn btn-success" type="submit"/>
-                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </h:form>
                             </div>
@@ -184,7 +185,7 @@
                                     <div class="modal-footer">
 
                                         <h:commandLink actionListener="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
-                                        <button  class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
+                                        <button  class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </h:form>
 

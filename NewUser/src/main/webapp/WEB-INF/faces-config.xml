@@ -42,6 +42,11 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>addOrder</managed-bean-name>
+        <managed-bean-class>ru.ncedu.ejb.AddOrderEjb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>marketManager</managed-bean-name>
         <managed-bean-class>ru.ncedu.bean.MarketManager</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
