@@ -96,15 +96,15 @@ public class ParserXML {
         for (CategoriesJAXB categoryEntity : marketLists.getCategoryList()) {
             MarketService.addCategory(new Categories(categoryEntity));
         }
-        for(int i=0; i<marketLists.getProductDetailsList().size(); i++){
-            MarketService.addProduct(new Products(marketLists.getProductsList().get(i)), new ProductDetails(marketLists.getProductDetailsList().get(i)));
-        }
         for (ProvidersJAXB providersEntity : marketLists.getProvidersList()) {
             MarketService.addProvider(new Providers(providersEntity));
         }
+        for(int i=0; i<marketLists.getProductDetailsList().size(); i++){
+            MarketService.addProduct(new Products(marketLists.getProductsList().get(i)), new ProductDetails(marketLists.getProductDetailsList().get(i)));
+        }
     }
 
-    public void uploadImages(){
+    /*public void uploadImages(){
         try {
             byte[] buffer = new byte[4096];
             int bytesRead = 0;
@@ -147,7 +147,7 @@ public class ParserXML {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void upload() {
         try {

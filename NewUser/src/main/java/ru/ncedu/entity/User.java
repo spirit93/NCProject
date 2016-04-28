@@ -2,15 +2,18 @@ package ru.ncedu.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "users")
 @NamedQueries({
         @NamedQuery(name = "User.getAllUsers", query = "SELECT u from users u"),
-        @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName")
+        @NamedQuery(name = "User.getUserByLogin", query = "SELECT u from users u WHERE u.userName = :userName"),
+        @NamedQuery(name = "User.getUserByEmail", query = "SELECT u from users u WHERE u.email = :email")
     }
 )
 
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")

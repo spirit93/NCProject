@@ -70,19 +70,21 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h2 class="modal-title">Making an order</h2>
                             </div>
-                            <div class="modal-body">
-                                <p class="text-info">Name:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите имя"/><br/>
-                                <p class="text-info">Phone:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите телефон"/><br/>
-                                <p class="text-info">Email:</p>
-                                <input class="form-control" style="width:200px" placeholder="Введите email"/><br/>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>
-                                <!--<button class="btn btn-success" type="submit">OK</button>-->
-                                <button class="btn btn-primary" type="button" data-dismiss="modal">Cansel</button>
-                            </div>
+                            <h:form id="formHid">
+                                <div class="modal-body">
+                                    <h:inputHidden id="hiddenV" value="#{orderBean.idOfBt}"/>
+                                    <h:outputText styleClass="text-info" value="Name:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.userNameOrder}" placeholder="Введите имя"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Phone:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.phone}" placeholder="Введите телефон"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Email"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{user.email}" placeholder="Введите email"/><br/><br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton styleClass="btn btn-success" action="#{addOrder.addOrder(orderBean,user)}" value="OK"/>
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>

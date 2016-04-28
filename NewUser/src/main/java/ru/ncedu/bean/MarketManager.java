@@ -1,10 +1,8 @@
 package ru.ncedu.bean;
 
-import ru.ncedu.entity.Categories;
-import ru.ncedu.entity.ProductDetails;
-import ru.ncedu.entity.Products;
-import ru.ncedu.entity.Providers;
+import ru.ncedu.entity.*;
 import ru.ncedu.service.MarketService;
+import ru.ncedu.service.UserService;
 
 import javax.ejb.Stateless;
 import java.util.ArrayList;
@@ -88,5 +86,11 @@ public class MarketManager {
         ProductDetails details = new ProductDetails(detailsB);
 
         MarketService.addProduct(products,details);
+    }
+    public void addOrder(OrderBean orderBean, User userBean){
+        ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
+        Order order = new Order(orderBean);
+        order.setUser(user);
+        MarketService.addOrder(order);
     }
 }

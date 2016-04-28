@@ -27,31 +27,34 @@
             <li class="">
                 <a href="#mouses" id="mouses-tab" data-toggle="tab">Mouses</a>
             </li>
+            <li class="">
+                <a href="#orders" id="orders-tab" data-toggle="tab">Orders</a>
+            </li>
         </ul>
-        <hr/>
-        <h:form>
-             <ul class="nav nav-sidebar">
-
-                <li> <a href="#addproduct"  class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a product</span></a> </li>
-                <li> <a href="#addbrand" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a brand</span></a> </li>
-                <li> <h:commandButton styleClass="btn btn-default" action="#{addCategories.addCategories}" value="Init categories" /></li>
-                <li> <a href="#addcategories" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add categories</span></a> </li>
-                <li>
-                    <p:commandButton styleClass="btn btn-default" value="Export" ajax="false" action="#{parserXML.export}">
-                        <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
-                    </p:commandButton>
-                </li>
-             </ul>
-        </h:form>
-        <h:form id="form" enctype="multipart/form-data">
-            <h:inputFile styleClass="btn btn-default" value="#{parserXML.file1}" required="true">
-                <f:ajax listener="#{parserXML.upload}" render="@form" />
-            </h:inputFile>
-            <h:inputFile styleClass="btn btn-default" value="#{parserXML.file1}" required="true">
-                <f:ajax listener="#{parserXML.uploadImages}" render="@form" />
-            </h:inputFile>
-        </h:form>
-
+        <hr/><hr/>
+        <div class="btn-group">
+            <h:form>
+                <ul class="nav nav-sidebar">
+                    <li> <a href="#addproduct"  class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a product</a> </li>
+                    <li> <a href="#addbrand" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a brand</a> </li>
+                    <li> <h:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" action="#{addCategories.addCategories}" value="Init categories" /></li>
+                    <li> <a href="#addcategories" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add categories</a> </li>
+                    <li>
+                        <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" value="Export" ajax="false" action="#{parserXML.export}">
+                            <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
+                        </p:commandButton>
+                    </li>
+                </ul>
+            </h:form>
+            <h:form id="form" enctype="multipart/form-data">
+                <div class="fileUpload btn btn-default">
+                    <span>Import</span>
+                    <h:inputFile value="#{parserXML.file1}"  type="file" class="upload" required="true">
+                        <f:ajax listener="#{parserXML.upload}" render="@form"/>
+                    </h:inputFile>
+                </div>
+             </h:form>
+        </div>
 </h:form>
 
 </ui:composition>
