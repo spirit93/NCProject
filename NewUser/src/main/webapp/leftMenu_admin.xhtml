@@ -1,8 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
-    <h:form>
+<h:form>
         <ul id="tab" class="nav nav-sidebar">
             <li class="active">
                 <a href="#phones" id="phones-tab" data-toggle="tab">Phones</a>
@@ -25,17 +27,37 @@
             <li class="">
                 <a href="#mouses" id="mouses-tab" data-toggle="tab">Mouses</a>
             </li>
+            <li class="">
+                <a href="#orders" id="orders-tab" data-toggle="tab">Orders</a>
+            </li>
         </ul>
-        <hr/>
-        <ul class="nav nav-sidebar">
-            <li> <a href="#addproduct"  class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a product</span></a> </li>
-            <li> <a href="#addbrand" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add a brand</span></a> </li>
-            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{parserXML.export}" value="Init categories" /></h:form></li>
-            <li> <a href="#addcategories" class="btn btn-default" type="button" data-toggle="modal"><span class="text-info">Add categories</span></a> </li>
-            <li><h:form><h:commandButton styleClass="btn btn-default" action="#{parserXML.export}" value="Export" /></h:form></li>
+        <hr/><hr/>
+        <div class="btn-group">
+                <ul class="nav nav-sidebar">
+                    <h:form>
+                        <li> <a href="#addproduct"  class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a product</a> </li>
+                        <li> <a href="#addbrand" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a brand</a> </li>
+                        <li> <h:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" action="#{addCategories.addCategories}" value="Init categories" /></li>
+                        <li> <a href="#addcategories" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add categories</a> </li>
+                        <li>
+                            <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" value="Export" ajax="false" action="#{parserXML.export}">
+                                <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
+                            </p:commandButton>
+                        </li>
+                    </h:form>
+                    <h:form id="form" enctype="multipart/form-data">
+                        <li>
+                            <div class="fileUpload btn btn-default">
+                                <span>Import</span>
+                                <h:inputFile value="#{parserXML.file1}" style="width: 150px; height: 40px"  type="file" class="upload" required="true">
+                                    <f:ajax listener="#{parserXML.upload}" render="@form"/>
+                                </h:inputFile>
+                            </div>
+                         </li>
+                    </h:form>
+                </ul>
 
-            <li> <a class="btn btn-default" type="button"><span class="text-info">Import</span></a> </li>
-        </ul>
-    </h:form>
+        </div>
+</h:form>
 
 </ui:composition>

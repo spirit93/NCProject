@@ -1,7 +1,59 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:p="http://primefaces.org/ui">
+
+    <script type="application/javascript">
+        addEventListener("load",  function() {
+            $.get("servlet",{type:"tv"}, function(responseText) {
+                $("#d1").html(responseText);
+            });
+            $.get("servlet",{type:"refrigerators"}, function(responseText) {
+                $("#d2").html(responseText);
+            });
+            $.get("servlet",{type:"phones"}, function(responseText) {
+                $("#d7").html(responseText);
+            });
+            $.get("servlet",{type:"mouses"}, function(responseText) {
+                $("#d6").html(responseText);
+            });
+            $.get("servlet",{type:"players"}, function(responseText) {
+                $("#d5").html(responseText);
+            });
+            $.get("servlet",{type:"laptops"}, function(responseText) {
+                $("#d4").html(responseText);
+            });
+            $.get("servlet", { type: "computers" })
+                    .done(function( responseText ) {
+                        $("#d3").html(responseText);
+                    });
+            $.get("servlet",{type:"orders"}, function(responseText) {
+                $("#d8").html(responseText);
+            });
+        });
+    </script>
+
+    <script type="application/javascript">
+        var current_disp=0;
+        function fnNext(typeProd) {
+            var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (current_disp==SR.length-1) { alert("End of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp++; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+        function fnPrev(typeProd) {
+            var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (current_disp==0) { alert("Beginning of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp--; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+    </script>
 
     <div class="container-fluid">
         <div class="row">
@@ -14,37 +66,9 @@
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="phones"><br/>
                             <div class="row" id="d7"/>
-
                         </div>
                         <div class="tab-pane fade" id="tv">
                             <div id="d1"/>
-
-                            <script type="application/javascript">
-                                addEventListener("load",  function() {
-                                    $.get("servlet",{type:"tv"}, function(responseText) {
-                                        $("#d1").html(responseText);
-                                    });
-                                    $.get("servlet",{type:"refrigerators"}, function(responseText) {
-                                        $("#d2").html(responseText);
-                                    });
-                                    $.get("servlet",{type:"phones"}, function(responseText) {
-                                        $("#d7").html(responseText);
-                                    });
-                                    $.get("servlet",{type:"mouses"}, function(responseText) {
-                                        $("#d6").html(responseText);
-                                    });
-                                    $.get("servlet",{type:"players"}, function(responseText) {
-                                        $("#d5").html(responseText);
-                                    });
-                                    $.get("servlet",{type:"laptops"}, function(responseText) {
-                                        $("#d4").html(responseText);
-                                    });
-                                    $.get("servlet", { type: "computers" })
-                                            .done(function( responseText ) {
-                                                $("#d3").text(responseText);
-                                            });
-                                });
-                            </script>
                         </div>
                         <div class="tab-pane fade" id="refrigerators">
                             <div class="row" id="d2"/>
@@ -62,7 +86,9 @@
                         <div class="tab-pane fade" id="mouses">
                             <div class="row" id="d6"/>
                         </div>
-
+                        <div class="tab-pane fade" id="orders">
+                            <div id="d8"/>
+                        </div>
                     </div>
                 </h:form>
 
@@ -76,16 +102,16 @@
 
                             <h:form id="formHid">
                                 <div class="modal-body">
-                                        <h:inputHidden id="hiddenV" value="#{orderBean.idOfBt}"/>
-                                        <h:outputText value="Name:"/>
-                                        <h:inputText value="#{orderBean.userNameOrder}"/><br/><br/>
-                                        <h:outputText value="Phone:"/>
-                                        <h:inputText value="#{orderBean.phone}"/><br/><br/>
-                                        <h:outputText value="Email"/>
-                                        <h:inputText value="#{user.email}"/><br/><br/>
-                                      </div>
+                                    <h:inputHidden id="hiddenV" value="#{orderBean.idOfBt}"/>
+                                    <h:outputText styleClass="text-info" value="Name:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.userNameOrder}" placeholder="Введите имя"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Phone:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.phone}" placeholder="Введите телефон"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Email"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{user.email}" placeholder="Введите email"/><br/><br/>
+                                </div>
                                 <div class="modal-footer">
-                                    <h:commandLink action="#{addOrder.addOrder(orderBean,user)}" value="OK"/>
+                                    <h:commandButton styleClass="btn btn-success" action="#{addOrder.addOrder(orderBean,user)}" value="OK"/>
                                     <!--<a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>-->
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                 </div>
@@ -94,22 +120,22 @@
                     </div>
                 </div>
 
-                <div id="thanks" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h2 class="modal-title" align="center">Thanks for order!!!</h2>
-                            </div>
-                            <div class="modal-body">
-                                <h3 class="text-info">Our operator will call you soon.</h3>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-success" type="button" data-dismiss="modal">OK</button>
+                    <div id="thanks" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h2 class="modal-title" align="center">Thanks for order!!!</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-info">Our operator will call you soon.</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" type="button" data-dismiss="modal">OK</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                     <div id="addproduct" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -117,7 +143,7 @@
                                     <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     <h1 class="modal-title" align="center">Addition of product</h1>
                                 </div>
-                                <h:form id="product" enctype="multipart/form-data">
+                                <h:form id="product">
                                     <div class="modal-body">
                                         <h:outputLabel class="" value="Product name:"/>
                                         <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
@@ -183,8 +209,7 @@
                                         <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
                                     </div>
                                     <div class="modal-footer">
-
-                                        <h:commandLink actionListener="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
+                                        <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
                                         <button  class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </h:form>
@@ -202,8 +227,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
-    <!--</div>-->
+    </div>
+
 </ui:composition>

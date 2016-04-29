@@ -40,6 +40,7 @@ public class AddOrderEjb implements Serializable {
 //        } else {
 
         //------------проверки--------------
+
         if("".equals(orderBean.getUserNameOrder()) ||
                 "".equals(orderBean.getPhone())    ||
                 "".equals(userBean.getEmail())){

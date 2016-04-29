@@ -1,7 +1,8 @@
 package ru.ncedu.service;
 
-import ru.ncedu.utils.archiver.ArchiverImpl;
+import ru.ncedu.bean.ProdDetailsB;
 import ru.ncedu.entity.*;
+import ru.ncedu.utils.archiver.ArchiverImpl;
 
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -179,6 +180,13 @@ public class MarketService extends  Service{
     }
 
     //---------------orders
+
+    public static List<Order> getAllOrders(){
+        return em.createNamedQuery("Order.getAllOrders",Order.class).getResultList();
+    }
+    public static List<Products> getAllOrderedProducts(){
+        return em.createNamedQuery("Order.getAllOrderedProducts", Products.class).getResultList();
+    }
     public static Order addOrder(Order order){
         em.getTransaction().begin();
 //        user = em.merge(user);

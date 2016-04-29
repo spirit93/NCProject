@@ -2,6 +2,7 @@ package ru.ncedu.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "users")
 @NamedQueries({
@@ -12,6 +13,7 @@ import java.io.Serializable;
 )
 
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")

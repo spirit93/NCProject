@@ -16,6 +16,31 @@ import javax.inject.Inject;
 
 @Stateless
 public class LoginCheckEjb {
+    public String msg;
+
+    public String check(String mas){
+        mas ="";
+        if (msg.equals("aaa")){
+            FacesMessage fm = new FacesMessage("Field is good");
+            FacesContext.getCurrentInstance().addMessage("Field is good",fm);
+            mas = "good";
+        }else {
+            FacesMessage fm = new FacesMessage("Field not aaa");
+            FacesContext.getCurrentInstance().addMessage("Field is bad",fm);
+            mas = "bad";
+        }
+
+        return mas;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
 
     @Inject
     UserManager um ;
@@ -34,6 +59,7 @@ public class LoginCheckEjb {
             }
         return false;
     }
+
 
     public boolean isGoodPas(ru.ncedu.bean.User user){
         String pasToCheck = DigestUtils.md5Hex(user.getPassword());

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <meta charset="utf-8" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Example page</title>
+    <h:outputStylesheet name="css/bootstrap.min.css" />
+    <h:outputStylesheet name="css/dashboard.css" />
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+    <h:outputScript name="js/bootstrap.js" />
+    <h:outputScript name="js/modalwindow.js"/>
+
+    <script type="application/javascript">
+        var current_disp=0;
+        function fnNext() {
+            var SR=document.getElementsByClassName("panel-body"); /*Get all the search results into an object array*/
+            if (SR.length==0) { SR=getAnyElementByName("DIV", "SearchResults");}
+            if (current_disp==SR.length-1) { alert("End of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp++; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+
+        function fnPrev() {
+            var SR=document.getElementsByClassName("panel-body"); /*Get all the search results into an object array*/
+            if (SR.length==0) { SR=getAnyElementByName("DIV", "SearchResults"); }
+            if (current_disp==0) { alert("Beginning of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp--; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+
+        function getAnyElementByName(eleTag, eleName) { //*my IE Work Around
+            var Element_Tag=document.getElementsByTagName(eleTag);
+            var Return_Array=Array();
+            var c=0;
+            for (var i=0; Element_Tag.length > i; i++) {
+                if (Element_Tag[i].getAttribute("name")==eleName) {
+                    Return_Array[c]=Element_Tag[i];
+                    c++;
+                }
+            }
+            return Return_Array;
+        }
+    </script>
+</head>
+<body>
+<div class="panel-body" id="res0">Results 1<br/>Results 2</div>
+<div class="panel-body" id="res1" style="display: none;">Results 3<br/>Results 4</div>
+<div class="panel-body" id="res2" style="display: none;">Results 5<br/>Results 6</div>
+<div class="panel-body" id="res3" style="display: none;">Results 7<br/>Results 8</div>
+<div class="panel-body" id="res4" style="display: none;">Results 9<br/>Results 10</div>
+<div id="res5" style="display: none;">Results 11<br/>Results 12</div>
+<input type="button" onclick="fnPrev()" value="Prev"/>
+<input type="button" onclick="fnNext()" value="Next"/>
+</body>
+</html>

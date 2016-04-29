@@ -18,9 +18,9 @@ public class MarketJAXBLists {
 
     public MarketJAXBLists (List<CategoriesJAXB> aCategoryList, List<ProductDetailsJAXB> aProductDetailsList, List<ProductsJAXB> aProductsList, List<ProvidersJAXB> aProvidersList){
         this.categoryList = aCategoryList;
-        this.productDetailsList = aProductDetailsList;
-        this.productsList = aProductsList;
         this.providersList = aProvidersList;
+        this.productsList = aProductsList;
+        this.productDetailsList = aProductDetailsList;
     }
 
     public List<CategoriesJAXB> getCategoryList(){
@@ -33,14 +33,14 @@ public class MarketJAXBLists {
         this.categoryList = aCategoryList;
     }
 
-    public List <ProductDetailsJAXB> getProductDetailsList(){
-        return this.productDetailsList;
+    public List<ProvidersJAXB> getProvidersList(){
+        return this.providersList;
     }
 
-    @XmlElement(name = "productDetails")
-    @XmlElementWrapper(name = "allProductDetails")
-    public void setProductDetailsList (List<ProductDetailsJAXB> aProductDetailsList) {
-        this.productDetailsList = aProductDetailsList;
+    @XmlElement(name = "provider")
+    @XmlElementWrapper(name = "allProviders")
+    public void setProvidersList(List<ProvidersJAXB> aProvidersList){
+        this.providersList = aProvidersList;
     }
 
     public List<ProductsJAXB> getProductsList(){
@@ -53,14 +53,13 @@ public class MarketJAXBLists {
         this.productsList = aProductsList;
     }
 
-    public List<ProvidersJAXB> getProvidersList(){
-        return this.providersList;
+    public List <ProductDetailsJAXB> getProductDetailsList(){
+        return this.productDetailsList;
     }
 
-    @XmlElement(name = "provider")
-    @XmlElementWrapper(name = "allProviders")
-    public void setProvidersList(List<ProvidersJAXB> aProvidersList){
-        this.providersList = aProvidersList;
+    @XmlElement(name = "productDetails")
+    @XmlElementWrapper(name = "allProductDetails")
+    public void setProductDetailsList (List<ProductDetailsJAXB> aProductDetailsList) {
+        this.productDetailsList = aProductDetailsList;
     }
-
 }

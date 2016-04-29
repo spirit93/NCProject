@@ -1,18 +1,16 @@
 package ru.ncedu.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Алёна on 17.03.2016.
  */
 @Entity(name = "ProductsTable")
 @NamedQueries({
-        @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr"),
-//        @NamedQuery(name = "Products.getProdById",query = "select p from ProductsTable p where p.productsId =: productsId")
-    }
- )
-public class Products implements Serializable{
+        @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr")
+//        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
+})
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long productsId;

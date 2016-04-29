@@ -87,12 +87,8 @@ public class MarketManager {
 
         MarketService.addProduct(products,details);
     }
-
     public void addOrder(OrderBean orderBean, User userBean){
         ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
-//------------------------------
-//------------------------------
-
         Order order = new Order(orderBean);
         order.setUser(user);
         MarketService.addOrder(order);

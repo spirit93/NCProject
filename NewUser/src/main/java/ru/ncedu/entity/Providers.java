@@ -1,6 +1,7 @@
 package ru.ncedu.entity;
 
 import ru.ncedu.bean.ProvidersB;
+import ru.ncedu.jaxbclasses.ProvidersJAXB;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,6 +34,15 @@ public class Providers {
     }
 
     public Providers(){}
+
+    public Providers(ProvidersJAXB providersJAXB){
+        this.providerId = providersJAXB.getProviderId();
+        this.companyName = providersJAXB.getCompanyName();
+        this.phoneNumber = providersJAXB.getPhoneNumber();
+        this.emailOfCompany = providersJAXB.getEmailOfCompany();
+        this.adressOfCompany = providersJAXB.getAdressOfCompany();
+        this.websiteOfCompany = providersJAXB.getWebsiteOfCompany();
+    }
 
     public Providers(ProvidersB providersB){
         this.companyName = providersB.getCompanyName();

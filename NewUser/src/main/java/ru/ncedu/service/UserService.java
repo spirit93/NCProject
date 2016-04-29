@@ -55,7 +55,6 @@ public class UserService  extends Service{
         return user;
     }
 
-
     public static User addUser(User user){
         String pasMD5 = DigestUtils.md5Hex(user.getPassword());
         user.setPassword(pasMD5);

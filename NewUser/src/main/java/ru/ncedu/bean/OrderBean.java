@@ -135,6 +135,10 @@ public class OrderBean implements Serializable {
     }
 
     //    public UserBean getUserBean() {
+=======
+
+//    public UserBean getUserBean() {
+>>>>>>> origin/Dan
 //        return userBean;
 //    }
 //
@@ -158,6 +162,7 @@ public class OrderBean implements Serializable {
         this.idOfBt = idOfBt;
     }
 
+
     @Override
     public String toString() {
         return "Order{" +
@@ -169,6 +174,7 @@ public class OrderBean implements Serializable {
                 ", date=" + date +
                 '}';
     }
+
 
 }
 
