@@ -1,12 +1,9 @@
-package ru.ncedu.bean.archiver;
-
-import com.sun.deploy.association.Action;
+package ru.ncedu.utils.archiver;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;

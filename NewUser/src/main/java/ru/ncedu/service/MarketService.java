@@ -1,7 +1,6 @@
 package ru.ncedu.service;
 
-import ru.ncedu.bean.*;
-import ru.ncedu.bean.archiver.ArchiverImpl;
+import ru.ncedu.utils.archiver.ArchiverImpl;
 import ru.ncedu.entity.*;
 
 import javax.ejb.Stateless;

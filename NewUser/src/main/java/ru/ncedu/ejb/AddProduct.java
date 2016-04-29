@@ -48,6 +48,7 @@ public class AddProduct {
 
         String pathToProjImg = PropertiesClass.getProperties("pathToProject")+
                 PropertiesClass.getProperties("pathToImgDir")+product.getCategoryName()+"\\";
+
             File folder = new File(pathToProjImg);{
                 if (!folder.exists()){
                     folder.mkdirs();
@@ -56,25 +57,34 @@ public class AddProduct {
 
         File img = new File(pathToProjImg+"\\" + detailsB.getFile().getSubmittedFileName());
             if (detailsB.getFile() != null){
-                uploadImage(detailsB,pathToProjImg);
+                uploadImage(product,detailsB,pathToProjImg);
                 detailsB.setPathToImg("resources/img/categories/" + product.getCategoryName() + "/" + detailsB.getFile().getSubmittedFileName());
             }
 
-            if (!img.exists()){
-                detailsB.setPathToImg("resources/img/defCategories/"+product.getCategoryName()+".jpg");
-            }
+//            if (!img.exists()){
+//                detailsB.setPathToImg("resources/img/defCategories/"+product.getCategoryName()+".jpg");
+//            }
 
         marketManager.addProduct(product,detailsB);
         return "success";
     }
 
-    public void uploadImage(ProdDetailsB prodDet,String pathToProjImg){
-        try(FileOutputStream fos = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
+    public void uploadImage(ProductsB product, ProdDetailsB prodDet,String pathToProjImg){
+        String pathToGFimgs = PropertiesClass.getProperties("pathToGFImgFold")+product.getCategoryName()+"\\";
+        File dirExists = new File(pathToGFimgs);
+
+        if (!dirExists.exists()){
+            dirExists.mkdirs();
+        }
+        try(FileOutputStream fos1 = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
+            FileOutputStream fos2 = new FileOutputStream(pathToGFimgs + prodDet.getFile().getSubmittedFileName());
+//        try(FileOutputStream fos = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
             InputStream is = prodDet.getFile().getInputStream()){
             byte[] buf = new byte[1024];
                 while(is.available()>0){
                     int length = is.read(buf);
-                    fos.write(buf,0,length);
+                    fos1.write(buf,0,length);
+                    fos2.write(buf,0,length);
                 }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

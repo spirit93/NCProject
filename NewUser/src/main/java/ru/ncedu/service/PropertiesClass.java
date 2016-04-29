@@ -9,22 +9,23 @@ import java.util.Properties;
  * Created by Павел on 27.04.2016.
  */
 public class PropertiesClass {
-
-    public static String getProperties(String kay) {
+    public static String getProperties(String key) {
         Properties properties = new Properties();
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            try (InputStream is = classLoader.getResourceAsStream("configs.properties")) {
+                properties.load(is);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        try (InputStream is = classLoader.getResourceAsStream("configs.properties")) {
-
-            properties.load(is);
-
-            return properties.getProperty(kay);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        return null;
+        if (properties == null){
+            return "err";
+        }
+        return properties.getProperty(key);
     }
 }

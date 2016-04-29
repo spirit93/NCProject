@@ -102,7 +102,6 @@ public class MarketManager {
         MarketService.zipFolderOfImg();
     }
 
-
     public void unzipImgs(){
         MarketService.unzipImgToImgFold();
     }

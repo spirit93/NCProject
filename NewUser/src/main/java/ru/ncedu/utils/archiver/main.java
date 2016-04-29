@@ -1,4 +1,4 @@
-package ru.ncedu.bean.archiver;
+package ru.ncedu.utils.archiver;
 
 import java.io.IOException;
 import java.util.ArrayList;

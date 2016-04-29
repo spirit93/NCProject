@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Stateful
-@StatefulTimeout(value = 10, unit = TimeUnit.MINUTES)
+//@StatefulTimeout(value = 10, unit = TimeUnit.MINUTES)
 public class UserStatus {
     static User a ;
     public UserStatus(User b){
