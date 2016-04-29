@@ -6,8 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
+
     <h:form>
-        <h:commandButton value="login" action="#{loginCh.loginCheck(user)}"/>
+        <h:commandButton value="Press to zip" action="#{marketManager.zipImgs}"/><br/><br/>
+        <h:commandButton value="Press to unzip" action="#{marketManager.unzipImgs}"/>
     </h:form>
+
 </f:view>
 </html>

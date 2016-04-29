@@ -2,6 +2,7 @@ package ru.ncedu.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.http.Part;
 
 /**
  * Created by Павел on 30.03.2016.
@@ -14,6 +15,7 @@ public class ProdDetailsB {
     private int pricePerUnit;
     private int amountOfOrders;
     private String pathToImg;
+    private Part file;
 
     public ProdDetailsB() {
     }
@@ -56,5 +58,13 @@ public class ProdDetailsB {
 
     public void setAmountOfOrders(int amountOfOrders) {
         this.amountOfOrders = amountOfOrders;
+    }
+
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
     }
 }

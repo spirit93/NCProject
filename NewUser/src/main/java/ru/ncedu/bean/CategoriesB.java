@@ -2,6 +2,7 @@ package ru.ncedu.bean;
 
 import ru.ncedu.entity.Categories;
 import ru.ncedu.entity.Products;
+import ru.ncedu.service.MarketService;
 
 import java.util.List;
 

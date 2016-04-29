@@ -85,7 +85,7 @@
                                         <h:inputText value="#{user.email}"/><br/><br/>
                                       </div>
                                 <div class="modal-footer">
-                                    <h:commandLink action="#{marketManager.addOrder(orderBean,user)}" value="OK"/>
+                                    <h:commandLink action="#{addOrder.addOrder(orderBean,user)}" value="OK"/>
                                     <!--<a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>-->
                                     <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
                                 </div>
@@ -117,7 +117,7 @@
                                     <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     <h1 class="modal-title" align="center">Addition of product</h1>
                                 </div>
-                                <h:form id="product">
+                                <h:form id="product" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <h:outputLabel class="" value="Product name:"/>
                                         <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
@@ -137,7 +137,7 @@
                                         <h:inputText value="#{prodDetailsB.amountOfProducts}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
 
                                         <h:outputLabel class="" value="Image:"/>
-                                        <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
+                                        <h:inputFile class="form-control" style="width:250px" styleClass="btn btn-default" value="#{prodDetailsB.file}" required="true"/>
 
                                         <script type="application/javascript">
                                             $(".dropdown-menu li a").click(function(){

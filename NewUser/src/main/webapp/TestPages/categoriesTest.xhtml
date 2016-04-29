@@ -6,8 +6,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:form>
-        <h:commandButton value="initialisation of categories" action="#{addCategories.addCategories}"/>
+
+    <h:outputLabel class="" value="Image:"/>
+    <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
+
+
+    <h:form id="form1" enctype="multipart/form-data">
+        <h:inputFile styleClass="btn btn-default" value="#{addProduct.file}" required="true">
+        </h:inputFile>
+        <h:commandButton action="#{addProduct.uploadImage}" value="Upload"/>
     </h:form>
+
 </f:view>
 </html>

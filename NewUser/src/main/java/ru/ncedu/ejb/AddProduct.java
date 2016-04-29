@@ -2,11 +2,14 @@ package ru.ncedu.ejb;
 
 import ru.ncedu.bean.*;
 import ru.ncedu.entity.Products;
+import ru.ncedu.service.PropertiesClass;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -24,28 +27,59 @@ public class AddProduct {
         List<CategoriesB> listCat =  marketManager.getAllCategories();
         List<ProvidersB> listBrend = marketManager.getAllProviders();
 
-        for (CategoriesB cat:listCat){
-            if (cat.getNameOfCategory().equals(product.getCategoryName())){
-                isSameCat = true;
+            for (CategoriesB cat:listCat){
+                if (cat.getNameOfCategory().equals(product.getCategoryName())){
+                    isSameCat = true;
+                }
             }
-        }
-
-        for (ProvidersB prov : listBrend){
-            if (prov.getCompanyName().equals(product.getProviderName())){
-                isSameBrand = true;
+            for (ProvidersB prov : listBrend){
+                if (prov.getCompanyName().equals(product.getProviderName())){
+                    isSameBrand = true;
+                }
             }
-        }
+            if (!isSameCat){
+                FacesContext.getCurrentInstance().addMessage("product:categoryP", new FacesMessage(null, "Category no found"));
+                return "Err";
+            }
+            if (!isSameBrand){
+                FacesContext.getCurrentInstance().addMessage("product:brandP", new FacesMessage(null, "Brand not found"));
+                return "Err";
+            }
 
-        if (!isSameCat){
-            FacesContext.getCurrentInstance().addMessage("product:categoryP", new FacesMessage(null, "Category no found"));
-            return "Err";
-        }
-        if (!isSameBrand){
-            FacesContext.getCurrentInstance().addMessage("product:brandP", new FacesMessage(null, "Brand not found"));
-            return "Err";
-        }
+        String pathToProjImg = PropertiesClass.getProperties("pathToProject")+
+                PropertiesClass.getProperties("pathToImgDir")+product.getCategoryName()+"\\";
+            File folder = new File(pathToProjImg);{
+                if (!folder.exists()){
+                    folder.mkdirs();
+                }
+            }
+
+        File img = new File(pathToProjImg+"\\" + detailsB.getFile().getSubmittedFileName());
+            if (detailsB.getFile() != null){
+                uploadImage(detailsB,pathToProjImg);
+                detailsB.setPathToImg("resources/img/categories/" + product.getCategoryName() + "/" + detailsB.getFile().getSubmittedFileName());
+            }
+
+            if (!img.exists()){
+                detailsB.setPathToImg("resources/img/defCategories/"+product.getCategoryName()+".jpg");
+            }
 
         marketManager.addProduct(product,detailsB);
         return "success";
+    }
+
+    public void uploadImage(ProdDetailsB prodDet,String pathToProjImg){
+        try(FileOutputStream fos = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
+            InputStream is = prodDet.getFile().getInputStream()){
+            byte[] buf = new byte[1024];
+                while(is.available()>0){
+                    int length = is.read(buf);
+                    fos.write(buf,0,length);
+                }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

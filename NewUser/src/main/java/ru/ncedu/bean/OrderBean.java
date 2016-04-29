@@ -22,6 +22,9 @@ public class OrderBean implements Serializable {
     Integer discount;
     Date date;
     String idOfBt;
+    Order.StatusOrd status;
+
+//    public enum StatusOrd{ordered,processed,canceled};
 
     public OrderBean(){
     }
@@ -123,8 +126,15 @@ public class OrderBean implements Serializable {
         this.discount = discount;
     }
 
+    public Order.StatusOrd getStatus() {
+        return status;
+    }
 
-//    public UserBean getUserBean() {
+    public void setStatus(Integer status) {
+        this.status = this.status.values()[status];
+    }
+
+    //    public UserBean getUserBean() {
 //        return userBean;
 //    }
 //
@@ -148,15 +158,6 @@ public class OrderBean implements Serializable {
         this.idOfBt = idOfBt;
     }
 
-    //
-//    public Integer getId() {
-//        return Id;
-//    }
-//
-//    public void setId(Integer id) {
-//        Id = id;
-//    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -169,26 +170,5 @@ public class OrderBean implements Serializable {
                 '}';
     }
 
-//    @Override
-//    public boolean equals(Object o){
-//        if (this == o) return true;
-//        if (!(o instanceof OrderBean)) return false;
-//        OrderBean orders = (OrderBean) o;
-//        return  Objects.equals(orderId, orders.orderId) &&
-//                Objects.equals(number, orders.number) &&
-//                Objects.equals(phone, orders.phone) &&
-//                Objects.equals(discount, orders.discount) &&
-//                Objects.equals(date, orders.date);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = (int) (orderId ^ (orderId >>> 32));
-//        result = 31 * result + phone.hashCode();
-//        result = 31 * result + number;
-//        result = 31 * result + discount;
-//        result = 31 * result + date.hashCode();
-//        return result;
-//    }
 }
 

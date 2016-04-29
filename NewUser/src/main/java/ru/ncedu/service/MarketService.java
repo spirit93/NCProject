@@ -1,11 +1,14 @@
 package ru.ncedu.service;
 
-import ru.ncedu.bean.ProdDetailsB;
+import ru.ncedu.bean.*;
+import ru.ncedu.bean.archiver.ArchiverImpl;
 import ru.ncedu.entity.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -94,6 +97,22 @@ public class MarketService extends  Service{
         return result;
     }
 
+    public static Products getProdDetailsByProdId(int idOfProd){
+        TypedQuery<Products> query =  em.createNamedQuery("Products.getProdById", Products.class);
+        query.setParameter("productsId", (long)idOfProd);
+
+        Products products = null;
+        try{
+            products = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (products == null){
+            return null;
+        }
+        return products;
+    }
+
     //-------------productDetails---------------------
     public static List<ProductDetails> getAllProductDetails(){
         return em.createNamedQuery("ProductDetails.getAllProductDetails", ProductDetails.class).getResultList();
@@ -169,5 +188,42 @@ public class MarketService extends  Service{
         Order result = em.merge(order);
         em.getTransaction().commit();
         return result;
+    }
+
+    public static void changeStatusOfOrder(int orderId,int i){
+
+        em.getTransaction().begin();
+    }
+
+    public static ProductDetails changeAmountInSaplay(ru.ncedu.bean.User user, int changeTo){
+        em.getTransaction().begin();
+        ProductDetails result = getProdDetailsByProdId(user.getId()).getProductDetails();
+        result.setAmountOfProducts(changeTo);
+        em.merge(result);
+        em.getTransaction().commit();
+        return result;
+    }
+
+    //-----------------Archiver
+    public static void zipFolderOfImg(){
+        ArchiverImpl archiver = new ArchiverImpl();
+        List<String> files = new ArrayList<>();
+        files.add(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToImgDir"));
+        try {
+            archiver.writeToZip(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToZipFold"),files);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void unzipImgToImgFold(){
+        ArchiverImpl archiver = new ArchiverImpl();
+
+        try {
+            archiver.unpackZipArchiv(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToZipFold"),
+                    PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToImgDir"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -3,6 +3,7 @@ package ru.ncedu.ejb;
 import org.apache.commons.codec.digest.DigestUtils;
 import ru.ncedu.bean.User;
 import ru.ncedu.bean.UserManager;
+import ru.ncedu.bean.UserStatus;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
@@ -34,7 +35,6 @@ public class LoginCheckEjb {
         return false;
     }
 
-
     public boolean isGoodPas(ru.ncedu.bean.User user){
         String pasToCheck = DigestUtils.md5Hex(user.getPassword());
         String pasInDB = um.getUserByUserName(user.getUserName()).getPassword();
@@ -49,16 +49,12 @@ public class LoginCheckEjb {
             return res;
         }else if(!isSameUserExist(user) || !isGoodPas(user)){
             FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "Login or password error"));
-//            FacesContext.getCurrentInstance().addMessage("login:name", new FacesMessage("user not exist", "User not exist"));
             res = "Err";
             return res;
         }
-//        else if(!isGoodPas(user)){
-//            FacesContext.getCurrentInstance().addMessage("login:pas", new FacesMessage("password error", "Password error"));
-//            res = "pasErr";
-//            return res;
-//        }
         res = "success";
+
+        UserStatus.setStatus(user);
         return res;
     }
 }

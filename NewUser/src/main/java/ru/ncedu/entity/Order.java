@@ -11,10 +11,10 @@ import javax.persistence.Id;
  * Created by Алёна
  */
 @Entity(name = "orders")
-//@NamedQueries({
-//        @NamedQuery(name = "Order.getAllOrders", query = "SELECT or from OrdersTable or"),
-//        @NamedQuery(name = "Order.getOrderById", query = "SELECT or from OrdersTable or WHERE or.orderId = :orderId")
-//})
+@NamedQueries({
+//        @NamedQuery(name = "Order.getAllOrders", query = "SELECT or from orders or")
+//        ,@NamedQuery(name = "Order.getOrderById", query = "SELECT or from orders or WHERE or.orderId = :orderId")
+})
 public class Order implements Serializable {
 
     @Id
@@ -33,14 +33,20 @@ public class Order implements Serializable {
     Integer number;
     @Column
     Date date;
+    @Enumerated(EnumType.STRING)
+    @Column
+    StatusOrd status; // 0 - make an order , 1 - processed order, 2 - canceled order
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    public enum StatusOrd{ordered,processed,canceled};
+
     public Order(){}
 
     public Order(ru.ncedu.bean.OrderBean orderBean){
+        this.status = orderBean.getStatus();
         String toIntId = orderBean.getIdOfBt().substring(7,orderBean.getIdOfBt().length());
         this.idOfProd = Integer.parseInt(toIntId);
         this.userNameOrder = orderBean.getUserNameOrder();
@@ -134,6 +140,14 @@ public class Order implements Serializable {
 
     public void setIdOfProd(Integer idOfProd) {
         this.idOfProd = idOfProd;
+    }
+
+    public StatusOrd getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOrd status) {
+        this.status =status;
     }
 
     @Override
