@@ -6,6 +6,8 @@ import ru.ncedu.entity.*;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.List;
 
 /**

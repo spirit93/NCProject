@@ -17,9 +17,9 @@ import java.util.List;
 @WebServlet("/servlet/*")
 public class Servlet extends HttpServlet {
 
-    private String getHTMLOneTypeProduct (Products product, int panelNum, String prodType){ //не сразу постранично
+    private String getHTMLOneTypeProduct (Products product, int panelNum, String prodType){
         StringBuilder newDiv = new StringBuilder(""); //запрос выводящий со статусом 0
-        if(panelNum % 12 == 0){ //текущая страница, перенести на все вкладки и в main_page
+        if(panelNum % 12 == 0){ // перенести в main_page скрипт
             newDiv.append(" <div class = \"myblock-"+ prodType +"\" ");
             if(panelNum / 12 != 0){
                 newDiv.append("style=\"display: none;\"");
