@@ -21,6 +21,7 @@
           <element id="library" level="project" name="Maven: org.jboss:jandex:2.0.0.CR1" />
           <element id="library" level="project" name="Maven: javax:javaee-web-api:7.0" />
           <element id="library" level="project" name="Maven: javax.faces:jsf-api:2.0" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.0" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
         </element>
       </element>

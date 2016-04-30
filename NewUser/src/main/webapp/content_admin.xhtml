@@ -136,14 +136,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="addproduct" class="modal fade">
+                    <div id="addproduct" class="modal fade" >
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                     <h1 class="modal-title" align="center">Addition of product</h1>
                                 </div>
-                                <h:form id="product">
+                                <h:form id="product" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <h:outputLabel class="" value="Product name:"/>
                                         <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>

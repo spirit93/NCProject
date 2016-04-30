@@ -52,6 +52,7 @@ public class Servlet extends HttpServlet {
     }
 
     private String getHTMLAllTypeProducts(String typeProd) {
+        int i;
         StringBuilder result = new StringBuilder("");
         List<Products> productsList = MarketService.getAllCategoryProducts(typeProd);
         if(productsList!=null) {

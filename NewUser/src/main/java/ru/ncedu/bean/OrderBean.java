@@ -135,10 +135,6 @@ public class OrderBean implements Serializable {
     }
 
     //    public UserBean getUserBean() {
-=======
-
-//    public UserBean getUserBean() {
->>>>>>> origin/Dan
 //        return userBean;
 //    }
 //
