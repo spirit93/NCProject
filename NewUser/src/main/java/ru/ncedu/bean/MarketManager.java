@@ -182,11 +182,11 @@ public class MarketManager {
         zipArchFold.delete();
     }
 
-    public void zipImgs(){
-        MarketService.zipFolderOfImg();
-    }
-
-    public void unzipImgs(){
-        MarketService.unzipImgToImgFold();
-    }
+//    public void zipImgs(){
+//        MarketService.zipFolderOfImg();
+//    }
+//
+//    public void unzipImgs(){
+//        MarketService.unzipImgToImgFold();
+//    }
 }

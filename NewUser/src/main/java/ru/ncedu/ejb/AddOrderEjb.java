@@ -77,16 +77,6 @@ public class AddOrderEjb implements Serializable {
             return status;
     }
 
-    public void changeStatus(int orderID ,int i){
-        if (i>2 || i<0 ){
-            System.out.println("err");
-            //FM
-        }else{
-            MarketService.changeStatusOfOrder(orderID,i);
-        }
-
-    }
-
     public void changeStatus(int orderId, int i){
         if (i>2 || i<0 ){
             System.out.println("err");
