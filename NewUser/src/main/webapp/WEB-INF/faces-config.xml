@@ -70,6 +70,10 @@
         <from-view-id>/login_page.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{loginCh.loginCheck(user)}</from-action>
+            <from-outcome>Err</from-outcome>
+            <to-view-id>/login_page.xhtml</to-view-id>
+        </navigation-case>        <navigation-case>
+            <from-action>#{loginCh.loginCheck(user)}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/main_page.xhtml</to-view-id>
         </navigation-case>

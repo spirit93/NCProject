@@ -2,6 +2,7 @@ package ru.ncedu.ejb;
 
 import ru.ncedu.bean.MarketManager;
 import ru.ncedu.bean.OrderBean;
+import ru.ncedu.service.MarketService;
 import ru.ncedu.service.UserService;
 import ru.ncedu.service.Validator;
 
@@ -52,9 +53,36 @@ public class AddOrderEjb implements Serializable {
             //FC
             return "Err";
         }
+        if (orderBean.getDiscount() == null){
+            orderBean.setDiscount(0);
+        }
+        if (orderBean.getNumber() == null){
+            orderBean.setNumber(1);
+        }
+
+//        int amountInSaplay = MarketService.getProdDetailsByProdId(userBean.getId()).getProductDetails().getAmountOfProducts();
+
+//        if (amountInSaplay < orderBean.getNumber()){
+//            //FC
+//            return "Err";
+//        }else{
+//            MarketService.changeAmountInSaplay(userBean , amountInSaplay - orderBean.getNumber());
+//        }
+
+            orderBean.setStatus(0);
             orderBean.setDate(new Date());
             orderBean.setDiscount(0);
             marketManager.addOrder(orderBean, userBean);
             return "OrderIsCompleted";
+    }
+
+    public void changeStatus(int orderId, int i){
+        if (i>2 || i<0 ){
+            System.out.println("err");
+            //FM
+        }else{
+            MarketService.changeStatusOfOrder(orderId,i);
+        }
+
     }
 }

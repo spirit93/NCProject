@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 public class Validator {
 
     public boolean isEmailValid(String email){
+        if (email == null){
+            return false;
+        }
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*" +
                 "@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*([0-9A-Za-z])$");
         Matcher matcher = pattern.matcher(email);
@@ -20,6 +23,9 @@ public class Validator {
     }
 
     public boolean isPhoneValid(String phone){
+        if (phone == null){
+            return false;
+        }
         Pattern pattern = Pattern.compile("^[0-9]+[0-9-]+[0-9]$");
         Matcher matcher = pattern.matcher(phone);
         return matcher.matches();

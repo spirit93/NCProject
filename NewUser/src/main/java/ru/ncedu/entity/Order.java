@@ -12,8 +12,10 @@ import javax.persistence.Id;
  */
 @Entity(name = "orders")
 @NamedQueries({
-       @NamedQuery(name = "Order.getAllOrderedProducts", query = "SELECT p FROM orders o, ProductsTable p WHERE o.idOfProd = p.productsId"),
-       @NamedQuery(name = "Order.getAllOrders", query = "SELECT o FROM orders o")
+       @NamedQuery(name = "Order.getAllOrderedProducts", query = "SELECT p FROM orders o, ProductsTable p WHERE o.status='ordered' and  o.idOfProd = p.productsId"),
+       @NamedQuery(name = "Order.getAllOrders", query = "SELECT o FROM orders o WHERE o.status = 'ordered'"),
+       @NamedQuery(name = "Order.getOrderById", query = "SELECT o FROM orders o WHERE o.orderId = :orderId")
+
    //@NamedQuery(name = "Order.getOrderById", query = "SELECT o from orders o WHERE o.orderId = :orderId")
 })
 public class Order implements Serializable {
@@ -34,14 +36,20 @@ public class Order implements Serializable {
     Integer number;
     @Column
     Date date;
+    @Enumerated(EnumType.STRING)
+    @Column
+    StatusOrd status; // 0 - make an order , 1 - processed order, 2 - canceled order
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    public enum StatusOrd{ordered,processed,canceled};
+
     public Order(){}
 
     public Order(ru.ncedu.bean.OrderBean orderBean){
+        this.status = orderBean.getStatus();
         String toIntId = orderBean.getIdOfBt().substring(7,orderBean.getIdOfBt().length());
         this.idOfProd = Integer.parseInt(toIntId);
         this.userNameOrder = orderBean.getUserNameOrder();
@@ -135,6 +143,14 @@ public class Order implements Serializable {
 
     public void setIdOfProd(Integer idOfProd) {
         this.idOfProd = idOfProd;
+    }
+
+    public StatusOrd getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOrd status) {
+        this.status =status;
     }
 
     @Override

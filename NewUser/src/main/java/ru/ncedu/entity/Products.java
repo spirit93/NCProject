@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Entity(name = "ProductsTable")
 @NamedQueries({
         @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr"),
-        //@NamedQuery(name = "Product.getProductByName",query = "select pr from ProductsTable pr where pr.nameOfProduct =: nameOfProduct")
+        @NamedQuery(name = "Products.getProductById", query = "SELECT pr FROM ProductsTable pr WHERE pr.productsId=:productsId")
+//        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
 })
 public class Products {
     @Id
@@ -34,6 +35,16 @@ public class Products {
     @JoinColumn(name = "productsDetailsId")
     private ProductDetails productDetails;
 
+    public Products(ProductsJAXB productsJAXB){
+        Categories category = (productsJAXB.getCategoryName() == null) ? null
+                : MarketService.getCategoryByName(productsJAXB.getCategoryName());
+        Providers provider = (productsJAXB.getProviderName() == null) ? null
+                : MarketService.getProviderByName(productsJAXB.getProviderName());
+        this.productsId = productsJAXB.getProductsId();
+        this.nameOfProduct = productsJAXB.getNameOfProduct();
+        this.providers = provider;
+        this.categories = category;
+    }
 
     public Providers getProviders(){
             return providers;
@@ -50,17 +61,6 @@ public class Products {
         this.providers = providers;
         this.nameOfProduct = nameOfProduct;
         this.categories = categories;
-    }
-
-    public Products(ProductsJAXB productsJAXB){
-        Categories category = (productsJAXB.getCategoryName() == null) ? null
-                : MarketService.getCategoryByName(productsJAXB.getCategoryName());
-        Providers provider = (productsJAXB.getProviderName() == null) ? null
-                :MarketService.getProviderByName(productsJAXB.getProviderName());
-        this.productsId = productsJAXB.getProductsId();
-        this.nameOfProduct = productsJAXB.getNameOfProduct();
-        this.providers = provider;
-        this.categories = category;
     }
 
     public Products(String nameOfProduct, int amountOfProducts, int pricePerOne, int amountOfOrders){

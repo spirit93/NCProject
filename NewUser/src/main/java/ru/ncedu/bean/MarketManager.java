@@ -91,6 +91,19 @@ public class MarketManager {
         ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
         Order order = new Order(orderBean);
         order.setUser(user);
+        try {
+            MarketService.decrementAmountOfProducts(order.getIdOfProd());
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+        }
         MarketService.addOrder(order);
+    }
+
+    public void zipImgs(){
+        MarketService.zipFolderOfImg();
+    }
+
+    public void unzipImgs(){
+        MarketService.unzipImgToImgFold();
     }
 }

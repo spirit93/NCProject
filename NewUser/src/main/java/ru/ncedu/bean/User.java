@@ -16,6 +16,10 @@ public class User {
     String repassword;
     String email;
 
+    public User getStatus(){
+        return UserStatus.getUser();
+    }
+
     public User() {
     }
 

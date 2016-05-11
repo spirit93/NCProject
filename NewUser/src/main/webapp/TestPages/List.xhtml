@@ -12,12 +12,12 @@
         Name of category: <h:inputText value="#{productsB.categoryName}"/><br/>
         Name of provider: <h:inputText value="#{productsB.providerName}"/><br/>
 
+        String to file:<h:inputFile id="file" value="#{prodDetailsB.pathToImg}"/>
 
         <h:commandButton action="#{addProduct.addProd(productsB,prodDetailsB)}" value="add product"/><br/>
 <br/>
         <h:commandButton action="#{brendCh.initProviders}"  value="add Providers"/><br/>
         <h:commandButton action="#{addCategories.addCategories}"  value="add Categories"/><br/><br/>
-        <h:commandButton action="#{addCategories.getCategoryProd(productsB.categoryName)}" value="get products of category"/>
     </h:form>
 </f:view>
 </html>

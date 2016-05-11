@@ -45,7 +45,7 @@ public class RegCheckEjb {
             FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage(null, "Null fields"));
             return "Err";
         }else if(!isSameUser(user.getUserName())){
-            FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage("", "User not found"));
+            FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage("", "Same user exists"));
             return "Err";
         }else if(!isSamePass(user)){
             FacesContext.getCurrentInstance().addMessage("reg:pas", new FacesMessage("", "Password error"));

@@ -7,16 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:form>
-
-        Login: <h:inputText value="#{user.userName}"/>
-        Password: <h:inputText value="#{user.password}"/>
-
         <h:commandButton value="login" action="#{loginCh.loginCheck(user)}"/>
-
-        <!--<h:commandButton  value="login test user" action="#{loginCh.loginCheck('good user','pas1')}"/>-->
-        <!--<h:commandButton  value="Dont exist" action="#{loginCh.loginCheck('9999','123')}"/>-->
-        <!--<h:commandButton  value="Wrong password2" action="#{loginCh.loginCheck('123','123')}"/>-->
-
     </h:form>
 </f:view>
 </html>

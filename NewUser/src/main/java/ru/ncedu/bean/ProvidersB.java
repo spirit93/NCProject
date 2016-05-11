@@ -14,6 +14,7 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 public class ProvidersB {
+
     private List<ProductsB> products;
     private long providerId;
     private String companyName;
