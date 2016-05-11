@@ -55,12 +55,17 @@ public class UserService  extends Service{
         return user;
     }
 
-    public static User addUser(User user){
+    public static User addUser(User user , int i){
         String pasMD5 = DigestUtils.md5Hex(user.getPassword());
         user.setPassword(pasMD5);
 
         em.getTransaction().begin();
-        UserType userType = em.merge(new UserType());
+//        if (i == 1){
+//            userType = em.merge(new UserType(1));
+//        }else{
+//            userType = em.merge(new UserType());
+//        }
+        UserType userType = em.merge(new UserType(i));
         user.setUserType(userType);
         User result = em.merge(user);
         em.getTransaction().commit();
@@ -70,6 +75,23 @@ public class UserService  extends Service{
     public static UserType addUserType(UserType uT){
         em.getTransaction().begin();
         UserType result = em.merge(uT);
+        em.getTransaction().commit();
+        return result;
+    }
+
+    public static User changeUserType(String nameOfUser, int i){
+        User res = getUserByName(nameOfUser);
+            if (res == null){
+                //FC
+                return null;
+            }else if(i<0 || i>1 ) {
+                //FC
+                return null;
+            }
+        res.getUserType().setType(i);
+
+        em.getTransaction().begin();
+        User result = em.merge(res);
         em.getTransaction().commit();
         return result;
     }

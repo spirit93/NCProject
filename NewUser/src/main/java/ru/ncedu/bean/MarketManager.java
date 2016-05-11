@@ -1,10 +1,17 @@
 package ru.ncedu.bean;
 
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 import ru.ncedu.entity.*;
 import ru.ncedu.service.MarketService;
 import ru.ncedu.service.UserService;
 
 import javax.ejb.Stateless;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,18 +94,66 @@ public class MarketManager {
 
         MarketService.addProduct(products,details);
     }
-    public void addOrder(OrderBean orderBean, User userBean){
-        ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
+    public String addOrder(OrderBean orderBean, User userBean){
+//        ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
+        ru.ncedu.entity.User user = UserService.getUserByName(UserStatus.getUser().getUserName());
+
+        if (user == null){
+            return "userNotLoggin";
+
+        }else{
         Order order = new Order(orderBean);
         order.setUser(user);
         MarketService.addOrder(order);
+        }
+        return "well";
+    }
+
+    //-----------------Archiver
+
+    private File imagesZip ;
+    private StreamedContent content;
+    private Part partToZip;
+
+    {
+        imagesZip = new File("images.zip");
+        try {
+            content = new DefaultStreamedContent(new FileInputStream(imagesZip),"application/zip","ImagesZip.zip");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public File getImagesZip() {
+        return imagesZip;
+    }
+
+    public Part getPartToZip() {
+        return partToZip;
+    }
+
+    public void setPartToZip(Part partToZip) {
+        this.partToZip = partToZip;
+    }
+
+    public void setImagesZip(File imagesZip) {
+        this.imagesZip = imagesZip;
+    }
+
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
     }
 
     public void zipImgs(){
-        MarketService.zipFolderOfImg();
+        MarketService.zipFolderOfImg(getImagesZip());
     }
 
     public void unzipImgs(){
-        MarketService.unzipImgToImgFold();
+        MarketService.unzipImgToImgFold(getPartToZip());
     }
 }

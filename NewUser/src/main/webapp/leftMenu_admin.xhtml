@@ -35,6 +35,7 @@
         <div class="btn-group">
                 <ul class="nav nav-sidebar">
                     <h:form>
+
                         <li> <a href="#addproduct"  class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a product</a> </li>
                         <li> <a href="#addbrand" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a brand</a> </li>
                         <li> <h:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" action="#{addCategories.addCategories}" value="Init categories" /></li>
@@ -43,7 +44,16 @@
                                 <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
                             </p:commandButton>
                         </li>
+
+                        <li>
+                            <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px"
+                                             value="Export images" ajax="false" action="#{marketManager.zipImgs}">
+                                <p:fileDownload value="#{marketManager.content}"></p:fileDownload>
+                            </p:commandButton>
+                        </li>
                     </h:form>
+
+
                     <h:form id="form" enctype="multipart/form-data">
                         <li>
                             <div class="fileUpload btn btn-default">
@@ -52,7 +62,15 @@
                                     <f:ajax listener="#{parserXML.upload}" render="@form"/>
                                 </h:inputFile>
                             </div>
-                         </li>
+                        </li>
+                        <li>
+                            <div class="fileUpload btn btn-default">
+                                <span>Import images</span>
+                                <h:inputFile value="#{marketManager.partToZip}" style="width: 150px; height: 40px"  type="file" class="upload" required="true">
+                                    <f:ajax listener="#{marketManager.unzipImgs}" render="@form"/>
+                                </h:inputFile>
+                            </div>
+                        </li>
                     </h:form>
                 </ul>
 

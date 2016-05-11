@@ -27,17 +27,17 @@ public class ArchiverImpl implements Archiver{
     @Override
     public void writeToZip(String pathToZipFile, List<String> list) throws IOException {
 
-        int k = pathToZipFile.length();
-        while (pathToZipFile.charAt(k-1)!='\\'){
-            k--;
-        }
-
-        File folder = new File(pathToZipFile.substring(0,k));
-
-        if(!folder.isDirectory()){                //if folder not found - create it
-            File newFolder =new File(pathToZipFile.substring(0,k));
-            newFolder.mkdirs();
-        }
+//        int k = pathToZipFile.length();
+//        while (pathToZipFile.charAt(k-1)!='\\'){
+//            k--;
+//        }
+//
+//        File folder = new File(pathToZipFile.substring(0,k));
+//
+//        if(!folder.isDirectory()){                //if folder not found - create it
+//            File newFolder =new File(pathToZipFile.substring(0,k));
+//            newFolder.mkdirs();
+//        }
 
         ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(pathToZipFile));
         for(int j=0; j<list.size(); j++) {
@@ -111,11 +111,6 @@ public class ArchiverImpl implements Archiver{
                 int length = zin.read(buffer);
                 zout.write(buffer,0,length);
             }
-//            while (i != -1) {
-//                i = zin.read();
-//                if (i == -1) break;
-//                zout.write(i);
-//            }
             zin.close();
             //end write
 //            System.out.println(nameForZipEntry(pathToFile) + " packed");

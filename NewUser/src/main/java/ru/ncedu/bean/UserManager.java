@@ -52,12 +52,12 @@ public class UserManager implements Serializable {
         return resultListUT;
     }
 
-    public void addUser(ru.ncedu.bean.User user) {
-
-        UserService.addUser(new User(user.getUserName(),user.getPassword(),user.getEmail()));
+    public void addUser(ru.ncedu.bean.User user , int i) {
+        UserService.addUser(new User(user.getUserName(),user.getPassword(),user.getEmail()), i );
     }
 
-    public void addTestUser() {
-        UserService.addUser(new User("name","itIsPas","itIsMail"));
+    public void changeUserStatus(ru.ncedu.bean.User user , int status){
+        UserService.changeUserType(user.getUserName() , status);
+
     }
 }

@@ -2,6 +2,8 @@ package ru.ncedu.ejb;
 
 import ru.ncedu.bean.User;
 import ru.ncedu.bean.UserManager;
+import ru.ncedu.bean.UserStatus;
+import ru.ncedu.service.UserService;
 import ru.ncedu.service.Validator;
 
 import javax.ejb.Stateless;
@@ -54,7 +56,29 @@ public class RegCheckEjb {
             FacesContext.getCurrentInstance().addMessage("reg:email", new FacesMessage("", "Wrong email"));
             return "Err";
         }
-        userManager.addUser(user);
+        if(userManager.getAllUsers().isEmpty()){
+            userManager.addUser(user,1);
+        }else{
+        userManager.addUser(user,0);
+        }
         return "success";
+    }
+
+    public void changeStatus(User user,int status){
+        userManager.changeUserStatus(user,status);
+    }
+
+    public String getUserStatus(){
+        User user = UserStatus.getUser();
+        if (user == null){
+            return "user";
+        }
+
+        int i = UserService.getUserByName(user.getUserName()).getUserType().getType();
+
+        if (i == 1){
+            return "admin";
+        }
+        return "user";
     }
 }

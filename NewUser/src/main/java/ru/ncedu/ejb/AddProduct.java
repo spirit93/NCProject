@@ -58,13 +58,13 @@ public class AddProduct {
         File img = new File(pathToProjImg+"\\" + detailsB.getFile().getSubmittedFileName());
             if (detailsB.getFile() != null){
                 uploadImage(product,detailsB,pathToProjImg);
-                detailsB.setPathToImg("resources/img/categories/" + product.getCategoryName() + "/" + detailsB.getFile().getSubmittedFileName());
-            }
 
-//            if (!img.exists()){
-//                detailsB.setPathToImg("resources/img/defCategories/"+product.getCategoryName()+".jpg");
-//            }
-
+                    if (img.exists()) {
+                        detailsB.setPathToImg("resources/img/categories/" + product.getCategoryName() + "/" + detailsB.getFile().getSubmittedFileName());
+                    }else {
+                        detailsB.setPathToImg("resources/img/defCategories/" + detailsB.getFile().getSubmittedFileName());
+                    }
+                }
         marketManager.addProduct(product,detailsB);
         return "success";
     }
@@ -78,7 +78,6 @@ public class AddProduct {
         }
         try(FileOutputStream fos1 = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
             FileOutputStream fos2 = new FileOutputStream(pathToGFimgs + prodDet.getFile().getSubmittedFileName());
-//        try(FileOutputStream fos = new FileOutputStream(pathToProjImg + prodDet.getFile().getSubmittedFileName());
             InputStream is = prodDet.getFile().getInputStream()){
             byte[] buf = new byte[1024];
                 while(is.available()>0){

@@ -1,5 +1,6 @@
 package ru.ncedu.service;
 
+import org.primefaces.model.UploadedFile;
 import ru.ncedu.bean.ProdDetailsB;
 import ru.ncedu.entity.*;
 import ru.ncedu.utils.archiver.ArchiverImpl;
@@ -7,6 +8,8 @@ import ru.ncedu.utils.archiver.ArchiverImpl;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -191,15 +194,26 @@ public class MarketService extends  Service{
         em.getTransaction().begin();
 //        user = em.merge(user);
 //        order.setUser(user);
-
         Order result = em.merge(order);
         em.getTransaction().commit();
         return result;
     }
 
-    public static void changeStatusOfOrder(int orderId,int i){
-
+    public static Order changeStatusOfOrder(int orderId, int i){
         em.getTransaction().begin();
+        TypedQuery<Order> query =em.createNamedQuery("Order.getOrderById",Order.class);
+        query.setParameter("orderId",orderId);
+
+        Order order = null;
+        try{
+            order = query.getSingleResult();
+        }catch (NoResultException ignore){
+        }
+
+        if (order == null){
+            return null;
+        }
+        return order;
     }
 
     public static ProductDetails changeAmountInSaplay(ru.ncedu.bean.User user, int changeTo){
@@ -212,23 +226,36 @@ public class MarketService extends  Service{
     }
 
     //-----------------Archiver
-    public static void zipFolderOfImg(){
+
+    private File imagesZip = new File("images.zip");
+
+    public File getImagesZip() {
+        return imagesZip;
+    }
+
+    public void setImagesZip(File imagesZip) {
+        this.imagesZip = imagesZip;
+    }
+
+    public  static void zipFolderOfImg(File imagesZip){
         ArchiverImpl archiver = new ArchiverImpl();
         List<String> files = new ArrayList<>();
         files.add(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToImgDir"));
         try {
-            archiver.writeToZip(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToZipFold"),files);
+            archiver.writeToZip(imagesZip.getPath(),files);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void unzipImgToImgFold(){
+    public static void unzipImgToImgFold(Part zipFile){
+        File zipF = new File(PropertiesClass.getProperties("pathToDownloads")+zipFile.getSubmittedFileName());
         ArchiverImpl archiver = new ArchiverImpl();
-
         try {
-            archiver.unpackZipArchiv(PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToZipFold"),
+            archiver.unpackZipArchiv(zipF.getPath(),
                     PropertiesClass.getProperties("pathToProject")+PropertiesClass.getProperties("pathToImgDir"));
+            archiver.unpackZipArchiv(zipF.getPath(),
+                    PropertiesClass.getProperties("pathToGFImgFold"));
         } catch (IOException e) {
             e.printStackTrace();
         }

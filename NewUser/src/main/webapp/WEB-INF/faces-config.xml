@@ -72,12 +72,33 @@
             <from-action>#{loginCh.loginCheck(user)}</from-action>
             <from-outcome>Err</from-outcome>
             <to-view-id>/login_page.xhtml</to-view-id>
-        </navigation-case>        <navigation-case>
+        </navigation-case>
+        <navigation-case>
             <from-action>#{loginCh.loginCheck(user)}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/main_page.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/admin_page.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{regCh.getUserStatus}</from-action>
+            <from-outcome>user</from-outcome>
+            <to-view-id>/main_page.xhtml</to-view-id>
+            <!--<redirect/>-->
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.getUserStatus}</from-action>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{regCh.getUserStatus}</from-action>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/clear_page.xhtml</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
 
 </faces-config>

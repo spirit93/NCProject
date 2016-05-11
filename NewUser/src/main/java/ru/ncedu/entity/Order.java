@@ -13,8 +13,8 @@ import javax.persistence.Id;
 @Entity(name = "orders")
 @NamedQueries({
        @NamedQuery(name = "Order.getAllOrderedProducts", query = "SELECT p FROM orders o, ProductsTable p WHERE o.idOfProd = p.productsId"),
-       @NamedQuery(name = "Order.getAllOrders", query = "SELECT o FROM orders o")
-   //@NamedQuery(name = "Order.getOrderById", query = "SELECT o from orders o WHERE o.orderId = :orderId")
+       @NamedQuery(name = "Order.getAllOrders", query = "SELECT o FROM orders o"),
+       @NamedQuery(name = "Order.getOrderById", query = "SELECT o from orders o WHERE o.orderId = :orderId")
 })
 public class Order implements Serializable {
 

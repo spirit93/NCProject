@@ -19,7 +19,7 @@ public class UserType implements Serializable {
     int id;
 
     @Column
-    int type = 0;               // 0 - user, 1 - admin ;
+    int type;               // 0 - user, 1 - admin ;
 
     @OneToOne(mappedBy = "userType")
     private User users;

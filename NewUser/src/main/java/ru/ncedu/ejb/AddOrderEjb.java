@@ -46,10 +46,11 @@ public class AddOrderEjb implements Serializable {
                 "".equals(userBean.getEmail())){
             FacesContext.getCurrentInstance().addMessage("reg:name", new FacesMessage(null, "Null fields"));
             return "Err";
-        }else if (UserService.getUserByEmail(userBean.getEmail()) == null){
+        }
+        else if (UserService.getUserByEmail(userBean.getEmail()) == null){
             //FC
-            return "Err";
-        }else if (!validator.isPhoneValid(orderBean.getPhone())){
+            return "Err";}
+        else if (!validator.isPhoneValid(orderBean.getPhone())){
             //FC
             return "Err";
         }
@@ -72,16 +73,16 @@ public class AddOrderEjb implements Serializable {
             orderBean.setStatus(0);
             orderBean.setDate(new Date());
             orderBean.setDiscount(0);
-            marketManager.addOrder(orderBean, userBean);
-            return "OrderIsCompleted";
+            String status = marketManager.addOrder(orderBean, userBean);
+            return status;
     }
 
-    public void changeStatus(int i){
+    public void changeStatus(int orderID ,int i){
         if (i>2 || i<0 ){
             System.out.println("err");
             //FM
         }else{
-//            MarketService.
+            MarketService.changeStatusOfOrder(orderID,i);
         }
 
     }
