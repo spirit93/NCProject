@@ -12,6 +12,7 @@ import javax.persistence.*;
 //@Table(name = "ProductDetailsTable")
 @NamedQueries({
         @NamedQuery(name = "ProductDetails.getAllProductDetails", query = "SELECT pd FROM ProductDetailsTable pd")
+        //@NamedQuery(name = "ProductDetails.getDetailsByProdId", query = "SELECT d FROM ProductsTable p, ProductDetailsTable d WHERE p.productsDetailsId = d.productsDetailsId and p.productsId =:productsId")
 })
 public class ProductDetails {
     private long productsDetailsId;

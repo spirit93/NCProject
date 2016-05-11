@@ -121,6 +121,31 @@ public class MarketService extends  Service{
         return em.createNamedQuery("ProductDetails.getAllProductDetails", ProductDetails.class).getResultList();
     }
 
+    public static void incrementAmountOfProducts(long prodId){
+        em.getTransaction().begin();
+        TypedQuery<Products> query = em.createNamedQuery("Products.getProductById", Products.class);
+        query.setParameter("productsId", prodId);
+        Products prod = query.getSingleResult();
+        ProductDetails prodDetails = prod.getProductDetails();
+        prodDetails.setAmountOfProducts(prodDetails.getAmountOfProducts()+1);
+        em.merge(prodDetails);
+        em.getTransaction().commit();
+    }
+
+    public static void decrementAmountOfProducts(long prodId) throws IllegalArgumentException{
+        em.getTransaction().begin();
+        TypedQuery<Products> query = em.createNamedQuery("Products.getProductById", Products.class);
+        query.setParameter("productsId", prodId);
+        Products prod = query.getSingleResult();
+        ProductDetails prodDetails = prod.getProductDetails();
+        if(prodDetails.getAmountOfProducts()<=0){ //it shouldn't happen, because we don't show products with empty amount on the site
+            throw new IllegalArgumentException();
+        }
+        prodDetails.setAmountOfProducts(prodDetails.getAmountOfProducts()-1);
+        em.merge(prodDetails);
+        em.getTransaction().commit();
+    }
+
     //--------------- categories -------------------
     public static Categories addCategory(Categories cat) {
         em.getTransaction().begin();
@@ -178,8 +203,13 @@ public class MarketService extends  Service{
         if (category == null){
             return null;
         }
-
-        return category.getProducts();
+        List<Products> notEmptyProducts = new ArrayList<>();
+        for(Products product: category.getProducts()){
+            if(product.getProductDetails().getAmountOfProducts()>0){
+                notEmptyProducts.add(product);
+            }
+        }
+        return notEmptyProducts;
     }
 
     //---------------orders
@@ -194,26 +224,23 @@ public class MarketService extends  Service{
         em.getTransaction().begin();
 //        user = em.merge(user);
 //        order.setUser(user);
+
         Order result = em.merge(order);
         em.getTransaction().commit();
         return result;
     }
 
-    public static Order changeStatusOfOrder(int orderId, int i){
+    public static void changeStatusOfOrder(int orderId,int i){
         em.getTransaction().begin();
-        TypedQuery<Order> query =em.createNamedQuery("Order.getOrderById",Order.class);
+        TypedQuery <Order> query =  em.createNamedQuery("Order.getOrderById", Order.class);
         query.setParameter("orderId",orderId);
-
-        Order order = null;
-        try{
-            order = query.getSingleResult();
-        }catch (NoResultException ignore){
+        Order order = query.getSingleResult();
+        order.setStatus(Order.StatusOrd.values()[i]);
+        em.merge(order);
+        em.getTransaction().commit();
+        if(i==2){
+            incrementAmountOfProducts(order.getIdOfProd());
         }
-
-        if (order == null){
-            return null;
-        }
-        return order;
     }
 
     public static ProductDetails changeAmountInSaplay(ru.ncedu.bean.User user, int changeTo){

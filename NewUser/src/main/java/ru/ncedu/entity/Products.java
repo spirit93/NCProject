@@ -10,7 +10,8 @@ import javax.persistence.*;
  */
 @Entity(name = "ProductsTable")
 @NamedQueries({
-        @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr")
+        @NamedQuery(name = "Products.getAllProducts", query = "SELECT pr FROM ProductsTable pr"),
+        @NamedQuery(name = "Products.getProductById", query = "SELECT pr FROM ProductsTable pr WHERE pr.productsId=:productsId")
 //        @NamedQuery(name = "Product.getProductByName",query = "select pr from productstable pr where pr.nameOfProduct =: nameOfProduct")
 })
 public class Products {
@@ -33,6 +34,7 @@ public class Products {
     @OneToOne
     @JoinColumn(name = "productsDetailsId")
     private ProductDetails productDetails;
+
 
     public Products(ProductsJAXB productsJAXB){
         Categories category = (productsJAXB.getCategoryName() == null) ? null

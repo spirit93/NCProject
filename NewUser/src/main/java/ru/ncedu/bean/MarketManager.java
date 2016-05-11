@@ -103,6 +103,11 @@ public class MarketManager {
         }else{
         Order order = new Order(orderBean);
         order.setUser(user);
+        try {
+            MarketService.decrementAmountOfProducts(order.getIdOfProd());
+        }catch (IllegalArgumentException e){
+            e.getMessage();
+        }
         MarketService.addOrder(order);
         }
         return "well";
@@ -175,5 +180,13 @@ public class MarketManager {
         MarketService.unzipImgToImgFold(zipArch);
         zipArch.delete();
         zipArchFold.delete();
+    }
+
+    public void zipImgs(){
+        MarketService.zipFolderOfImg();
+    }
+
+    public void unzipImgs(){
+        MarketService.unzipImgToImgFold();
     }
 }

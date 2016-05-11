@@ -57,9 +57,9 @@
 
                     <h:form id="form" enctype="multipart/form-data">
                         <li>
-                            <div class="fileUpload btn btn-default">
+                            <div class="fileUpload btn btn-default" style="width: 150px; height: 40px">
                                 <span>Import</span>
-                                <h:inputFile value="#{parserXML.file1}" style="width: 150px; height: 40px"  type="file" class="upload" required="true">
+                                <h:inputFile value="#{parserXML.file1}" type="file" class="upload" required="true">
                                     <f:ajax listener="#{parserXML.upload}" render="@form"/>
                                 </h:inputFile>
                             </div>
