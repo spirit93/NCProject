@@ -5,13 +5,12 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 import ru.ncedu.entity.*;
 import ru.ncedu.service.MarketService;
+import ru.ncedu.service.PropertiesClass;
 import ru.ncedu.service.UserService;
 
 import javax.ejb.Stateless;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,6 +153,27 @@ public class MarketManager {
     }
 
     public void unzipImgs(){
-        MarketService.unzipImgToImgFold(getPartToZip());
+        String stringToZip = PropertiesClass.getProperties("pathToProject") + PropertiesClass.getProperties("pathToImgZip");
+        File zipArchFold = new File(stringToZip);
+            if (!zipArchFold.exists()){
+                zipArchFold.mkdirs();
+            }
+        File zipArch = new File(stringToZip +"zipArch.zip");
+
+        try (InputStream is = getPartToZip().getInputStream();FileOutputStream fos = new FileOutputStream(zipArch)){
+            byte[] buf = new byte[1024];
+
+            while (is.available() > 0) {
+                int length = is.read(buf);
+                fos.write(buf,0,length);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MarketService.unzipImgToImgFold(zipArch);
+        zipArch.delete();
+        zipArchFold.delete();
     }
 }

@@ -248,8 +248,9 @@ public class MarketService extends  Service{
         }
     }
 
-    public static void unzipImgToImgFold(Part zipFile){
-        File zipF = new File(PropertiesClass.getProperties("pathToDownloads")+zipFile.getSubmittedFileName());
+    public static void unzipImgToImgFold(File zipF){
+//        File zipF = new File(PropertiesClass.getProperties("pathToDownloads")+zipFile.getSubmittedFileName());
+//        File zipF = new File(PropertiesClass.getProperties("pathToDownloads")+zipFile.getSubmittedFileName());
         ArchiverImpl archiver = new ArchiverImpl();
         try {
             archiver.unpackZipArchiv(zipF.getPath(),
