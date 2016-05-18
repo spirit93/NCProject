@@ -94,12 +94,10 @@ public class MarketManager {
         MarketService.addProduct(products,details);
     }
     public String addOrder(OrderBean orderBean, User userBean){
-//        ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
-        ru.ncedu.entity.User user = UserService.getUserByName(UserStatus.getUser().getUserName());
-
+        ru.ncedu.entity.User user = UserService.getUserByEmail(userBean.getEmail());
+//        ru.ncedu.entity.User user = UserService.getUserByName(UserStatus.getUser().getUserName());
         if (user == null){
             return "userNotLoggin";
-
         }else{
         Order order = new Order(orderBean);
         order.setUser(user);

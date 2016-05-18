@@ -16,5 +16,8 @@ public class StatusServlet extends HttpServlet {
         int orderId = Integer.parseInt(req.getParameter("id"));
         int status = Integer.parseInt(req.getParameter("status"));
         MarketService.changeStatusOfOrder(orderId,status);
+        resp.setContentType("text/plain");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(Servlet.getHTMLOrders());
     }
 }

@@ -4,6 +4,7 @@ import ru.ncedu.entity.Order;
 import ru.ncedu.entity.Products;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -16,23 +17,39 @@ import java.util.List;
 @WebServlet("/servlet/*")
 public class Servlet extends HttpServlet {
     private boolean m_isSorted = false;
+    static int sNumPanelsInRole = 6;
+
 
     private String getHTMLOneTypeProduct (Products product, int panelNum, int size, String prodType){
         StringBuilder newDiv = new StringBuilder("");
-        if(panelNum % 12 == 0){
+        if(panelNum % sNumPanelsInRole == 0){
             newDiv.append(" <div class = \"myblock-"+ prodType +"\" ");
-            if(panelNum / 12 != 0){
+            if(panelNum / sNumPanelsInRole != 0){
                 newDiv.append("style=\"display: none;\"");
             }
             newDiv.append(">\n");
         }
-        newDiv.append(" <div class = \"col-md-2\">\n <div class=\"panel panel-info\">\n <div class=\"panel-heading\">");
+        newDiv.append(" <div class = \"col-md-4\">\n <div   class=\"panel panel-info\">\n <div class=\"panel-heading\">");
         newDiv.append(product.getNameOfProduct());
+        for (int j = 0; j<68 - product.getNameOfProduct().length();j++){
+            newDiv.append("&nbsp");
+        }
+
+
         newDiv.append(" </div>\n <div class=\"panel-body\">\n");
-        newDiv.append(" <img src=\""+ product.getProductDetails().getPathToImg() + "\"");
-        newDiv.append(" style=\"width:150px; height:70px\"  class=\"img-thumbnail\" alt=\"" + product.getNameOfProduct() + "\"/><br/>\n");
-        newDiv.append(" <p class=\"text-primary\">Price: " + product.getProductDetails().getPricePerUnit() + "$</p>\n");
-        newDiv.append(" <a href=\"#modal\" role=\"button\" class=\"btn btn-primary btn-xs\" id = \"prodId-" +
+        File img = new File(PropertiesClass.getProperties("pathToGFImgFold")+
+                product.getCategories().getNameOfCategory()+"\\"+product.getNameOfProduct()+".jpg");
+//            if(!img.exists()){
+//                newDiv.append(" <img style=\"height:200px\" src=\""+ "resources/img/defCategories/"
+//                        + product.getCategories().getNameOfCategory()+".jpg" + "\"");
+//            }else{
+            newDiv.append(" <img style=\"height:200px\" src=\""+ product.getProductDetails().getPathToImg() + "\"");
+//        }
+
+        newDiv.append(" <img style=\"height:200px\" src=\""+ product.getProductDetails().getPathToImg() + "\"");
+        newDiv.append("   class=\"img-thumbnail\" alt=\"" + product.getNameOfProduct() + "\"/><br/>\n");
+        newDiv.append(" <p class=\"text-primary\">Price: " + product.getProductDetails().getPricePerUnit() + " rub</p>\n");
+        newDiv.append(" <a href=\"#modal\" role=\"button\" class=\"btn btn-primary \" id = \"prodId-" +
                 product.getProductsId()+"\"data-toggle=\"modal\">Buy</a>\n");
         newDiv.append(" </div>\n </div>\n </div>\n");
         String idProd = "prodId-" + product.getProductsId();
@@ -41,9 +58,9 @@ public class Servlet extends HttpServlet {
                 "document.getElementById('formHid:hiddenV').value = (this.id)});" +
                 "</script>";
         newDiv.append(a);
-        if((panelNum % 12 == 11) && (size>12)){
-            int pageNum = panelNum / 12 + 1;
-            int amountOfPages = (size-1) / 12 + 1;
+        if((panelNum % sNumPanelsInRole == sNumPanelsInRole - 1) && (size>sNumPanelsInRole)){
+            int pageNum = panelNum / sNumPanelsInRole + 1;
+            int amountOfPages = (size-1) / sNumPanelsInRole + 1;
             newDiv.append("<div align=\"center\">\n");
             newDiv.append("<input class=\"btn btn-default\" style=\"width: 80px\" type=\"button\" onclick=\"fnPrev(\'myblock-"+ prodType +"\')\" value=\"Back\"/>\n");
             newDiv.append("<span class=\"text-info\">" + pageNum +"/"+ amountOfPages + "</span>\n");
@@ -70,21 +87,21 @@ public class Servlet extends HttpServlet {
                     result.append(getHTMLOneTypeProduct(productsList.get(i), i, productsList.size(), typeProd));
                 }
             }
-            if(((i-1) % 12 != 11) && (i>12)){
-                int pageNum = (i-1) / 12 + 1;
+            if(((i-1) % sNumPanelsInRole != sNumPanelsInRole - 1) && (i>sNumPanelsInRole)){
+                int pageNum = (i-1) / sNumPanelsInRole + 1;
                 result.append("<div class=\"col-md-12\">\n<div align=\"center\">\n");
                 result.append("<input class=\"btn btn-default\" style=\"width: 80px\" type=\"button\" onclick=\"fnPrev(\'myblock-"+ typeProd +"\')\" value=\"Back\"/>\n");
                 result.append("<span class=\"text-info\">" + pageNum + "/" + pageNum + "</span>\n");
                 result.append("<input class=\"btn btn-default disabled\" style=\"width: 80px\" type=\"button\" onclick=\"fnNext(\'myblock-"+ typeProd +"\')\" value=\"Next\"/>\n </div>\n</div>\n</div>\n");
             }
-            if(i>12){
+            if(i>sNumPanelsInRole){
                 result.append("</div>\n");
             }
         }
         return result.toString();
     }
 
-    private String getHTMLOneOrder(Order order, String prodName){
+    private static String getHTMLOneOrder(Order order, String prodName){
         StringBuilder result = new StringBuilder("<tr>\n <td>"+ order.getIdOfProd() +"</td>\n");
         result.append("<td>").append(prodName).append("</td>\n");
         result.append("<td>").append(order.getPhone()).append("</td>\n");
@@ -103,7 +120,7 @@ public class Servlet extends HttpServlet {
         return result.toString();
     }
 
-    private String getHTMLOrders(){
+    static String getHTMLOrders(){
         StringBuilder result = new StringBuilder("");
         List<Order> ordersList = MarketService.getAllOrders();
         List<Products> products = MarketService.getAllOrderedProducts();

@@ -4,6 +4,9 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <script type="application/javascript">
+        var current_disp=0;
+        var category = "phones";
+
         addEventListener("load",  function (){
             $.get("servlet",{type:"tv", sort:false}, function(responseText) {
                 $("#d1").html(responseText);
@@ -29,6 +32,7 @@
             $.get("servlet",{type:"orders", sort:false}, function(responseText) {
                 $("#d8").html(responseText);
             });
+            current_disp=0;
         });
         function sortProducts() {  //sorry for double coding, I tried to write one common function but addEventListener didn't work
             $.get("servlet",{type:"tv", sort:true}, function(responseText) {
@@ -55,13 +59,23 @@
             $.get("servlet",{type:"orders", sort:true}, function(responseText) {
                 $("#d8").html(responseText);
             });
+            current_disp=0;
         }
-    </script>
 
-    <script type="application/javascript">
-        var current_disp=0;
         function fnNext(typeProd) {
             var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (category != typeProd){
+                var SR1=document.getElementsByClassName(category);
+                if (SR1[current_disp]) { /*if its an object*/
+                    SR1[current_disp].style.display = "none";
+                    SR1[0].style.display = "block";
+
+
+
+                }
+                current_disp = 0;
+                category = typeProd;
+            }
             if (current_disp==SR.length-1) { alert("End of the page"); return false; } /*Check if you are at the end of the file*/
             if (SR[current_disp]) { /*if its an object*/
                 SR[current_disp].style.display="none"; /*hide current results*/
@@ -71,6 +85,16 @@
         }
         function fnPrev(typeProd) {
             var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (category != typeProd){
+                var SR1=document.getElementsByClassName(category);
+                if (SR1[current_disp]) { /*if its an object*/
+                    SR1[current_disp].style.display = "none";
+                    SR1[0].style.display = "block";
+                }
+
+                current_disp = 0;
+                category = typeProd;
+            }
             if (current_disp==0) { alert("Beginning of the page"); return false; } /*Check if you are at the end of the file*/
             if (SR[current_disp]) { /*if its an object*/
                 SR[current_disp].style.display="none"; /*hide current results*/
@@ -79,7 +103,8 @@
             }
         }
         function status(orderId, statusNum) {
-            $.get("stservlet",{id:orderId.toString(), status:statusNum.toString() });
+            $.get("stservlet",{id:orderId.toString(), status:statusNum.toString() },function(responseText){
+                        $("#d8").html(responseText);});
         }
     </script>
 
