@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+
+<h:form>
+        <ul id="tab" class="nav nav-sidebar">
+            <li class="active">
+                <a href="#phones" id="phones-tab" data-toggle="tab">Phones</a>
+            </li>
+            <li class="">
+                <a href="#tv" id="tv-tab" data-toggle="tab">TV</a>
+            </li>
+            <li class="">
+                <a href="#refrigerators" id="refrigerator-tab" data-toggle="tab">Refrigerators</a>
+            </li>
+            <li class="">
+                <a href="#computers" id="computers-tab" data-toggle="tab">Computers</a>
+            </li>
+            <li class="">
+                <a href="#laptops" id="laptops-tab" data-toggle="tab">Laptops</a>
+            </li>
+            <li class="">
+                <a href="#players" id="players-tab" data-toggle="tab">Players</a>
+            </li>
+            <li class="">
+                <a href="#mouses" id="mouses-tab" data-toggle="tab">Mouses</a>
+            </li>
+            <li class="">
+                <a href="#orders" id="orders-tab" data-toggle="tab">Orders</a>
+            </li>
+        </ul>
+        <hr/><hr/>
+        <div class="btn-group">
+                <ul class="nav nav-sidebar">
+                    <h:form>
+
+                        <li> <a href="#addproduct"  class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a product</a> </li>
+                        <li> <a href="#addbrand" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a brand</a> </li>
+                        <li> <h:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" action="#{addCategories.addCategories}" value="Init categories" /></li>
+                        <li>
+                            <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" value="Export" ajax="false" action="#{parserXML.export}">
+                                <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
+                            </p:commandButton>
+                        </li>
+
+                        <li>
+                            <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px"
+                                             value="Export images" ajax="false" action="#{marketManager.zipImgs}">
+                                <p:fileDownload value="#{marketManager.content}"></p:fileDownload>
+                            </p:commandButton>
+                        </li>
+                    </h:form>
+
+
+                    <h:form id="form" enctype="multipart/form-data">
+                        <li>
+                            <div class="fileUpload btn btn-default" style="width: 150px; height: 40px">
+                                <span>Import</span>
+                                <h:inputFile value="#{parserXML.file1}" type="file" class="upload" required="true">
+                                    <f:ajax listener="#{parserXML.upload}" render="@form"/>
+                                </h:inputFile>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="fileUpload btn btn-default" style="width: 150px; height: 40px">
+                                <span>Import images</span>
+                                <h:inputFile value="#{marketManager.partToZip}" style="width: 150px; height: 40px"  type="file" class="upload" required="true">
+                                    <f:ajax listener="#{marketManager.unzipImgs}" render="@form"/>
+                                </h:inputFile>
+                            </div>
+                        </li>
+                    </h:form>
+                </ul>
+
+        </div>
+</h:form>
+
+</ui:composition>

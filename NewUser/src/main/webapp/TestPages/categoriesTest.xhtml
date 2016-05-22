@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <h:outputLabel class="" value="Image:"/>
+    <h:inputText value="#{prodDetailsB.pathToImg}" class="form-control" style="width:250px" placeholder="Картинка"/><br/>
+
+
+    <h:form id="form1" enctype="multipart/form-data">
+        <h:commandButton action="#{addProduct.parseData}" value="Upload"/>
+    </h:form>
+
+</f:view>
+</html>

@@ -1,0 +1,288 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <script type="application/javascript">
+        var current_disp=0;
+        var category = "phones";
+
+        addEventListener("load",  function (){
+            $.get("servlet",{type:"tv", sort:false}, function(responseText) {
+                $("#d1").html(responseText);
+            });
+            $.get("servlet",{type:"refrigerators", sort:false}, function(responseText) {
+                $("#d2").html(responseText);
+            });
+            $.get("servlet",{type:"phones", sort:false}, function(responseText) {
+                $("#d7").html(responseText);
+            });
+            $.get("servlet",{type:"mouses", sort:false}, function(responseText) {
+                $("#d6").html(responseText);
+            });
+            $.get("servlet",{type:"players", sort:false}, function(responseText) {
+                $("#d5").html(responseText);
+            });
+            $.get("servlet",{type:"laptops", sort:false}, function(responseText) {
+                $("#d4").html(responseText);
+            });
+            $.get("servlet",{type:"computers", sort:false}, function(responseText) {
+                $("#d3").html(responseText);
+            });
+            $.get("servlet",{type:"orders", sort:false}, function(responseText) {
+                $("#d8").html(responseText);
+            });
+            current_disp=0;
+        });
+        function sortProducts() {  //sorry for double coding, I tried to write one common function but addEventListener didn't work
+            $.get("servlet",{type:"tv", sort:true}, function(responseText) {
+                $("#d1").html(responseText);
+            });
+            $.get("servlet",{type:"refrigerators", sort:true}, function(responseText) {
+                $("#d2").html(responseText);
+            });
+            $.get("servlet",{type:"phones", sort:true}, function(responseText) {
+                $("#d7").html(responseText);
+            });
+            $.get("servlet",{type:"mouses", sort:true}, function(responseText) {
+                $("#d6").html(responseText);
+            });
+            $.get("servlet",{type:"players", sort:true}, function(responseText) {
+                $("#d5").html(responseText);
+            });
+            $.get("servlet",{type:"laptops", sort:true}, function(responseText) {
+                $("#d4").html(responseText);
+            });
+            $.get("servlet",{type:"computers", sort:true}, function(responseText) {
+                $("#d3").html(responseText);
+            });
+            $.get("servlet",{type:"orders", sort:true}, function(responseText) {
+                $("#d8").html(responseText);
+            });
+            current_disp=0;
+        }
+
+        function fnNext(typeProd) {
+            var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (category != typeProd){
+                var SR1=document.getElementsByClassName(category);
+                if (SR1[current_disp]) { /*if its an object*/
+                    SR1[current_disp].style.display = "none";
+                    SR1[0].style.display = "block";
+
+
+
+                }
+                current_disp = 0;
+                category = typeProd;
+            }
+            if (current_disp==SR.length-1) { alert("End of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp++; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+        function fnPrev(typeProd) {
+            var SR=document.getElementsByClassName(typeProd); /*Get all the search results into an object array*/
+            if (category != typeProd){
+                var SR1=document.getElementsByClassName(category);
+                if (SR1[current_disp]) { /*if its an object*/
+                    SR1[current_disp].style.display = "none";
+                    SR1[0].style.display = "block";
+                }
+
+                current_disp = 0;
+                category = typeProd;
+            }
+            if (current_disp==0) { alert("Beginning of the page"); return false; } /*Check if you are at the end of the file*/
+            if (SR[current_disp]) { /*if its an object*/
+                SR[current_disp].style.display="none"; /*hide current results*/
+                current_disp--; /*add 1 to current display*/
+                SR[current_disp].style.display="block"; /*show next results*/
+            }
+        }
+        function status(orderId, statusNum) {
+            $.get("stservlet",{id:orderId.toString(), status:statusNum.toString() },function(responseText){
+                        $("#d8").html(responseText);});
+        }
+    </script>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ui:include src="leftMenu_admin.xhtml" />
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <ui:insert name="content_admin" />
+                <h:form>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="phones"><br/>
+                            <div class="row" id="d7"/>
+                        </div>
+
+                        <div class="tab-pane fade" id="tv">
+                            <div id="d1"/>
+                        </div>
+                        <div class="tab-pane fade" id="refrigerators">
+                            <div class="row" id="d2"/>
+
+                        </div>
+                        <div class="tab-pane fade" id="computers">
+                            <div class="row" id="d3"/>
+                        </div>
+                        <div class="tab-pane fade" id="laptops">
+                            <div class="row" id="d4"/>
+                        </div>
+                        <div class="tab-pane fade" id="players">
+                            <div class="row" id="d5"/>
+                        </div>
+                        <div class="tab-pane fade" id="mouses">
+                            <div class="row" id="d6"/>
+                        </div>
+                        <div class="tab-pane fade" id="orders">
+                            <div id="d8"/>
+                        </div>
+                    </div>
+                </h:form>
+
+                <div id="modal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">Making an order</h2>
+                            </div>
+
+                            <h:form id="formHid">
+                                <div class="modal-body">
+                                    <h:inputHidden id="hiddenV" value="#{orderBean.idOfBt}"/>
+                                    <h:outputText styleClass="text-info" value="Name:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.userNameOrder}" placeholder="Введите имя"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Phone:"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{orderBean.phone}" placeholder="Введите телефон"/><br/><br/>
+                                    <h:outputText styleClass="text-info" value="Email"/>
+                                    <h:inputText styleClass="form-control" style="width:200px" value="#{user.email}" placeholder="Введите email"/><br/><br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton styleClass="btn btn-success" action="#{addOrder.addOrder(orderBean,user)}" value="OK"/>
+                                    <!--<a href="#thanks" role="button" class="btn btn-success" type="submit" data-toggle="modal" data-dismiss="modal">OK</a>-->
+                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="thanks" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h2 class="modal-title" align="center">Thanks for order!!!</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-info">Our operator will call you soon.</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" type="button" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="addproduct" class="modal fade" >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1 class="modal-title" align="center">Addition of product</h1>
+                                </div>
+                                <h:form id="product" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <h:outputLabel class="" value="Product name:"/>
+                                        <h:inputText value="#{productsB.nameOfProduct}" class="form-control" style="width:250px" placeholder="Введите название товара"/><br/>
+
+                                        <h:message style="color:red " id="brandError"  for="brandP"/><br/>
+                                        <h:outputLabel class="" value="Company name:"/>
+                                        <h:inputText id="brandP" value="#{productsB.providerName}" class="form-control" style="width:250px" placeholder="Введите имя поставщика"/><br/>
+
+                                        <h:message style="color:red " id="categoryError"  for="categoryP"/><br/>
+                                        <h:outputLabel class="" value="Category:"/>
+                                        <h:inputText id="categoryP" value="#{productsB.categoryName}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Price:"/>
+                                        <h:inputText value="#{prodDetailsB.pricePerUnit}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Quantity:"/>
+                                        <h:inputText value="#{prodDetailsB.amountOfProducts}" class="form-control" style="width:250px" placeholder="Введите название категории"/><br/>
+
+                                        <h:outputLabel class="" value="Image:"/>
+                                        <h:inputFile class="form-control" style="width:250px" styleClass="btn btn-default" value="#{prodDetailsB.file}" required="true"/>
+
+                                        <script type="application/javascript">
+                                            $(".dropdown-menu li a").click(function(){
+                                                $(this).parents(".dropdown").find('a:first').html($(this).text());
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandButton value="Ok" action="#{addProduct.addProd(productsB,prodDetailsB)}" class="btn btn-success" type="submit"/>
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="addbrand" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button  type="button" class="close"
+                                             data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1 class="modal-title" align="center">Addition of brand</h1>
+                                </div>
+                                <h:form id="brand">
+                                    <div class="modal-body">
+
+                                        <h:outputLabel class="" value="Name of brand:"/>
+                                        <h:inputText value="#{providersB.companyName}" class="form-control" style="width:250px" placeholder=""/><br/>
+
+                                        <h:message style="color:red " id="phoneError"  for="phone"/><br/>
+                                        <h:outputLabel class="" value="Phone:"/>
+                                        <h:inputText id="phone" value="#{providersB.phoneNumber}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:message style="color:red " id="emailError"  for="email"/><br/>
+                                        <h:outputLabel class="" value="Email:"/>
+                                        <h:inputText id="email" value="#{providersB.emailOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:outputLabel class="" value="Adress:"/>
+                                        <h:inputText value="#{providersB.adressOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+
+                                        <h:outputLabel class="" value="Site:"/>
+                                        <h:inputText value="#{providersB.websiteOfCompany}" class="form-control" style="width:250px" placeholder="Введите бренд"/><br/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandButton action="#{brendCh.addProvider(providersB)}" class="btn btn-success" type="submit" value="OK"/>
+                                        <button  class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="addcategories" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <h:form>
+                                    <h:commandButton action="#{addCategories.addCategories}" class="btn btn-success" type="submit" value="Add Categories"/>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

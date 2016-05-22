@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+    <h:form>
+
+
+        //--------------------------------------------
+
+
+        <li>
+        <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" value="Export" ajax="false" action="#{marketManager.zipImgs}">
+            <p:fileDownload value="#{marketManager.imagesZip}"></p:fileDownload>
+        </p:commandButton>
+        </li>
+        //--------------------------------------------
+        Name of prod: <h:inputText value="#{productsB.nameOfProduct}"/><br/>
+        Price: <h:inputText value="#{prodDetailsB.pricePerUnit}"/><br/>
+        Quantity: <h:inputText value="#{prodDetailsB.amountOfProducts}"/><br/>
+        Name of category: <h:inputText value="#{productsB.categoryName}"/><br/>
+        Name of provider: <h:inputText value="#{productsB.providerName}"/><br/>
+
+        String to file:<h:inputFile id="file" value="#{prodDetailsB.pathToImg}"/>
+
+        <h:commandButton action="#{addProduct.addProd(productsB,prodDetailsB)}" value="add product"/><br/>
+<br/>
+        <h:commandButton action="#{brendCh.initProviders}"  value="add Providers"/><br/>
+        <h:commandButton action="#{addCategories.addCategories}"  value="add Categories"/><br/><br/>
+    </h:form>
+
+    <!--<h:form>-->
+    <li> <a href="#addproduct"  class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a product</a> </li>
+    <li> <a href="#addbrand" class="btn btn-default" style="height: 40px; width: 150px" type="button" data-toggle="modal">Add a brand</a> </li>
+    <li> <h:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" action="#{addCategories.addCategories}" value="Init categories" /></li>
+    <li>
+        <p:commandButton styleClass="btn btn-default" style="height: 40px; width: 150px" value="Export" ajax="false" action="#{parserXML.export}">
+            <p:fileDownload value="#{parserXML.content}"></p:fileDownload>
+        </p:commandButton>
+    </li>
+    <!--</h:form>-->
+    <!--<h:form id="form" enctype="multipart/form-data">-->
+    <li>
+        <div class="fileUpload btn btn-default">
+            <span>Import</span>
+            <h:inputFile value="#{parserXML.file1}" style="width: 150px; height: 40px"  type="file" class="upload" required="true">
+                <f:ajax listener="#{parserXML.upload}" render="@form"/>
+            </h:inputFile>
+        </div>
+    </li>
+</h:form>
+</f:view>
+</html>
